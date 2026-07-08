@@ -1,7 +1,7 @@
-# Skill: UI Design Consistency Rules for My UI Kit
+# Skill: UI Design Consistency Rules for piceUI
 
 Use this document whenever you design, extend, or refine any component, layout,
-or demo page in `my-ui-kit`.
+or demo page in `piceUI`.
 
 The goal is simple: every new UI decision must strengthen the system, not add
 random variation. Agents should treat this file as a design guardrail, not just
@@ -175,7 +175,105 @@ layout spacing as a first-class system rule.
 
 ### Flex and Grid Grouping
 
-Use parent layout rules to control spacing between repeated components.
+Use parent layout rules to control how repeated components are grouped,
+spaced, wrapped, and aligned.
+
+Agents must decide between `flex`, `grid`, and vertical stacking based on the
+content relationship, not based on what is fastest to write.
+
+#### When to Use Flex
+
+Use `flex` when items form a simple one-dimensional group.
+
+Good fit for `flex`:
+
+- button groups
+- badge groups
+- inline actions
+- toolbar items
+- short filter controls
+- small groups of switches or checkboxes
+
+Flex rules:
+
+- always define spacing with parent `gap-*`
+- use `items-center` for mixed icon/text/control rows
+- use `flex-wrap` when labels or items may exceed the available width
+- avoid long single-line flex rows for forms and settings
+- use `justify-between` only when the layout needs left/right separation, not as a spacing hack
+
+Recommended flex pattern:
+
+```html
+<div class="flex flex-wrap items-center gap-6">
+  <label class="form-switch">...</label>
+  <label class="form-switch">...</label>
+  <label class="form-switch">...</label>
+</div>
+```
+
+#### When to Use Grid
+
+Use `grid` when items need two-dimensional structure or stable alignment across
+rows and columns.
+
+Good fit for `grid`:
+
+- card collections
+- dashboard summaries
+- form layouts with label/control columns
+- repeated setting rows that need consistent alignment
+- comparison blocks
+- responsive content sections
+
+Grid rules:
+
+- use grid when columns should align consistently
+- use `gap-*` for both row and column spacing
+- use responsive columns intentionally, for example `grid-cols-1 md:grid-cols-2`
+- avoid forcing unrelated content into equal columns just because grid is available
+- do not mix many different column patterns inside similar sections
+
+Recommended grid pattern:
+
+```html
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <div class="card">...</div>
+  <div class="card">...</div>
+</div>
+```
+
+#### When to Stack Vertically
+
+Use vertical stacking when readability is more important than compactness.
+
+Good fit for vertical stacking:
+
+- forms
+- settings lists
+- long labels
+- dense interactive controls
+- mobile-first layouts
+- content that users must scan carefully
+
+Stacking rules:
+
+- use `space-y-*` or parent `gap-*` consistently
+- prefer `space-y-3` or `space-y-4` inside cards and forms
+- prefer larger section spacing such as `mt-6`, `mt-8`, or `gap-8` between major groups
+- do not compress settings into a horizontal row when labels become hard to scan
+
+Recommended stacked pattern:
+
+```html
+<div class="space-y-4">
+  <label class="form-switch">...</label>
+  <label class="form-switch">...</label>
+  <label class="form-switch">...</label>
+</div>
+```
+
+#### Required Grouping Rules
 
 Rules:
 
@@ -186,6 +284,183 @@ Rules:
 - prefer vertical stacking for forms, settings, and dense control groups
 - use grid when multiple rows should align into stable columns
 - keep grouping rhythm consistent across similar sections
+- choose one grouping strategy per section; avoid mixing `flex`, `grid`, and custom margins without a clear reason
+- make the parent responsible for sibling spacing, not the child component
+
+#### Decision Guide
+
+- use `flex` when items flow in one row or one axis
+- use `grid` when columns or rows must line up
+- use vertical stacking when labels are long or scanning matters
+- use `flex-wrap` when inline groups must adapt to smaller widths
+- use larger parent gaps for interactive groups than for decorative groups
+
+### Spacing Scale Usage
+
+Agents must use spacing intentionally, not just visually.
+
+Spacing communicates relationship:
+
+- tight spacing means items belong together
+- medium spacing means items are related but separate
+- large spacing means a new group, section, or concept begins
+
+#### Recommended Spacing Roles
+
+Use this mapping when deciding spacing:
+
+```text
+4px   micro spacing: icon/text adjustment, compact internal detail
+8px   tight grouping: label + helper, icon + label, checkbox + text
+12px  comfortable grouping: switch + label, small stacked controls
+16px  component internal rhythm: form fields, card body groups
+24px  related block spacing: form groups, card sections
+32px  section spacing: page sections, major content groups
+48px  large page rhythm: hero to content, major layout separation
+64px  very large separation: landing sections or template-level blocks
+```
+
+Rules:
+
+- use small spacing inside a component
+- use medium spacing between related component groups
+- use large spacing between sections
+- do not use spacing only to “make it look nicer” without defining the relationship
+- avoid mixing many spacing values inside one small area
+- if two items are related, they should not be separated like different sections
+- if two items are unrelated, they should not be cramped like one component
+
+#### Spacing Consistency Examples
+
+Good:
+
+```html
+<div class="space-y-4">
+  <div>Form field</div>
+  <div>Form field</div>
+</div>
+```
+
+Good:
+
+```html
+<section class="mt-8">
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">...</div>
+</section>
+```
+
+Avoid:
+
+```html
+<div class="mt-[18px] flex gap-[22px]">...</div>
+```
+
+Custom spacing values should not be used unless they become formal system
+tokens.
+
+### Responsive Layout Rules
+
+Agents must design layout behavior across screen sizes before finalizing a
+component or page section.
+
+Responsive behavior should be predictable, not accidental.
+
+Rules:
+
+- start with a readable mobile-first layout
+- stack dense controls vertically on small screens
+- only introduce columns when there is enough width
+- use `flex-wrap` for inline groups that may overflow
+- use responsive grid classes for card or content collections
+- avoid layouts that depend on exact text length
+- test whether labels still read clearly when the viewport narrows
+
+#### Recommended Responsive Patterns
+
+For cards or repeated content:
+
+```html
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+  <div class="card">...</div>
+  <div class="card">...</div>
+  <div class="card">...</div>
+</div>
+```
+
+For inline controls:
+
+```html
+<div class="flex flex-wrap items-center gap-4 md:gap-6">
+  <button class="btn btn-primary">Save</button>
+  <button class="btn btn-secondary">Cancel</button>
+</div>
+```
+
+For forms:
+
+```html
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <div>Form field</div>
+  <div>Form field</div>
+</div>
+```
+
+Agents should not create desktop-only layouts unless the component is explicitly
+desktop-only.
+
+### Form Layout Patterns
+
+Form layouts need extra consistency because users scan labels, inputs, errors,
+and actions in sequence.
+
+Rules:
+
+- stack form fields vertically by default
+- keep label, control, helper text, and error text as one visual group
+- use `space-y-1` or equivalent tight spacing inside one field group
+- use `space-y-4` or `gap-4` between fields
+- use `gap-6` or `mt-6` before major form action groups
+- align checkboxes, radios, and switches consistently
+- do not mix compact and spacious form rhythm in the same form
+- keep error spacing stable so validation does not visually break the layout
+
+#### Field Group Pattern
+
+Use this structure for a basic field:
+
+```html
+<div class="space-y-1">
+  <label class="form-label">Email</label>
+  <input class="form-control" type="email">
+  <p class="form-text">We will never share your email.</p>
+</div>
+```
+
+#### Settings List Pattern
+
+Use this structure for switches, checkboxes, and setting controls:
+
+```html
+<div class="space-y-3">
+  <label class="form-switch">...</label>
+  <label class="form-switch">...</label>
+  <label class="form-switch">...</label>
+</div>
+```
+
+#### Action Group Pattern
+
+Use this structure for form actions:
+
+```html
+<div class="mt-6 flex flex-wrap items-center gap-3">
+  <button class="btn btn-primary">Save</button>
+  <button class="btn btn-secondary">Cancel</button>
+</div>
+```
+
+Form components should feel calm and predictable. If a form layout feels noisy,
+agents should reduce layout variation before changing component styling.
 
 ### Spacing Responsibility
 

@@ -2,10 +2,10 @@
 interface Props {
   title: string;
   description?: string;
-  section?: 'docs' | 'components' | 'blocks' | 'templates';
+  section?: 'docs' | 'foundations' | 'components' | 'blocks' | 'templates';
 }
 
-const { title, description = 'My UI Kit documentation', section = 'docs' } = Astro.props;
+const { title, description = 'piceUI documentation', section = 'docs' } = Astro.props;
 const navClass = (key: string) => key === section
   ? 'text-primary-600 dark:text-primary-400'
   : 'text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white';
@@ -16,7 +16,7 @@ const iconClass = 'h-4 w-4';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} — My UI Kit</title>
+    <title>{title} — piceUI</title>
     <meta name="description" content={description} />
     <link rel="stylesheet" href="/ui-kit.css" />
     <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
@@ -25,7 +25,10 @@ const iconClass = 'h-4 w-4';
   <body class="bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
     <header class="sticky top-0 z-40 border-b border-neutral-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 dark:border-neutral-800 dark:bg-neutral-900/90 dark:supports-[backdrop-filter]:bg-neutral-900/80">
       <div class="flex w-full items-center gap-6 px-6 py-4 lg:px-10 xl:px-12">
-        <a class="shrink-0 text-lg font-semibold" href="/">My UI Kit</a>
+        <a class="flex shrink-0 items-center gap-2" href="/" aria-label="piceUI home">
+          <img class="h-8 w-8 object-contain" src="/brand/piceui-icon.png" alt="" aria-hidden="true" />
+          <span class="text-lg font-semibold tracking-tight text-neutral-900 dark:text-white">pice<span class="text-primary-600 dark:text-primary-400">UI</span></span>
+        </a>
 
         <div class="hidden min-w-0 flex-1 lg:block">
           <label class="flex max-w-md items-center gap-3 rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-500 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400">
@@ -40,6 +43,7 @@ const iconClass = 'h-4 w-4';
 
         <nav class="ml-auto flex items-center gap-4 text-sm lg:gap-6">
           <a class={navClass('docs')} href="/">Docs</a>
+          <a class={navClass('foundations')} href="/layout-system/">Foundations</a>
           <a class={navClass('components')} href="/components/">Components</a>
           <a class={navClass('blocks')} href="/blocks/">Blocks</a>
           <a class={navClass('templates')} href="/templates/">Templates</a>

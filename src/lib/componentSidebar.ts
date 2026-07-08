@@ -2,6 +2,12 @@ export function componentSidebar(activeComponent?: string) {
   return [
     { title: 'Getting Started', links: [{ href: '/', label: 'Introduction' }] },
     {
+      title: 'Foundations',
+      links: [
+        { href: '/layout-system/', label: 'Layout System', active: activeComponent === 'layout-system' }
+      ]
+    },
+    {
       title: 'Library',
       links: [
         {

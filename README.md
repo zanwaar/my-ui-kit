@@ -1,4 +1,4 @@
-# My UI Kit
+# piceUI
 
 UI Kit berbasis **Tailwind CSS**, tapi dipakai dengan cara **plug-and-play seperti Bootstrap**
 (class siap pakai: `.btn`, `.card`, `.alert`, dll) — bukan pola shadcn (copy-paste per komponen).
@@ -71,7 +71,7 @@ my-ui-kit/
    di VS Code) untuk melihat hasilnya secara langsung.
 
    Untuk melihat dokumentasi bergaya katalog seperti FlyonUI, buka `docs/index.html`.
-   Dokumentasi ini memakai label dan class milik **My UI Kit**, bukan menyalin source FlyonUI.
+   Dokumentasi ini memakai label dan class milik **piceUI**, bukan menyalin source FlyonUI.
 
    Untuk versi docs site berbasis Astro, jalankan:
    ```bash

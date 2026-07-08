@@ -1,0 +1,117 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import ComponentDocLayout from '../../components/ComponentDocLayout.astro';
+const toc = [
+  { href: '#overview', label: 'Overview', active: true },
+  { href: '#flex', label: 'Flex Grouping' },
+  { href: '#grid', label: 'Grid Grouping' },
+  { href: '#stack', label: 'Vertical Stack' },
+  { href: '#responsive', label: 'Responsive Rules' }
+];
+---
+<DocsLayout title="Layout System" description="Contoh layout consistency untuk flex, grid, spacing, dan grouping." section="foundations">
+  <ComponentDocLayout active="layout-system" title="Layout System" description="Panduan contoh untuk menyusun komponen dengan flex, grid, vertical stack, dan spacing yang konsisten." toc={toc}>
+    <Fragment slot="hero-preview">
+      <div class="card">
+        <div class="card-body space-y-4">
+          <div class="flex flex-wrap items-center gap-6">
+            <label class="form-switch">
+              <input class="form-switch-input" type="checkbox" checked />
+              <span class="form-switch-track"></span>
+              <span class="form-switch-label">Email notifications</span>
+            </label>
+            <label class="form-switch">
+              <input class="form-switch-input" type="checkbox" />
+              <span class="form-switch-track"></span>
+              <span class="form-switch-label">Marketing updates</span>
+            </label>
+          </div>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div class="rounded border border-neutral-200 p-4 dark:border-neutral-700">Grid item A</div>
+            <div class="rounded border border-neutral-200 p-4 dark:border-neutral-700">Grid item B</div>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+
+    <section id="flex" class="card mt-8 max-w-4xl">
+      <div class="card-header">Flex Grouping</div>
+      <div class="card-body space-y-4">
+        <p class="text-sm text-neutral-600 dark:text-neutral-300">Use <code>flex</code> for one-dimensional groups. Parent containers should control spacing with <code>gap-*</code>.</p>
+        <div class="flex flex-wrap items-center gap-6">
+          <label class="form-switch">
+            <input class="form-switch-input" type="checkbox" checked />
+            <span class="form-switch-track"></span>
+            <span class="form-switch-label">Email notifications</span>
+          </label>
+          <label class="form-switch">
+            <input class="form-switch-input" type="checkbox" />
+            <span class="form-switch-track"></span>
+            <span class="form-switch-label">Marketing updates</span>
+          </label>
+          <label class="form-switch">
+            <input class="form-switch-input" type="checkbox" disabled />
+            <span class="form-switch-track"></span>
+            <span class="form-switch-label">Disabled option</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="grid" class="card mt-6 max-w-4xl">
+      <div class="card-header">Grid Grouping</div>
+      <div class="card-body space-y-4">
+        <p class="text-sm text-neutral-600 dark:text-neutral-300">Use <code>grid</code> when rows and columns need stable alignment.</p>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded border border-neutral-200 p-4 dark:border-neutral-700">
+            <h3 class="font-medium">Card One</h3>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Aligned content block with shared spacing.</p>
+          </div>
+          <div class="rounded border border-neutral-200 p-4 dark:border-neutral-700">
+            <h3 class="font-medium">Card Two</h3>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Use the same gap and column rhythm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="card mt-6 max-w-4xl">
+      <div class="card-header">Vertical Stack</div>
+      <div class="card-body space-y-4">
+        <p class="text-sm text-neutral-600 dark:text-neutral-300">Use vertical stacking for settings, forms, and longer labels.</p>
+        <div class="space-y-3">
+          <label class="form-switch">
+            <input class="form-switch-input" type="checkbox" checked />
+            <span class="form-switch-track"></span>
+            <span class="form-switch-label">Account security alerts</span>
+          </label>
+          <label class="form-switch">
+            <input class="form-switch-input" type="checkbox" />
+            <span class="form-switch-track"></span>
+            <span class="form-switch-label">Weekly product summary email</span>
+          </label>
+          <label class="form-switch">
+            <input class="form-switch-input" type="checkbox" />
+            <span class="form-switch-track"></span>
+            <span class="form-switch-label">Public profile visibility</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="responsive" class="card mt-6 max-w-4xl">
+      <div class="card-header">Responsive Rules</div>
+      <div class="card-body">
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;div class="flex flex-wrap items-center gap-6"&gt;
+  &lt;label class="form-switch"&gt;...&lt;/label&gt;
+  &lt;label class="form-switch"&gt;...&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"&gt;
+  &lt;div class="card"&gt;...&lt;/div&gt;
+  &lt;div class="card"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+  </ComponentDocLayout>
+</DocsLayout>
