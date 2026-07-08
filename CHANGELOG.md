@@ -5,6 +5,12 @@ All notable changes to `piceui` will be documented in this file.
 The format is based on Keep a Changelog,
 and this project follows Semantic Versioning where possible.
 
+## [0.1.2] - 2026-07-09
+
+### Changed
+- Simplified npm README with install, usage, documentation, repository, and license sections
+- Added public documentation link to `https://pice-ui.vercel.app`
+
 ## [0.1.1] - 2026-07-09
 
 ### Fixed

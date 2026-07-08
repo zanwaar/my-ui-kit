@@ -660,7 +660,7 @@ installation instructions.
 Rules:
 
 - `Introduction` at `/` explains what piceUI is, the product flow, and where users should go next
-- `Quick Start` at `/quick-start/` owns install steps such as `npm init -y`, primary npm package install, local package install for development, CSS import, and first component usage
+- `Quick Start` at `/quick-start/` owns the primary npm install flow, CSS import, first component usage, and a short development-only local install note
 - do not duplicate full install instructions on `Introduction`; link to `Quick Start` instead
 - use the same docs shell as component pages: left sidebar, main content, and right table of contents when space allows
 - code commands must appear inside neutral dark code blocks using existing radius, spacing, and typography tokens
