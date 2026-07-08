@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/zanwaar/piceUI/main/public/brand/piceui-logo.png" alt="piceUI" width="220" />
+</p>
+
 # piceUI
 
 A plug-and-play UI kit built with Tailwind CSS for rapidly building consistent user interfaces.
