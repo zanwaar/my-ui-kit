@@ -1030,6 +1030,11 @@ video {
   border-color: rgb(133 77 14 / var(--tw-border-opacity, 1));
 }
 
+.border-primary-100 {
+  --tw-border-opacity: 1;
+  border-color: rgb(219 234 254 / var(--tw-border-opacity, 1));
+}
+
 .bg-green-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 252 231 / var(--tw-bg-opacity, 1));
@@ -1171,6 +1176,10 @@ video {
 
 .bg-yellow-900\/40 {
   background-color: rgb(113 63 18 / 0.4);
+}
+
+.bg-primary-50\/60 {
+  background-color: rgb(239 246 255 / 0.6);
 }
 
 .bg-gradient-to-br {
@@ -2383,6 +2392,11 @@ textarea.form-control {
 
 .dark\:border-white\/10:is(.dark *) {
   border-color: rgb(255 255 255 / 0.1);
+}
+
+.dark\:border-primary-900:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(30 58 138 / var(--tw-border-opacity, 1));
 }
 
 .dark\:bg-neutral-800:is(.dark *) {

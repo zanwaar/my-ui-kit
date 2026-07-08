@@ -1,6 +1,12 @@
 export function componentSidebar(activeComponent?: string) {
   return [
-    { title: 'Getting Started', links: [{ href: '/', label: 'Introduction', icon: 'home' }] },
+    {
+      title: 'Getting Started',
+      links: [
+        { href: '/', label: 'Introduction', icon: 'home', active: activeComponent === 'introduction' },
+        { href: '/quick-start/', label: 'Quick Start', icon: 'code', active: activeComponent === 'quick-start' }
+      ]
+    },
     {
       title: 'Foundations',
       links: [
