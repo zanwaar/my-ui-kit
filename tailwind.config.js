@@ -3,6 +3,7 @@ module.exports = {
   darkMode: 'class', // pakai class strategy: <html class="dark">
   content: [
     './demo-html/**/*.html',
+    './docs/**/*.html',
     './core/**/*.{js,scss}',
   ],
   theme: {

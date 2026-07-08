@@ -70,6 +70,9 @@ my-ui-kit/
 3. Buka `demo-html/index.html` di browser (disarankan pakai extension **Live Server**
    di VS Code) untuk melihat hasilnya secara langsung.
 
+   Untuk melihat dokumentasi bergaya katalog seperti FlyonUI, buka `docs/index.html`.
+   Dokumentasi ini memakai label dan class milik **My UI Kit**, bukan menyalin source FlyonUI.
+
 4. Untuk build versi production (minified):
    ```bash
    npm run build:css:prod
@@ -85,6 +88,33 @@ my-ui-kit/
 
 Komponen berikutnya (modal, dropdown, table, tabs, pagination, sidebar) mengikuti
 pola yang sama: buat file baru di `core/scss/components/`, lalu import di `main.scss`.
+
+## Struktur Dokumentasi
+
+Dokumentasi awal disiapkan dengan 4 area utama:
+
+- `docs/index.html` — halaman awal dokumentasi dan install snippet
+- `docs/components/` — dokumentasi komponen kecil seperti button, badge, alert, form
+- `docs/blocks/` — gabungan komponen siap pakai seperti dashboard stats, hero, pricing
+- `docs/templates/` — halaman utuh seperti admin dashboard, landing page, auth page
+
+Dokumentasi sekarang juga punya halaman indeks kategori untuk pengalaman browsing yang lebih rapi:
+
+- `docs/components/index.html` — daftar komponen
+- `docs/blocks/index.html` — daftar block
+- `docs/templates/index.html` — daftar template
+
+Halaman component yang sudah disiapkan saat ini:
+
+- `docs/components/buttons.html`
+- `docs/components/badges.html`
+- `docs/components/alerts.html`
+- `docs/components/cards.html`
+- `docs/components/forms.html`
+- `docs/components/dropdowns.html`
+
+Saat menambah halaman docs baru, pastikan path `./docs/**/*.html` tetap ada di
+`tailwind.config.js` agar utility class yang dipakai ikut masuk ke hasil build CSS.
 
 ## Cara Menambah Komponen Baru
 
