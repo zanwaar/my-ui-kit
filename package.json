@@ -1,0 +1,22 @@
+{
+  "name": "my-ui-kit",
+  "version": "0.1.0",
+  "description": "Tailwind-based UI Kit, plug-and-play seperti Bootstrap",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build:scss": "sass core/scss/main.scss core/dist/_compiled.css --no-source-map",
+    "build:tw": "tailwindcss -i core/dist/_compiled.css -o core/dist/ui-kit.css",
+    "build:css": "npm run build:scss && npm run build:tw",
+    "watch:css": "sass core/scss/main.scss core/dist/_compiled.css --watch --no-source-map",
+    "tailwind:build": "npm run build:tw",
+    "build:css:prod": "sass core/scss/main.scss core/dist/_compiled.css --style=compressed --no-source-map && tailwindcss -i core/dist/_compiled.css -o core/dist/ui-kit.min.css --minify",
+    "dev": "concurrently \"npm run watch:css\" \"tailwindcss -i core/dist/_compiled.css -o core/dist/ui-kit.css --watch\""
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.4.38",
+    "sass": "^1.77.0",
+    "tailwindcss": "^3.4.4"
+  }
+}

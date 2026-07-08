@@ -1,0 +1,90 @@
+// core/scss/components/_form.scss
+//
+// Konvensi: .form-control (text/textarea/select), .form-check (checkbox/radio)
+// Pola sama seperti _button.scss: base class -> variant -> state -> dark mode
+
+// --- Label ---
+.form-label {
+  @apply block mb-1 text-sm font-medium text-neutral-700;
+
+  .dark & {
+    @apply text-neutral-200;
+  }
+}
+
+// --- Text input, textarea, select ---
+.form-control {
+  @apply block w-full px-4 py-2 text-sm;
+  @apply bg-white border border-neutral-300 rounded;
+  @apply text-neutral-900 placeholder-neutral-400;
+  @apply transition-colors duration-150;
+
+  &:focus {
+    @apply outline-none border-primary-500 ring-2 ring-primary-100;
+  }
+  &:disabled {
+    @apply bg-neutral-100 text-neutral-400 cursor-not-allowed;
+  }
+
+  // state error (dipasangkan manual lewat JS/validasi, class ditambahkan ke .form-control)
+  &.is-invalid {
+    @apply border-red-500;
+    &:focus {
+      @apply ring-red-100;
+    }
+  }
+
+  .dark & {
+    @apply bg-neutral-800 border-neutral-600 text-neutral-100 placeholder-neutral-500;
+    &:focus {
+      @apply border-primary-400 ring-primary-900;
+    }
+    &:disabled {
+      @apply bg-neutral-900 text-neutral-600;
+    }
+  }
+}
+
+textarea.form-control {
+  @apply min-h-[96px];
+}
+
+// --- Pesan bantuan/error di bawah field ---
+.form-text {
+  @apply mt-1 text-xs text-neutral-500;
+
+  .dark & {
+    @apply text-neutral-400;
+  }
+}
+
+.form-error {
+  @apply mt-1 text-xs text-red-600;
+
+  .dark & {
+    @apply text-red-400;
+  }
+}
+
+// --- Checkbox & Radio ---
+// Pakai native input + accent-color (bukan custom SVG), supaya tetap
+// framework-agnostic dan ringan, sesuai prinsip "vanilla, tidak terikat platform".
+.form-check {
+  @apply flex items-center gap-2;
+}
+
+.form-check-input {
+  @apply w-4 h-4 accent-primary-600 cursor-pointer;
+
+  &:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+}
+
+.form-check-label {
+  @apply text-sm text-neutral-700 cursor-pointer;
+
+  .dark & {
+    @apply text-neutral-200;
+  }
+}

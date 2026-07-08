@@ -1,0 +1,37 @@
+// core/scss/components/_badge.scss
+
+.badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+  @apply bg-primary-100 text-primary-800;
+
+  .dark & {
+    @apply bg-primary-900/40 text-primary-200;
+  }
+}
+
+.badge-success {
+  @apply bg-green-100 text-green-800;
+
+  .dark & {
+    @apply bg-green-900/40 text-green-200;
+  }
+}
+
+.badge-danger {
+  @apply bg-red-100 text-red-800;
+
+  .dark & {
+    @apply bg-red-900/40 text-red-200;
+  }
+}
+
+.badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+
+  .dark & {
+    @apply bg-yellow-900/40 text-yellow-200;
+  }
+}

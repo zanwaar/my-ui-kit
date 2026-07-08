@@ -1,0 +1,26 @@
+// core/scss/main.scss — entry point
+// Alur build: sass main.scss -> core/dist/_compiled.css
+//             tailwind CLI memproses @tailwind/@apply -> core/dist/ui-kit.css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "abstracts/variables";
+
+@import "components/button";
+@import "components/card";
+@import "components/alert";
+@import "components/badge";
+@import "components/form";
+
+// Tambahkan import komponen baru di bawah ini (Fase 1):
+// @import "components/modal";
+// @import "components/dropdown";
+// @import "components/table";
+// @import "components/tabs";
+// @import "components/pagination";
+// @import "components/tooltip";
+// @import "components/avatar";
+// @import "components/sidebar";
+// @import "components/spinner";

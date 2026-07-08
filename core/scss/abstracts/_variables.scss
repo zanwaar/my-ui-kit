@@ -1,0 +1,7 @@
+// core/scss/abstracts/_variables.scss
+//
+// Variabel SCSS non-Tailwind (jarang dipakai, karena hampir semua token
+// sudah ada di tailwind.config.js). Simpan di sini kalau butuh nilai yang
+// tidak bisa diwakili token Tailwind, mis. durasi animasi kompleks.
+
+$transition-base: 150ms ease-in-out;

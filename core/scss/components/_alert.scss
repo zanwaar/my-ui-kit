@@ -1,0 +1,37 @@
+// core/scss/components/_alert.scss
+
+.alert {
+  @apply px-4 py-3 rounded text-sm border;
+}
+
+.alert-primary {
+  @apply bg-primary-50 border-primary-200 text-primary-800;
+
+  .dark & {
+    @apply bg-primary-900/30 border-primary-800 text-primary-200;
+  }
+}
+
+.alert-success {
+  @apply bg-green-50 border-green-200 text-green-800;
+
+  .dark & {
+    @apply bg-green-900/30 border-green-800 text-green-200;
+  }
+}
+
+.alert-danger {
+  @apply bg-red-50 border-red-200 text-red-800;
+
+  .dark & {
+    @apply bg-red-900/30 border-red-800 text-red-200;
+  }
+}
+
+.alert-warning {
+  @apply bg-yellow-50 border-yellow-200 text-yellow-800;
+
+  .dark & {
+    @apply bg-yellow-900/30 border-yellow-800 text-yellow-200;
+  }
+}

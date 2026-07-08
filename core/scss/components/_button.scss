@@ -1,0 +1,92 @@
+// core/scss/components/_button.scss
+//
+// Konvensi penamaan project ini: .btn + .btn-{variant} + .btn-{size}
+//
+// Aturan wajib tiap komponen baru:
+// 1. Warna/spacing HANYA dari tailwind.config.js
+// 2. Wajib ada state: default, hover, focus, disabled
+// 3. Wajib ada varian dark mode
+// 4. Radius & shadow pakai token yang sama dengan komponen lain
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2;
+  @apply px-4 py-2 text-sm font-medium;
+  @apply rounded transition-colors duration-150;
+
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  &:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+  }
+}
+
+// --- Variant ---
+.btn-primary {
+  @apply bg-primary-600 text-white;
+  &:hover:not(:disabled) { @apply bg-primary-700; }
+  &:focus-visible { @apply ring-primary-400; }
+
+  .dark & {
+    @apply bg-primary-500;
+    &:hover:not(:disabled) { @apply bg-primary-600; }
+  }
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white;
+  &:hover:not(:disabled) { @apply bg-red-700; }
+  &:focus-visible { @apply ring-red-400; }
+
+  .dark & {
+    @apply bg-red-500;
+    &:hover:not(:disabled) { @apply bg-red-600; }
+  }
+}
+
+.btn-success {
+  @apply bg-green-600 text-white;
+  &:hover:not(:disabled) { @apply bg-green-700; }
+  &:focus-visible { @apply ring-green-400; }
+
+  .dark & {
+    @apply bg-green-500;
+    &:hover:not(:disabled) { @apply bg-green-600; }
+  }
+}
+
+.btn-warning {
+  @apply bg-yellow-500 text-neutral-900;
+  &:hover:not(:disabled) { @apply bg-yellow-600; }
+  &:focus-visible { @apply ring-yellow-300; }
+
+  .dark & {
+    @apply bg-yellow-400;
+    &:hover:not(:disabled) { @apply bg-yellow-500; }
+  }
+}
+
+.btn-outline {
+  @apply bg-transparent border border-neutral-300 text-neutral-700;
+  &:hover:not(:disabled) { @apply bg-neutral-100; }
+  &:focus-visible { @apply ring-neutral-400; }
+
+  .dark & {
+    @apply border-neutral-600 text-neutral-200;
+    &:hover:not(:disabled) { @apply bg-neutral-800; }
+  }
+}
+
+.btn-ghost {
+  @apply bg-transparent text-neutral-700;
+  &:hover:not(:disabled) { @apply bg-neutral-100; }
+
+  .dark & {
+    @apply text-neutral-300;
+    &:hover:not(:disabled) { @apply bg-neutral-800; }
+  }
+}
+
+// --- Size ---
+.btn-sm { @apply px-3 py-1 text-xs; }
+.btn-lg { @apply px-6 py-3 text-base; }
