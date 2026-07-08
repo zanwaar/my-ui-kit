@@ -4,7 +4,7 @@ interface Group { title: string; links: LinkItem[] }
 interface Props { groups: Group[] }
 const { groups } = Astro.props;
 ---
-<aside class="bg-transparent px-6 py-12 lg:sticky lg:top-20 lg:h-[calc(100vh-80px)]">
+<aside class="bg-transparent px-6 py-12 lg:sticky lg:top-16 lg:h-[calc(100vh-64px)] lg:self-start">
   <div class="lg:h-full lg:overflow-y-auto lg:pr-2">
   <nav class="space-y-8 text-sm">
     {groups.map((group) => (

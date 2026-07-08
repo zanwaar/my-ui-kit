@@ -2131,6 +2131,10 @@ textarea.form-control {
     top: 0px;
   }
 
+  .lg\:top-16 {
+    top: 64px;
+  }
+
   .lg\:block {
     display: block;
   }
@@ -2143,8 +2147,8 @@ textarea.form-control {
     display: grid;
   }
 
-  .lg\:h-\[calc\(100vh-80px\)\] {
-    height: calc(100vh - 80px);
+  .lg\:h-\[calc\(100vh-64px\)\] {
+    height: calc(100vh - 64px);
   }
 
   .lg\:h-full {
@@ -2193,6 +2197,10 @@ textarea.form-control {
 
   .lg\:gap-8 {
     gap: 32px;
+  }
+
+  .lg\:self-start {
+    align-self: flex-start;
   }
 
   .lg\:overflow-y-auto {
