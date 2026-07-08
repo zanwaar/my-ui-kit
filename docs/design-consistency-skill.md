@@ -408,6 +408,124 @@ For forms:
 Agents should not create desktop-only layouts unless the component is explicitly
 desktop-only.
 
+### Template Catalog Layout Patterns
+
+Use these rules when designing gallery-style pages such as `/templates/`,
+`/blocks/`, or any browsing page that lists many visual items.
+
+This kind of page is not a generic content page. It is a discovery layout.
+Agents must optimize for scanning, filtering, comparison, and repeated-card
+ consistency.
+
+#### Structure Order
+
+A template catalog page should usually follow this order:
+
+1. compact top navigation
+2. strong hero heading and short supporting text
+3. search or quick-discovery input
+4. optional popular tags or category chips
+5. filter/sort controls
+6. repeated card grid
+7. promotional or CTA section
+8. footer
+
+Agents should avoid mixing these layers randomly.
+
+#### Hero Rules
+
+The hero area should introduce the catalog clearly without becoming taller than
+necessary.
+
+Rules:
+
+- use one strong heading
+- keep supporting text short
+- place search close to the heading
+- place quick tags below search if they help discovery
+- avoid oversized decorative elements that push the grid too far down
+- keep catalog hero vertical padding compact, usually `py-6` or `py-8`, not large landing-page spacing
+- use `mt-4` to `mt-6` between hero elements so search, tags, and filters stay visually connected
+
+#### Filter Bar Rules
+
+Filters should feel lightweight and scannable.
+
+Rules:
+
+- group related controls in one horizontal bar when space allows
+- use wrapping on smaller screens
+- keep control height and spacing consistent
+- keep filter bar near the hero/search area with compact top margin such as `mt-6`
+- separate category filters from sort or technology filters when needed
+- avoid mixing too many visual styles in one filter row
+
+Recommended pattern:
+
+```html
+<div class="flex flex-wrap items-center justify-between gap-4">
+  <div class="flex flex-wrap items-center gap-3">...</div>
+  <div class="flex flex-wrap items-center gap-3">...</div>
+</div>
+```
+
+#### Card Grid Rules
+
+Catalog cards must prioritize visual consistency over individual decoration.
+
+Rules:
+
+- use a stable responsive grid such as `grid-cols-1 md:grid-cols-2 xl:grid-cols-3`
+- keep card media ratio consistent across the page
+- keep card padding and internal spacing identical
+- keep title, meta, and description positions predictable
+- avoid mixing large and small card variants in the same main grid
+- use equal spacing between rows and columns
+- keep card actions or pricing aligned consistently
+
+Recommended pattern:
+
+```html
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+  <article class="card">...</article>
+  <article class="card">...</article>
+  <article class="card">...</article>
+</div>
+```
+
+#### Scanning Rules
+
+Users should be able to scan many items quickly.
+
+Rules:
+
+- thumbnails should dominate the card more than long text
+- descriptions should stay short and secondary
+- repeated metadata should use the same placement in every card
+- use whitespace to separate rows cleanly
+- avoid dense card footers with too many competing details
+
+#### Promotional Section Rules
+
+If the page includes a marketing banner or upgrade CTA, it should feel like a
+separate section after the main browsing grid.
+
+Rules:
+
+- place it after a meaningful number of cards or near the bottom
+- make it visually distinct from catalog cards
+- keep its call-to-action simple and singular
+- do not interrupt browsing rhythm too often with promotional blocks
+
+#### Template Catalog Checklist
+
+- [ ] Hero, search, filters, grid, and CTA follow a clear vertical order
+- [ ] Search and filters support browsing instead of distracting from it
+- [ ] Grid columns stay consistent across similar viewports
+- [ ] Card media, title, text, and meta align predictably
+- [ ] The page remains easy to scan with many repeated items
+- [ ] Promotional sections feel separate from the main grid
+
 ### Form Layout Patterns
 
 Form layouts need extra consistency because users scan labels, inputs, errors,
