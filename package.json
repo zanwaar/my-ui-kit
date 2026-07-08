@@ -1,8 +1,47 @@
 {
-  "name": "my-ui-kit",
+  "name": "piceui",
   "version": "0.1.0",
   "description": "Tailwind-based UI Kit, plug-and-play seperti Bootstrap",
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "homepage": "https://github.com/pice-dev/piceui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pice-dev/piceui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pice-dev/piceui/issues"
+  },
+  "keywords": [
+    "ui-kit",
+    "tailwindcss",
+    "css",
+    "components",
+    "design-system",
+    "astro"
+  ],
+  "files": [
+    "core/dist/ui-kit.css",
+    "core/dist/ui-kit.min.css",
+    "core/js/dropdown.js",
+    "core/js/theme-toggle.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "style": "core/dist/ui-kit.css",
+  "main": "core/js/dropdown.js",
+  "exports": {
+    ".": {
+      "style": "./core/dist/ui-kit.css",
+      "default": "./core/js/dropdown.js"
+    },
+    "./dist/ui-kit.css": "./core/dist/ui-kit.css",
+    "./dist/ui-kit.min.css": "./core/dist/ui-kit.min.css",
+    "./js/dropdown": "./core/js/dropdown.js",
+    "./js/theme-toggle": "./core/js/theme-toggle.js"
+  },
   "scripts": {
     "build:scss": "sass core/scss/main.scss core/dist/_compiled.css --no-source-map",
     "build:tw": "tailwindcss -i core/dist/_compiled.css -o core/dist/ui-kit.css",
@@ -11,6 +50,9 @@
     "start": "npm run dev:docs",
     "astro:dev": "astro dev",
     "astro:build": "npm run build:css && npm run sync:astro-assets && astro build && pagefind --site dist",
+    "prepack": "npm run build:css:prod",
+    "release:check": "npm run build:css:prod && npm pack --dry-run",
+    "release:dry-run": "npm publish --dry-run",
     "watch:css": "sass core/scss/main.scss core/dist/_compiled.css --watch --no-source-map",
     "tailwind:build": "npm run build:tw",
     "build:css:prod": "sass core/scss/main.scss core/dist/_compiled.css --style=compressed --no-source-map && tailwindcss -i core/dist/_compiled.css -o core/dist/ui-kit.min.css --minify",

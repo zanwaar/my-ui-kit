@@ -1,0 +1,15 @@
+src/
+docs/
+dist/
+public/
+demo-html/
+node_modules/
+.astro/
+PLAN.md
+tailwind.config.js
+postcss.config.js
+astro.config.mjs
+core/scss/
+core/dist/_compiled.css
+Screenshot *.png
+screencapture-*.png

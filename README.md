@@ -47,6 +47,36 @@ my-ui-kit/
 └── PLAN.md                # Rencana kerja & tahapan pengembangan
 ```
 
+## Install Package
+
+### Local package
+
+Jika package belum dipublish ke npm, install dari path lokal:
+
+```bash
+npm install ../my-ui-kit
+```
+
+Setelah itu import CSS utama:
+
+```js
+import "piceui/dist/ui-kit.css";
+```
+
+atau:
+
+```css
+@import "piceui/dist/ui-kit.css";
+```
+
+### npm registry
+
+Setelah package dipublish ke npm, install dengan:
+
+```bash
+npm install piceui
+```
+
 ## Cara Menjalankan (Development)
 
 1. Install dependency:
@@ -154,6 +184,12 @@ Workflow penting:
 
 Lihat detail tahapan di [PLAN.md](./PLAN.md).
 
+## Release Docs
+
+- Release notes: [CHANGELOG.md](./CHANGELOG.md)
+- Publish checklist: [RELEASE.md](./RELEASE.md)
+- Helpful scripts: `npm run release:check` and `npm run release:dry-run`
+
 ## Lisensi
 
-Tentukan sebelum dijual (mis. regular license vs extended license jika dirilis di marketplace).
+MIT
