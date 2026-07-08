@@ -1,0 +1,31 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Documentation" description="Docs, components, blocks, templates, and search" section="docs">
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <section class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+      <div>
+        <span class="badge badge-primary">Tailwind UI Kit</span>
+        <h1 class="mt-4 text-3xl font-semibold">Bangun UI cepat dengan class siap pakai.</h1>
+        <p class="mt-4 max-w-2xl text-neutral-600 dark:text-neutral-300">My UI Kit adalah docs site berbasis Astro untuk katalog komponen, block, template, dan pencarian statis yang SEO-friendly.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a class="btn btn-primary" href="/components/">Lihat Components</a>
+          <a class="btn btn-outline" href="/blocks/">Lihat Blocks</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Search</div>
+        <div class="card-body space-y-4">
+          <p class="text-sm text-neutral-600 dark:text-neutral-300">Cari komponen, block, atau template dari seluruh dokumentasi.</p>
+          <div id="search"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-12 grid gap-4 md:grid-cols-3">
+      <a class="card block" href="/components/"><div class="card-body"><h2 class="font-semibold">Components</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Komponen kecil reusable seperti button, badge, alert, dan form.</p></div></a>
+      <a class="card block" href="/blocks/"><div class="card-body"><h2 class="font-semibold">Blocks</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Gabungan komponen siap pakai seperti stats, hero, pricing, auth.</p></div></a>
+      <a class="card block" href="/templates/"><div class="card-body"><h2 class="font-semibold">Templates</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Halaman utuh seperti admin dashboard, landing page, dan auth.</p></div></a>
+    </section>
+  </div>
+</DocsLayout>

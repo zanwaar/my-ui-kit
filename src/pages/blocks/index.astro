@@ -1,0 +1,25 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+const groups = [
+  { title: 'Getting Started', links: [{ href: '/', label: 'Introduction' }] },
+  { title: 'Library', links: [
+    { href: '/components/', label: 'Components' },
+    { href: '/blocks/', label: 'Blocks', active: true },
+    { href: '/templates/', label: 'Templates' }
+  ] }
+];
+---
+<DocsLayout title="Blocks" description="Blocks siap pakai My UI Kit" section="blocks">
+  <div class="min-h-screen lg:grid lg:grid-cols-[260px_1fr]">
+    <Sidebar groups={groups} />
+    <main class="p-6 lg:p-10">
+      <span class="badge badge-success">Blocks</span>
+      <h1 class="mt-4 text-3xl font-semibold">Section Siap Pakai</h1>
+      <p class="mt-3 max-w-2xl text-neutral-600 dark:text-neutral-300">Blocks adalah kombinasi komponen yang langsung bisa ditempel ke halaman.</p>
+      <section class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <a class="card block" href="/blocks/dashboard/"><div class="card-body"><span class="badge badge-success">Ready</span><h2 class="mt-3 font-semibold">Dashboard Stats</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Kartu statistik untuk dashboard admin.</p></div></a>
+      </section>
+    </main>
+  </div>
+</DocsLayout>

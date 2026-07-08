@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  section?: 'docs' | 'components' | 'blocks' | 'templates';
+}
+
+const { title, description = 'My UI Kit documentation', section = 'docs' } = Astro.props;
+const navClass = (key: string) => key === section
+  ? 'text-primary-600 dark:text-primary-400'
+  : 'text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white';
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — My UI Kit</title>
+    <meta name="description" content={description} />
+    <link rel="stylesheet" href="/ui-kit.css" />
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
+  </head>
+  <body class="bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
+    <header class="border-b border-neutral-200 bg-white/80 dark:border-neutral-800 dark:bg-neutral-900/80">
+      <div class="mx-auto flex max-w-6xl items-center justify-between p-4">
+        <a class="text-lg font-semibold" href="/">My UI Kit</a>
+        <nav class="flex items-center gap-4 text-sm">
+          <a class={navClass('docs')} href="/">Docs</a>
+          <a class={navClass('components')} href="/components/">Components</a>
+          <a class={navClass('blocks')} href="/blocks/">Blocks</a>
+          <a class={navClass('templates')} href="/templates/">Templates</a>
+          <button class="btn btn-outline btn-sm" data-theme-toggle>Theme</button>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <script is:inline src="/js/theme-toggle.js"></script>
+    <script is:inline src="/js/dropdown.js"></script>
+    <script is:inline src="/pagefind/pagefind-ui.js"></script>
+    <script is:inline>
+      window.addEventListener('DOMContentLoaded', () => {
+        const search = document.querySelector('#search');
+        if (search && window.PagefindUI) {
+          new window.PagefindUI({ element: '#search', showSubResults: true, resetStyles: false });
+        }
+      });
+    </script>
+  </body>
+</html>

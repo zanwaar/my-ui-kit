@@ -73,9 +73,20 @@ my-ui-kit/
    Untuk melihat dokumentasi bergaya katalog seperti FlyonUI, buka `docs/index.html`.
    Dokumentasi ini memakai label dan class milik **My UI Kit**, bukan menyalin source FlyonUI.
 
+   Untuk versi docs site berbasis Astro, jalankan:
+   ```bash
+   npm run dev:docs
+   ```
+   Lalu buka server Astro lokal yang ditampilkan di terminal.
+
 4. Untuk build versi production (minified):
    ```bash
    npm run build:css:prod
+   ```
+
+5. Untuk build docs site SEO-friendly dengan search statis:
+   ```bash
+   npm run astro:build
    ```
 
 ## Komponen yang Sudah Tersedia (starter)
@@ -115,6 +126,21 @@ Halaman component yang sudah disiapkan saat ini:
 
 Saat menambah halaman docs baru, pastikan path `./docs/**/*.html` tetap ada di
 `tailwind.config.js` agar utility class yang dipakai ikut masuk ke hasil build CSS.
+
+## Astro Docs Site
+
+Docs site modern berbasis Astro ada di folder `src/`:
+
+- `src/layouts/` — layout utama docs + meta SEO
+- `src/components/` — komponen Astro seperti sidebar
+- `src/pages/` — route docs, components, blocks, templates
+- `public/ui-kit.css` — salinan build CSS dari `core/dist/ui-kit.css`
+
+Workflow penting:
+
+- `npm run sync:astro-assets` — sinkronisasi CSS/JS core ke `public/`
+- `npm run dev:docs` — jalankan watch CSS + Astro dev
+- `npm run astro:build` — build Astro static site + index search Pagefind
 
 ## Cara Menambah Komponen Baru
 

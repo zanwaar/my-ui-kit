@@ -1,0 +1,6 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+const groups = [{ title: 'Components', links: [{ href: '/components/buttons/', label: 'Buttons' },{ href: '/components/badges/', label: 'Badges' },{ href: '/components/alerts/', label: 'Alerts', active: true },{ href: '/components/cards/', label: 'Cards' },{ href: '/components/forms/', label: 'Forms' },{ href: '/components/dropdowns/', label: 'Dropdowns' }] }];
+---
+<DocsLayout title="Alerts" description="Dokumentasi alert My UI Kit" section="components"><div class="min-h-screen lg:grid lg:grid-cols-[260px_1fr]"><Sidebar groups={groups} /><main class="p-6 lg:p-10"><span class="badge badge-primary">Component</span><h1 class="mt-3 text-3xl font-semibold">Alerts</h1><section class="card mt-8"><div class="card-header">Preview</div><div class="card-body space-y-3"><div class="alert alert-primary">Informasi umum untuk pengguna.</div><div class="alert alert-success">Data berhasil disimpan.</div><div class="alert alert-danger">Terjadi kesalahan saat memproses data.</div><div class="alert alert-warning">Periksa kembali sebelum melanjutkan.</div></div></section></main></div></DocsLayout>

@@ -1,0 +1,37 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+const groups = [
+  { title: 'Getting Started', links: [{ href: '/', label: 'Introduction' }] },
+  { title: 'Components', links: [
+    { href: '/components/buttons/', label: 'Buttons', active: true },
+    { href: '/components/badges/', label: 'Badges' },
+    { href: '/components/alerts/', label: 'Alerts' },
+    { href: '/components/cards/', label: 'Cards' },
+    { href: '/components/forms/', label: 'Forms' },
+    { href: '/components/dropdowns/', label: 'Dropdowns' }
+  ] },
+  { title: 'Browse', links: [
+    { href: '/components/', label: 'All Components' },
+    { href: '/blocks/', label: 'Blocks' },
+    { href: '/templates/', label: 'Templates' }
+  ] }
+];
+---
+<DocsLayout title="Buttons" description="Dokumentasi button My UI Kit" section="components">
+  <div class="min-h-screen lg:grid lg:grid-cols-[260px_1fr]">
+    <Sidebar groups={groups} />
+    <main class="p-6 lg:p-10">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <span class="badge badge-primary">Component</span>
+          <h1 class="mt-3 text-3xl font-semibold">Buttons</h1>
+          <p class="mt-3 max-w-2xl text-neutral-600 dark:text-neutral-300">Gunakan `.btn` untuk aksi. Variant dipakai untuk hierarki visual.</p>
+        </div>
+      </div>
+      <section class="card mt-8"><div class="card-header">Preview</div><div class="card-body flex flex-wrap gap-3"><button class="btn btn-primary">Primary</button><button class="btn btn-danger">Danger</button><button class="btn btn-success">Success</button><button class="btn btn-warning">Warning</button><button class="btn btn-outline">Outline</button><button class="btn btn-ghost">Ghost</button><button class="btn btn-primary" disabled>Disabled</button></div></section>
+      <section class="card mt-6"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;button class="btn btn-primary"&gt;Save Changes&lt;/button&gt;
+&lt;button class="btn btn-outline"&gt;Cancel&lt;/button&gt;</code></pre></div></section>
+    </main>
+  </div>
+</DocsLayout>
