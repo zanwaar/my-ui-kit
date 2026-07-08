@@ -652,6 +652,37 @@ Library
 Customization pages are foundation-level guidance. They should be nested under
 `Foundations`, not placed as a separate top-level sidebar group.
 
+### Components Navigation Pattern
+
+When documenting component pages, agents must also keep the component sidebar
+order and grouping consistent with the library taxonomy.
+
+Rules:
+
+- keep related navigation primitives grouped under `Navigations`
+- place `Sidebar` inside the `Navigations` group, not as a standalone top-level area
+- preserve the reading flow of navigation primitives from simpler to more structural patterns
+- use the same active-state treatment for every component item in the sidebar
+- nested component items should stay text-led; avoid mixing decorative icons into every child item
+
+Recommended `Navigations` order:
+
+```text
+Navigations
+  Breadcrumb
+  Footer
+  Menu
+  Navbar
+  Pagination
+  Scrollspy
+  Sidebar
+  Stepper
+  Tabs & Pills
+```
+
+If `Sidebar` is added to component documentation, it should appear in this
+group order so the docs navigation remains predictable across pages.
+
 ---
 
 ## 6. Anti-Patterns Agents Must Avoid

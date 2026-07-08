@@ -58,6 +58,73 @@ export function componentSidebar(activeComponent?: string) {
             { href: '/components/forms/#textarea', label: 'Textarea' }
           ]
         },
+        {
+          href: '/components/advanced-select/',
+          label: 'Advanced Forms',
+          icon: 'form',
+          active: [
+            'advanced-select',
+            'combo-box',
+            'copy-markup',
+            'form-wizard',
+            'input-number',
+            'pin-input',
+            'strong-password',
+            'toggle-count',
+            'toggle-password'
+          ].includes(activeComponent ?? ''),
+          children: [
+            { href: '/components/advanced-select/', label: 'Advanced Select', active: activeComponent === 'advanced-select' },
+            { href: '/components/combo-box/', label: 'Combo Box', active: activeComponent === 'combo-box' },
+            { href: '/components/copy-markup/', label: 'Copy Markup', active: activeComponent === 'copy-markup' },
+            { href: '/components/form-wizard/', label: 'Form Wizard', active: activeComponent === 'form-wizard' },
+            { href: '/components/input-number/', label: 'Input Number', active: activeComponent === 'input-number' },
+            { href: '/components/pin-input/', label: 'Pin Input', active: activeComponent === 'pin-input' },
+            { href: '/components/strong-password/', label: 'Strong Password', active: activeComponent === 'strong-password' },
+            { href: '/components/toggle-count/', label: 'Toggle Count', active: activeComponent === 'toggle-count' },
+            { href: '/components/toggle-password/', label: 'Toggle Password', active: activeComponent === 'toggle-password' }
+          ]
+        },
+        {
+          href: '/components/table/',
+          label: 'Tables',
+          icon: 'grid',
+          active: activeComponent === 'table',
+          children: [
+            { href: '/components/table/', label: 'Table', active: activeComponent === 'table' }
+          ]
+        },
+        {
+          href: '/components/sidebar/',
+          label: 'Navigations',
+          icon: 'layout',
+          active: ['sidebar'].includes(activeComponent ?? ''),
+          children: [
+            { href: '/components/breadcrumb/', label: 'Breadcrumb', active: activeComponent === 'breadcrumb' },
+            { href: '/components/footer/', label: 'Footer', active: activeComponent === 'footer' },
+            { href: '/components/menu/', label: 'Menu', active: activeComponent === 'menu' },
+            { href: '/components/navbar/', label: 'Navbar', active: activeComponent === 'navbar' },
+            { href: '/components/pagination/', label: 'Pagination', active: activeComponent === 'pagination' },
+            { href: '/components/scrollspy/', label: 'Scrollspy', active: activeComponent === 'scrollspy' },
+            { href: '/components/sidebar/', label: 'Sidebar', active: activeComponent === 'sidebar' },
+            { href: '/components/stepper/', label: 'Stepper', active: activeComponent === 'stepper' },
+            { href: '/components/tabs-pills/', label: 'Tabs & Pills', active: activeComponent === 'tabs-pills' }
+          ]
+        },
+        {
+          href: '/components/context-menu/',
+          label: 'Overlays',
+          icon: 'window',
+          active: ['context-menu', 'drawer', 'dropdown', 'modal', 'popover', 'tooltip'].includes(activeComponent ?? ''),
+          children: [
+            { href: '/components/context-menu/', label: 'Context Menu', active: activeComponent === 'context-menu' },
+            { href: '/components/drawer/', label: 'Drawer (Offcanvas)', active: activeComponent === 'drawer' },
+            { href: '/components/dropdowns/', label: 'Dropdown', active: activeComponent === 'dropdown' },
+            { href: '/components/modal/', label: 'Modal', active: activeComponent === 'modal' },
+            { href: '/components/popover/', label: 'Popover', active: activeComponent === 'popover' },
+            { href: '/components/tooltip/', label: 'Tooltip', active: activeComponent === 'tooltip' }
+          ]
+        },
         { href: '/blocks/', label: 'Blocks', icon: 'grid' },
         { href: '/templates/', label: 'Templates', icon: 'window' }
       ]

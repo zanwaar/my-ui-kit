@@ -1,0 +1,66 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+const toc = [
+  { href: '#overview', label: 'Overview', active: true },
+  { href: '#preview', label: 'Preview' },
+  { href: '#html', label: 'HTML' }
+];
+---
+<DocsLayout title="Sidebar" description="Dokumentasi sidebar navigation piceUI" section="components">
+  <ComponentDocLayout active="sidebar" title="Sidebar" description="Sidebar dipakai untuk navigasi bertingkat pada area dokumentasi, dashboard, dan layout aplikasi yang membutuhkan orientasi halaman yang stabil." toc={toc}>
+    <Fragment slot="hero-preview">
+      <div class="card max-w-sm">
+        <div class="card-body">
+          <div class="space-y-2 text-sm">
+            <div class="font-medium text-primary-700 dark:text-primary-300">Sidebar</div>
+            <div class="border-l border-neutral-200 pl-4 text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
+              Navigation group with nested items
+            </div>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+
+    <section id="preview" class="mt-8 grid gap-6 lg:grid-cols-2">
+      <div class="card">
+        <div class="card-header">Preview</div>
+        <div class="card-body">
+          <aside class="max-w-xs">
+            <p class="mb-3 text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Navigations</p>
+            <div class="space-y-2">
+              <a class="flex items-center rounded-md px-4 py-2.5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white" href="#">Navbar</a>
+              <a class="flex items-center rounded-md px-4 py-2.5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white" href="#">Pagination</a>
+              <div class="ml-4 border-l border-neutral-200 pl-4 dark:border-neutral-800">
+                <a class="flex items-center rounded-md px-3 py-2.5 font-medium text-primary-700 dark:text-primary-300" href="#">Sidebar</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">Usage Notes</div>
+        <div class="card-body space-y-3 text-sm text-neutral-600 dark:text-neutral-300">
+          <p>Gunakan sidebar untuk kelompok navigasi yang panjang, bertingkat, dan perlu tetap terlihat saat pengguna berpindah antar halaman.</p>
+          <p>Jaga hirarki dengan indentasi, border kiri yang halus, dan active state yang konsisten.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="html" class="card mt-6">
+      <div class="card-header">HTML</div>
+      <div class="card-body">
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;aside&gt;
+  &lt;p class="mb-3 text-xs font-semibold uppercase tracking-wide"&gt;Navigations&lt;/p&gt;
+  &lt;div class="space-y-2"&gt;
+    &lt;a class="px-4 py-2.5" href="#"&gt;Navbar&lt;/a&gt;
+    &lt;div class="ml-4 border-l pl-4"&gt;
+      &lt;a class="px-3 py-2.5 font-medium text-primary-700" href="#"&gt;Sidebar&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/aside&gt;</code></pre>
+      </div>
+    </section>
+  </ComponentDocLayout>
+</DocsLayout>
