@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/zanwaar/piceUI/main/public/brand/piceui-logo.png" alt="piceUI" width="220" />
+  <img src="https://raw.githubusercontent.com/zanwaar/piceUI/main/public/brand/piceui-icon.png" alt="piceUI icon" width="56" />
 </p>
 
 # piceUI

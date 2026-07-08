@@ -5,6 +5,16 @@ All notable changes to `piceui` will be documented in this file.
 The format is based on Keep a Changelog,
 and this project follows Semantic Versioning where possible.
 
+## [0.1.4] - 2026-07-09
+
+### Changed
+- Removed README logo image for better npm dark mode readability
+
+## [0.1.3] - 2026-07-09
+
+### Changed
+- Added piceUI logo to the npm README
+
 ## [0.1.2] - 2026-07-09
 
 ### Changed
