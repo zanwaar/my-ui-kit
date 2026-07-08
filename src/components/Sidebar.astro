@@ -4,7 +4,8 @@ interface Group { title: string; links: LinkItem[] }
 interface Props { groups: Group[] }
 const { groups } = Astro.props;
 ---
-<aside class="bg-transparent px-6 py-12 lg:sticky lg:top-20 lg:h-[calc(100vh-80px)] lg:overflow-y-auto">
+<aside class="bg-transparent px-6 py-12 lg:sticky lg:top-20 lg:h-[calc(100vh-80px)]">
+  <div class="lg:h-full lg:overflow-y-auto lg:pr-2">
   <nav class="space-y-8 text-sm">
     {groups.map((group) => (
       <div>
@@ -14,17 +15,32 @@ const { groups } = Astro.props;
           <div class="space-y-2">
             <a class:list={[
               'block rounded-md px-4 py-2 transition-colors',
-              link.active ? 'bg-primary-50 font-medium text-primary-700 shadow-sm dark:bg-neutral-800 dark:text-primary-300' : 'text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-white'
+            link.active ? 'font-medium text-primary-700 dark:text-primary-300' : 'text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white'
             ]} href={link.href}>{link.label}</a>
 
             {link.children && link.children.length > 0 && (
               <div class="ml-4 border-l border-neutral-200 pl-4 dark:border-neutral-800">
                 <div class="space-y-1">
                   {link.children.map((child) => (
-                    <a class:list={[
-                      'block rounded-md px-3 py-2 text-sm transition-colors',
-                      child.active ? 'font-medium text-primary-700 dark:text-primary-300' : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
-                    ]} href={child.href}>{child.label}</a>
+                    <div>
+                      <a class:list={[
+                        'block rounded-md px-3 py-2 text-sm transition-colors',
+                        child.active ? 'font-medium text-primary-700 dark:text-primary-300' : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
+                      ]} href={child.href}>{child.label}</a>
+
+                      {child.children && child.children.length > 0 && (
+                        <div class="ml-3 border-l border-neutral-200 pl-3 dark:border-neutral-800">
+                          <div class="space-y-1">
+                            {child.children.map((subChild) => (
+                              <a class:list={[
+                                'block rounded-md px-3 py-1 text-sm transition-colors',
+                                subChild.active ? 'font-medium text-primary-700 dark:text-primary-300' : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
+                              ]} href={subChild.href}>{subChild.label}</a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -35,4 +51,5 @@ const { groups } = Astro.props;
       </div>
     ))}
   </nav>
+  </div>
 </aside>

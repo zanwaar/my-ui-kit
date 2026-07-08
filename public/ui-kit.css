@@ -637,6 +637,10 @@ video {
   margin-bottom: 32px;
 }
 
+.ml-3 {
+  margin-left: 12px;
+}
+
 .ml-4 {
   margin-left: 16px;
 }
@@ -703,6 +707,10 @@ video {
 
 .h-4 {
   height: 16px;
+}
+
+.max-h-\[calc\(100vh-112px\)\] {
+  max-height: calc(100vh - 112px);
 }
 
 .min-h-\[96px\] {
@@ -854,6 +862,10 @@ video {
 
 .overflow-x-auto {
   overflow-x: auto;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .rounded {
@@ -1171,12 +1183,20 @@ video {
   padding-bottom: 32px;
 }
 
+.pl-3 {
+  padding-left: 12px;
+}
+
 .pl-4 {
   padding-left: 16px;
 }
 
 .pl-6 {
   padding-left: 24px;
+}
+
+.pr-2 {
+  padding-right: 8px;
 }
 
 .text-left {
@@ -1325,6 +1345,10 @@ video {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .backdrop-blur {
@@ -2123,6 +2147,10 @@ textarea.form-control {
     height: calc(100vh - 80px);
   }
 
+  .lg\:h-full {
+    height: 100%;
+  }
+
   .lg\:h-screen {
     height: 100vh;
   }
@@ -2192,6 +2220,10 @@ textarea.form-control {
   .lg\:px-8 {
     padding-left: 32px;
     padding-right: 32px;
+  }
+
+  .lg\:pr-2 {
+    padding-right: 8px;
   }
 }
 
