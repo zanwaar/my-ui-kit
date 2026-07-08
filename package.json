@@ -1,15 +1,15 @@
 {
   "name": "piceui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tailwind-based UI Kit, plug-and-play seperti Bootstrap",
   "license": "MIT",
-  "homepage": "https://github.com/pice-dev/piceui#readme",
+  "homepage": "https://github.com/zanwaar/piceUI#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pice-dev/piceui.git"
+    "url": "git+https://github.com/zanwaar/piceUI.git"
   },
   "bugs": {
-    "url": "https://github.com/pice-dev/piceui/issues"
+    "url": "https://github.com/zanwaar/piceUI/issues"
   },
   "keywords": [
     "ui-kit",

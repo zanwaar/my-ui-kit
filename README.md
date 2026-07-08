@@ -49,12 +49,12 @@ my-ui-kit/
 
 ## Install Package
 
-### Local package
+### npm registry
 
-Jika package belum dipublish ke npm, install dari path lokal:
+Install package langsung dari npm:
 
 ```bash
-npm install ../my-ui-kit
+npm install piceui
 ```
 
 Setelah itu import CSS utama:
@@ -69,12 +69,12 @@ atau:
 @import "piceui/dist/ui-kit.css";
 ```
 
-### npm registry
+### Local package
 
-Setelah package dipublish ke npm, install dengan:
+Jika Anda sedang development lokal, install dari path folder repo:
 
 ```bash
-npm install piceui
+npm install ../my-ui-kit
 ```
 
 ## Cara Menjalankan (Development)

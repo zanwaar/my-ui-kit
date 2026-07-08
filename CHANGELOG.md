@@ -5,6 +5,12 @@ All notable changes to `piceui` will be documented in this file.
 The format is based on Keep a Changelog,
 and this project follows Semantic Versioning where possible.
 
+## [0.1.1] - 2026-07-09
+
+### Fixed
+- Corrected npm package metadata to point at `https://github.com/zanwaar/piceUI.git`
+- Prepared patch release after initial `0.1.0` publish could not be overwritten
+
 ## [0.1.0] - 2026-07-09
 
 ### Added
@@ -14,8 +20,9 @@ and this project follows Semantic Versioning where possible.
 - Quick Start documentation for local install and npm install flow
 - Getting Started navigation entries for `Introduction` and `Quick Start`
 - Release assets configuration for npm publish
+- Initial public npm publish for `piceui@0.1.0`
 
 ### Changed
 - Migrated Sass entry imports from `@import` to `@use`
 - Narrowed published tarball contents to runtime assets only
-- Clarified install guidance so `npm install piceui` is documented only after publish
+- Promoted `npm install piceui` as the primary install path after publish

@@ -7,8 +7,8 @@ const groups = componentSidebar('quick-start');
 const toc = [
   { href: '#overview', label: 'Overview', active: true },
   { href: '#before-install', label: 'Before Install' },
-  { href: '#local-install', label: 'Local Install' },
   { href: '#npm-install', label: 'npm Install' },
+  { href: '#local-install', label: 'Local Install' },
   { href: '#import-css', label: 'Import CSS' },
   { href: '#first-component', label: 'First Component' },
   { href: '#frameworks', label: 'Framework Notes' }
@@ -36,20 +36,20 @@ const toc = [
           </div>
         </div>
 
-        <div id="local-install" class="card">
-          <div class="card-header">1. Install from Local Package</div>
+        <div id="npm-install" class="card">
+          <div class="card-header">1. Install from npm</div>
           <div class="card-body space-y-4">
-            <p class="text-sm text-neutral-600 dark:text-neutral-300">Selama package belum dipublish ke npm, install dari folder lokal repo piceUI.</p>
-            <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>npm install ../my-ui-kit</code></pre>
-            <p class="text-sm text-neutral-600 dark:text-neutral-300">Sesuaikan path `../my-ui-kit` dengan lokasi folder piceUI dari project yang memakai package ini.</p>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300">Install `piceui` langsung dari npm registry di root project Anda.</p>
+            <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>npm install piceui</code></pre>
           </div>
         </div>
 
-        <div id="npm-install" class="card">
-          <div class="card-header">2. Install from npm</div>
+        <div id="local-install" class="card">
+          <div class="card-header">2. Local Install for Development</div>
           <div class="card-body space-y-4">
-            <p class="text-sm text-neutral-600 dark:text-neutral-300">Gunakan command ini setelah package `piceui` resmi dipublish dan tersedia di npm registry.</p>
-            <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>npm install piceui</code></pre>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300">Jika Anda sedang mengembangkan package ini secara lokal, install dari path folder repo.</p>
+            <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>npm install ../my-ui-kit</code></pre>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300">Sesuaikan path `../my-ui-kit` dengan lokasi folder piceUI dari project yang memakai package ini.</p>
           </div>
         </div>
 
