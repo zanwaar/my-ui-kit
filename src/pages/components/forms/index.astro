@@ -4,16 +4,45 @@ import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
 const toc = [
   { href: '#overview', label: 'Overview', active: true },
   { href: '#preview', label: 'Preview' },
+  { href: '#switch', label: 'Switch' },
   { href: '#html', label: 'HTML' }
 ];
 ---
 <DocsLayout title="Forms" description="Dokumentasi form My UI Kit" section="components">
-  <ComponentDocLayout active="form" title="Form" description="Form menyediakan label, input, helper text, error state, checkbox, dan textarea." toc={toc}>
+  <ComponentDocLayout active="form" title="Form" description="Form menyediakan label, input, helper text, error state, checkbox, switch, dan textarea." toc={toc}>
     <Fragment slot="hero-preview">
-      <div class="card"><div class="card-body space-y-3"><input class="form-control" type="text" placeholder="Input field" /><button class="btn btn-primary w-full">Submit</button></div></div>
+      <div class="card"><div class="card-body space-y-3"><input class="form-control" type="text" placeholder="Input field" /><label class="form-switch"><input class="form-switch-input" type="checkbox" checked /><span class="form-switch-track"></span><span class="form-switch-label">Notifications</span></label><button class="btn btn-primary w-full">Submit</button></div></div>
     </Fragment>
     <section id="preview" class="card mt-8 max-w-2xl"><div class="card-header">Preview</div><div class="card-body space-y-4"><div><label class="form-label">Email</label><input class="form-control" type="email" placeholder="you@example.com" /><p class="form-text">Kami tidak akan membagikan email Anda.</p></div><div><label class="form-label">Nama</label><input class="form-control is-invalid" type="text" /><p class="form-error">Nama wajib diisi.</p></div><div><label class="form-label">Pesan</label><textarea class="form-control" placeholder="Tulis pesan..."></textarea></div></div></section>
+    <section id="switch" class="card mt-6 max-w-2xl">
+      <div class="card-header">Switch</div>
+      <div class="card-body space-y-4">
+        <label class="form-switch">
+          <input class="form-switch-input" type="checkbox" checked />
+          <span class="form-switch-track"></span>
+          <span class="form-switch-label">Email notifications</span>
+        </label>
+
+        <label class="form-switch">
+          <input class="form-switch-input" type="checkbox" />
+          <span class="form-switch-track"></span>
+          <span class="form-switch-label">Marketing updates</span>
+        </label>
+
+        <label class="form-switch">
+          <input class="form-switch-input" type="checkbox" disabled />
+          <span class="form-switch-track"></span>
+          <span class="form-switch-label">Disabled option</span>
+        </label>
+      </div>
+    </section>
     <section id="html" class="card mt-6"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;label class="form-label"&gt;Email&lt;/label&gt;
-&lt;input class="form-control" type="email"&gt;</code></pre></div></section>
+&lt;input class="form-control" type="email"&gt;
+
+&lt;label class="form-switch"&gt;
+  &lt;input class="form-switch-input" type="checkbox" checked&gt;
+  &lt;span class="form-switch-track"&gt;&lt;/span&gt;
+  &lt;span class="form-switch-label"&gt;Email notifications&lt;/span&gt;
+&lt;/label&gt;</code></pre></div></section>
   </ComponentDocLayout>
 </DocsLayout>

@@ -1,108 +1,432 @@
-# Skill: Konsistensi Desain UI (untuk My UI Kit)
+# Skill: UI Design Consistency Rules for My UI Kit
 
-Panduan pribadi ini dipakai setiap kali merancang komponen atau halaman baru,
-supaya hasilnya konsisten dan tidak "berantakan" walau dikerjakan bertahap.
+Use this document whenever you design, extend, or refine any component, layout,
+or demo page in `my-ui-kit`.
+
+The goal is simple: every new UI decision must strengthen the system, not add
+random variation. Agents should treat this file as a design guardrail, not just
+as loose inspiration.
 
 ---
 
-## 1. Kunci Dulu Token, Baru Desain
+## Purpose
 
-Sebelum bikin komponen baru, semua nilai berikut HARUS sudah ada di
-`tailwind.config.js` — jangan pernah menulis angka baru langsung di file SCSS
-komponen.
+This skill exists to help agents make UI decisions that stay visually coherent,
+scalable, and reusable across the entire kit.
+
+Agents must optimize for:
+
+- token reuse over one-off styling
+- consistent hierarchy over decorative variation
+- predictable spacing over visual improvisation
+- reusable patterns over page-specific exceptions
+
+If a design choice looks good in one place but weakens the overall system, do
+not use it.
+
+---
+
+## 1. Lock Tokens Before Designing
+
+Before creating a new component or modifying an existing one, confirm that the
+required visual values already exist in `tailwind.config.js`.
+
+Agents must not introduce arbitrary new visual values directly inside component
+markup or styles when the value should belong to the design system.
 
 ### Spacing Scale
-Pakai kelipatan tetap, jangan angka bebas.
-```
+
+Use only the approved spacing rhythm:
+
+```text
 4px  8px  12px  16px  24px  32px  48px  64px
 ```
-Aturan: jarak antar-elemen dalam satu komponen pakai skala kecil (4–16px),
-jarak antar-section pakai skala besar (32–64px). Jangan campur, mis. jangan
-ada padding 10px atau 22px nyempil di antara komponen lain.
+
+Rules:
+
+- use smaller spacing values (`4px`–`16px`) inside a component
+- use larger spacing values (`32px`–`64px`) between sections or major layout blocks
+- do not introduce awkward in-between values like `10px`, `18px`, or `22px`
+- if a layout feels “almost right” only with a custom value, adjust the structure instead of inventing a new number
 
 ### Color Scale
-Satu warna dasar (neutral/gray) dengan 9–10 shade + maksimal 1–2 accent color,
-masing-masing juga dengan shade lengkap (50 → 900).
-```
+
+Use one neutral palette plus at most one or two accent palettes, each with full
+shades.
+
+Example structure:
+
+```text
 neutral: 50 100 200 300 400 500 600 700 800 900
 primary: 50 100 200 300 400 500 600 700 800 900
 ```
-Aturan: JANGAN pernah pakai warna hex baru di luar palet ini, sekalipun
-"cuma sedikit beda". Kalau butuh warna baru, tambahkan dulu ke config,
-baru dipakai.
+
+Rules:
+
+- never add raw hex colors directly in components unless the system explicitly requires it
+- never use “almost the same” colors outside the palette
+- if a new color is genuinely needed, add it to the shared config first
+- keep meaning stable: the same primary color should represent the same intent across the kit
 
 ### Typography Scale
-Maksimal 5–6 ukuran font untuk seluruh UI kit:
-```
+
+Use a limited type scale for the full system.
+
+```text
 xs (12px)  sm (14px)  base (16px)  lg (18px)  xl (20px)  2xl (24px)  3xl (30px)
 ```
-Aturan: satu halaman idealnya cuma pakai 3–4 ukuran ini, bukan semua sekaligus.
-Body text konsisten di satu ukuran (biasanya `base` atau `sm`) di seluruh kit.
 
-### Border Radius & Shadow
-Tentukan 2–3 varian saja (mis. `sm`, `md`, `lg`) dan pakai konsisten — jangan
-ada komponen dengan radius 4px sementara yang lain 10px tanpa alasan.
+Rules:
 
----
+- do not introduce additional font sizes unless there is a strong system-level reason
+- one screen should usually use only `3` to `4` sizes, not the full scale
+- body text should stay consistent across the kit
+- hierarchy should come from size, weight, spacing, and contrast together, not size alone
 
-## 2. Aturan Hierarchy (Biar Tidak "Rata Semua")
+### Border Radius and Shadow
 
-- **Satu elemen paling penting per section** — jangan semua teks/tombol punya
-  bobot visual yang sama. Tentukan mana yang harus paling menonjol (biasanya
-  1 primary action), sisanya turunkan (secondary/ghost button).
-- **Ukuran bukan satu-satunya alat hierarchy.** Gunakan juga: warna (netral
-  vs primary), font-weight (regular vs semibold), dan spacing (elemen penting
-  dikasih ruang lebih lega).
-- **Hindari label kalau bisa dijelaskan lewat posisi/style.** Label tambahan
-  = tanda desainnya belum cukup jelas secara visual.
-- **Kontras teks:** teks sekunder/keterangan boleh abu-abu, tapi JANGAN abu-abu
-  di atas background berwarna (accent/primary) — pakai putih atau warna solid
-  dengan kontras cukup.
+Use only a small set of radius and elevation options.
+
+Rules:
+
+- keep radius to `2` or `3` intentional variants such as `sm`, `md`, and `lg`
+- keep shadows equally restrained and reusable
+- do not create isolated components with unique radius or shadow values unless they define a reusable new pattern
 
 ---
 
-## 3. Checklist Sebelum Komponen Baru Dianggap "Selesai"
+## 2. Preserve Clear Visual Hierarchy
 
-Setiap komponen baru di Fase 1 wajib lolos checklist ini sebelum lanjut ke
-komponen berikutnya:
+Agents must avoid flat interfaces where every element competes equally for
+attention.
 
-- [ ] Semua warna diambil dari palet `tailwind.config.js`, tidak ada hex baru
-- [ ] Semua spacing pakai skala yang sudah ditentukan
-- [ ] Sudah ada varian dark mode dan sudah dicek kontrasnya
-- [ ] Sudah ada state: default, hover, focus, disabled (minimal untuk elemen interaktif)
-- [ ] Radius & shadow konsisten dengan komponen lain yang sudah ada
-- [ ] Tidak menambah ukuran font baru di luar typography scale
+Rules:
 
----
+- each section should have one primary visual focus
+- each action group should usually have one dominant action
+- secondary actions must look secondary
+- do not make every label, card, badge, and button equally loud
 
-## 4. Checklist Konsistensi Antar-Halaman (Fase 2 ke atas)
+Hierarchy tools:
 
-- [ ] Header/sidebar/footer sama di semua halaman demo (bukan dibuat ulang tiap halaman)
-- [ ] Jarak antar-section di semua halaman pakai skala spacing besar yang sama
-- [ ] Warna primary dipakai untuk hal yang sama di semua halaman (jangan primary
-      dipakai untuk "Simpan" di satu halaman, tapi untuk "Hapus" di halaman lain)
-- [ ] Komponen yang sama (mis. Card) terlihat identik di semua halaman kecuali
-      memang sengaja beda varian
+- size
+- weight
+- contrast
+- spacing
+- position
+- emphasis through restraint
 
----
+Additional guidance:
 
-## 5. Kebiasaan yang Bikin Desain Berantakan (Hindari)
+- do not rely only on larger text to create importance
+- use whitespace to support important content
+- reduce decorative noise before adding stronger styling
+- avoid unnecessary helper labels if structure and styling already communicate meaning
 
-- Menambah warna/ukuran baru "cuma buat kasus ini doang" — nanti menumpuk jadi
-  puluhan variasi yang tidak konsisten.
-- Mendesain komponen dalam isolasi tanpa melihat bagaimana dia dipakai bareng
-  komponen lain di halaman nyata.
-- Menyelesaikan satu halaman 100% detail sebelum struktur keseluruhan produk
-  jelas (baiknya: rancang alur/skeleton semua halaman dulu, baru detail).
-- Terlalu banyak pilihan (banyak varian button/warna) padahal user cuma butuh
-  beberapa yang benar-benar dipakai.
+Text contrast rules:
+
+- muted text is acceptable on neutral backgrounds
+- avoid weak gray text on accent or filled backgrounds
+- on colored surfaces, prefer text colors with strong readable contrast
 
 ---
 
-## Cara Pakai Skill Ini
+## 3. Component Completion Checklist
 
-Setiap kali mau menambah komponen atau halaman baru di My UI Kit:
-1. Cek token yang relevan sudah ada di `tailwind.config.js` (bagian 1)
-2. Terapkan aturan hierarchy (bagian 2)
-3. Jalankan checklist komponen (bagian 3) sebelum dianggap selesai
-4. Kalau sudah masuk demo halaman penuh, jalankan checklist bagian 4
+A component is not considered complete until it passes this checklist.
+
+- [ ] All colors come from shared tokens in `tailwind.config.js`
+- [ ] All spacing follows the approved spacing scale
+- [ ] Typography uses the existing type scale only
+- [ ] Border radius and shadow match existing system patterns
+- [ ] Interactive components include at least `default`, `hover`, `focus`, and `disabled` states
+- [ ] Dark mode behavior is considered and contrast remains readable
+- [ ] The component supports the same visual language as neighboring components
+- [ ] No one-off styling is added just to make a single screen “look nicer”
+
+If any checkbox fails, the component should be revised before moving on.
+
+---
+
+## 4. Cross-Page Consistency Checklist
+
+When working on full demo pages or multiple screens, agents must validate
+consistency beyond the component level.
+
+- [ ] Shared structures such as header, sidebar, footer, or layout shells are reused consistently
+- [ ] Section spacing follows the same large-scale rhythm across pages
+- [ ] Primary color usage keeps the same meaning everywhere
+- [ ] Repeated components such as cards, tables, badges, or forms look identical unless a deliberate variant exists
+- [ ] Similar content types follow similar composition patterns
+- [ ] Theme behavior stays predictable in both light and dark mode
+
+If the same component looks different on two pages without a clear reusable
+reason, treat it as inconsistency and fix it.
+
+---
+
+## 5. Layout and Spacing Rules
+
+This section is critical for consistency.
+
+Many UI problems are not caused by the component itself, but by weak layout
+decisions around grouping, spacing, wrapping, and alignment. Agents must treat
+layout spacing as a first-class system rule.
+
+### Flex and Grid Grouping
+
+Use parent layout rules to control spacing between repeated components.
+
+Rules:
+
+- use `gap-*` on the parent container for repeated items
+- do not rely on label length, child margin, or accidental whitespace for separation
+- use `flex` for linear groups and `grid` for more structured alignment
+- use `flex-wrap` when horizontal space may become tight
+- prefer vertical stacking for forms, settings, and dense control groups
+- use grid when multiple rows should align into stable columns
+- keep grouping rhythm consistent across similar sections
+
+### Spacing Responsibility
+
+Agents must separate component responsibility from layout responsibility.
+
+- the component controls its internal spacing and states
+- the parent layout controls spacing between sibling components
+- do not overload a component with extra margin just to fix one page layout
+- if multiple components feel cramped, fix the parent container first
+
+### Readability Rules
+
+Repeated interactive items must never feel visually attached to one another.
+
+Rules:
+
+- each item should read as its own clear group
+- adjacent labels and controls must have visible breathing room
+- avoid dense horizontal rows when labels are medium or long
+- when in doubt, stack vertically instead of forcing a single-row layout
+- use larger parent gaps such as `gap-6` or `gap-8` for interactive groups
+
+### Layout Checklist
+
+- [ ] Parent container defines spacing between repeated items
+- [ ] Repeated controls do not visually collide
+- [ ] Flex rows wrap when width becomes constrained
+- [ ] Grid is used when alignment is more important than flow
+- [ ] Similar sections use the same spacing rhythm
+
+---
+
+## 6. Anti-Patterns Agents Must Avoid
+
+Do not do the following:
+
+- add a new color, radius, spacing value, or font size “just for this one case”
+- design components in isolation without checking how they behave beside existing patterns
+- over-detail a single page before the broader layout system is stable
+- create too many button, card, or badge variants without clear repeated usage
+- use visual decoration to hide weak structure
+- solve consistency problems with exceptions instead of system updates
+
+If an exception appears necessary, agents should first ask:
+
+1. Can this be solved by reusing an existing token?
+2. Can this be solved by adjusting layout or hierarchy?
+3. If this becomes a new pattern, should it be formalized in the system?
+
+Only after those checks should a new system rule be introduced.
+
+---
+
+## 7. Forms Switch Rules
+
+Use these rules whenever agents create, edit, or document the `forms/switch`
+component.
+
+The switch is a form control for binary settings. It should feel like part of
+the same form family as `.form-control`, `.form-check`, and `.form-label`.
+
+For any layout involving multiple switches, agents must also follow the general
+layout rules in the `Layout and Spacing Rules` section.
+
+### Required Markup
+
+Agents must use this structure for switches:
+
+```html
+<label class="form-switch">
+  <input class="form-switch-input" type="checkbox" checked>
+  <span class="form-switch-track"></span>
+  <span class="form-switch-label">Email notifications</span>
+</label>
+```
+
+Rules:
+
+- use `type="checkbox"` for the native control
+- keep the input accessible and focusable; do not replace it with a non-semantic `div`
+- keep `.form-switch-track` immediately after `.form-switch-input`
+- keep `.form-switch-label` after the visual track
+- use clear setting labels such as “Email notifications”, not vague labels like “Enable”
+
+### Visual Rules
+
+Switch styling must follow the shared form system.
+
+Rules:
+
+- use neutral colors for the off state
+- use `primary` color only for the on state
+- use the approved spacing scale for track size, knob size, gaps, and movement
+- use `rounded-full` for the track and knob because switches are pill-shaped controls
+- use the existing small text scale for labels
+- do not add custom hex colors, custom widths, or custom transform distances
+
+Current token-aligned sizing pattern:
+
+```text
+track: h-4 w-8
+knob:  h-4 w-4
+move:  translate-x-4
+gap:   gap-3
+```
+
+### State Rules
+
+Every switch must support these states:
+
+- default off
+- checked on
+- keyboard focus visible
+- disabled
+- dark mode off
+- dark mode on
+
+Agents must preserve visible focus styling. A switch without keyboard focus
+feedback is incomplete.
+
+### Usage Rules
+
+Use a switch only for immediate binary preferences or settings.
+
+Good examples:
+
+- email notifications
+- dark mode preference
+- public profile visibility
+- auto-renew setting
+
+Avoid switches for:
+
+- one-time form consent
+- destructive confirmation
+- multi-step actions
+- choices that require explanation before taking effect
+
+For consent, terms agreement, or selection inside a form, prefer checkbox
+patterns instead of switch patterns.
+
+### Layout Rules
+
+Switches must remain visually readable when several options appear together.
+
+This is mainly a spacing and grouping problem, not a flex problem. Agents may
+use `flex`, but each switch item must have enough separation from the next item
+so the previous label does not visually touch the next switch track.
+
+Rules:
+
+- avoid placing many switches in one tight horizontal row
+- use vertical stacking for settings lists by default
+- define `.form-switch` as a block-level flex row, not `inline-flex`, so repeated switches stack cleanly inside vertical containers
+- when using horizontal flex, apply spacing on the parent container, not by relying only on label text width
+- use `gap-6` or `gap-8` between switch groups in horizontal layouts
+- use `flex-wrap` when the available width is limited
+- use horizontal layout only for short labels and small groups of `2` to `3` switches
+- keep enough spacing between each switch group so the track does not visually attach to the previous label
+- do not let a switch track sit immediately after another switch label without clear separation
+- align switch tracks consistently, especially in settings panels or forms
+
+Preferred stacked pattern:
+
+```html
+<div class="space-y-3">
+  <label class="form-switch">
+    <input class="form-switch-input" type="checkbox" checked>
+    <span class="form-switch-track"></span>
+    <span class="form-switch-label">Email notifications</span>
+  </label>
+
+  <label class="form-switch">
+    <input class="form-switch-input" type="checkbox">
+    <span class="form-switch-track"></span>
+    <span class="form-switch-label">Marketing updates</span>
+  </label>
+</div>
+```
+
+If switches must be shown inline, wrap each `.form-switch` as a separate group
+and use a clear parent gap such as `gap-6` or `gap-8`.
+
+Recommended inline pattern:
+
+```html
+<div class="flex flex-wrap items-center gap-6">
+  <label class="form-switch">
+    <input class="form-switch-input" type="checkbox" checked>
+    <span class="form-switch-track"></span>
+    <span class="form-switch-label">Email notifications</span>
+  </label>
+
+  <label class="form-switch">
+    <input class="form-switch-input" type="checkbox">
+    <span class="form-switch-track"></span>
+    <span class="form-switch-label">Marketing updates</span>
+  </label>
+</div>
+```
+
+### Completion Checklist for `forms/switch`
+
+- [ ] Uses the required `.form-switch` markup structure
+- [ ] Uses native `input[type="checkbox"]`
+- [ ] Keeps visual values within approved tokens
+- [ ] Includes checked, unchecked, focus, disabled, and dark-mode behavior
+- [ ] Uses a clear label that describes the setting
+- [ ] Appears consistent beside other form controls
+- [ ] Multiple switches are spaced or stacked so labels and tracks do not collide visually
+- [ ] Is documented in the Forms page with preview and HTML example
+
+---
+
+## 8. Agent Workflow
+
+Agents should follow this sequence every time they add or revise UI:
+
+1. review the target screen or component in context
+2. map the required spacing, colors, type, radius, and states to existing tokens
+3. reuse an existing pattern before creating a new one
+4. apply hierarchy intentionally
+5. check component-level consistency
+6. check page-level consistency
+7. only then finalize implementation
+
+When uncertain, agents should prefer the more conservative and reusable design
+decision.
+
+---
+
+## 9. Decision Standard for Agents
+
+A design decision is correct only if it is:
+
+- visually clear
+- system-friendly
+- reusable
+- consistent with existing tokens
+- consistent across light and dark contexts
+- easy for the next agent to extend without adding chaos
+
+Agents should not aim to make a component merely attractive. Agents should aim
+to make the UI kit more coherent after every change.
