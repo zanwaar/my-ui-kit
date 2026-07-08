@@ -1,15 +1,19 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
-import Sidebar from '../../../components/Sidebar.astro';
-const groups = [
-  { title: 'Components', links: [
-    { href: '/components/buttons/', label: 'Buttons' },
-    { href: '/components/badges/', label: 'Badges', active: true },
-    { href: '/components/alerts/', label: 'Alerts' },
-    { href: '/components/cards/', label: 'Cards' },
-    { href: '/components/forms/', label: 'Forms' },
-    { href: '/components/dropdowns/', label: 'Dropdowns' }
-  ] }
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+const toc = [
+  { href: '#overview', label: 'Overview', active: true },
+  { href: '#preview', label: 'Preview' },
+  { href: '#html', label: 'HTML' }
 ];
 ---
-<DocsLayout title="Badges" description="Dokumentasi badge My UI Kit" section="components"><div class="min-h-screen lg:grid lg:grid-cols-[288px_1fr]"><Sidebar groups={groups} /><main class="p-6 lg:p-10"><span class="badge badge-primary">Component</span><h1 class="mt-3 text-3xl font-semibold">Badges</h1><section class="card mt-8"><div class="card-header">Preview</div><div class="card-body flex flex-wrap gap-2"><span class="badge badge-primary">Primary</span><span class="badge badge-success">Success</span><span class="badge badge-danger">Danger</span><span class="badge badge-warning">Warning</span></div></section></main></div></DocsLayout>
+<DocsLayout title="Badges" description="Dokumentasi badge My UI Kit" section="components">
+  <ComponentDocLayout active="badge" title="Badge" description="Badge dipakai untuk status compact, label kategori, notifikasi kecil, dan metadata." toc={toc}>
+    <Fragment slot="hero-preview">
+      <div class="card"><div class="card-body flex flex-wrap gap-2"><span class="badge badge-primary">Primary</span><span class="badge badge-success">Success</span><span class="badge badge-danger">Danger</span><span class="badge badge-warning">Warning</span></div></div>
+    </Fragment>
+    <section id="preview" class="card mt-8"><div class="card-header">Preview</div><div class="card-body flex flex-wrap gap-2"><span class="badge badge-primary">Primary</span><span class="badge badge-success">Success</span><span class="badge badge-danger">Danger</span><span class="badge badge-warning">Warning</span></div></section>
+    <section id="html" class="card mt-6"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;span class="badge badge-primary"&gt;Primary&lt;/span&gt;
+&lt;span class="badge badge-success"&gt;Success&lt;/span&gt;</code></pre></div></section>
+  </ComponentDocLayout>
+</DocsLayout>

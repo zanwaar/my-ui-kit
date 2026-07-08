@@ -1,37 +1,66 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
-import Sidebar from '../../../components/Sidebar.astro';
-const groups = [
-  { title: 'Getting Started', links: [{ href: '/', label: 'Introduction' }] },
-  { title: 'Components', links: [
-    { href: '/components/buttons/', label: 'Buttons', active: true },
-    { href: '/components/badges/', label: 'Badges' },
-    { href: '/components/alerts/', label: 'Alerts' },
-    { href: '/components/cards/', label: 'Cards' },
-    { href: '/components/forms/', label: 'Forms' },
-    { href: '/components/dropdowns/', label: 'Dropdowns' }
-  ] },
-  { title: 'Browse', links: [
-    { href: '/components/', label: 'All Components' },
-    { href: '/blocks/', label: 'Blocks' },
-    { href: '/templates/', label: 'Templates' }
-  ] }
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+const toc = [
+  { href: '#overview', label: 'Overview', active: true },
+  { href: '#class-reference', label: 'Class reference' },
+  { href: '#basic-example', label: 'Basic example' },
+  { href: '#variants', label: 'Variants' },
+  { href: '#sizes', label: 'Sizes' },
+  { href: '#disabled', label: 'Disabled state' }
 ];
 ---
-<DocsLayout title="Buttons" description="Dokumentasi button My UI Kit" section="components">
-  <div class="min-h-screen lg:grid lg:grid-cols-[288px_1fr]">
-    <Sidebar groups={groups} />
-    <main class="p-6 lg:p-10">
-      <div class="flex items-start justify-between gap-4">
-        <div>
-          <span class="badge badge-primary">Component</span>
-          <h1 class="mt-3 text-3xl font-semibold">Buttons</h1>
-          <p class="mt-3 max-w-2xl text-neutral-600 dark:text-neutral-300">Gunakan `.btn` untuk aksi. Variant dipakai untuk hierarki visual.</p>
+<DocsLayout title="Buttons" description="Button component documentation" section="components">
+  <ComponentDocLayout active="button" title="Button" description="Button digunakan untuk aksi utama, aksi sekunder, status action, dan kontrol interaktif di seluruh interface." toc={toc}>
+    <section class="mt-8 text-base leading-7 text-neutral-600 dark:text-neutral-300">Gunakan class dasar <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.btn</code> lalu gabungkan dengan variant seperti <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.btn-primary</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.btn-outline</code>, atau <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.btn-danger</code>.</section>
+
+    <section id="class-reference" class="card mt-8">
+      <div class="card-header">Class reference</div>
+      <div class="card-body overflow-x-auto p-0">
+        <table class="w-full text-left text-sm">
+          <thead class="border-b border-neutral-200 text-xs uppercase tracking-wide text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+            <tr><th class="px-6 py-4">Class name</th><th class="px-6 py-4">Type</th><th class="px-6 py-4">Description</th></tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
+            <tr><td class="px-6 py-4 font-mono">btn</td><td class="px-6 py-4"><span class="badge badge-primary">Base</span></td><td class="px-6 py-4">Class dasar untuk semua button.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">btn-primary</td><td class="px-6 py-4"><span class="badge badge-success">Variant</span></td><td class="px-6 py-4">Aksi utama dalam satu section.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">btn-outline</td><td class="px-6 py-4"><span class="badge badge-success">Variant</span></td><td class="px-6 py-4">Aksi sekunder atau alternatif.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">btn-sm / btn-lg</td><td class="px-6 py-4"><span class="badge badge-warning">Size</span></td><td class="px-6 py-4">Ukuran button kecil dan besar.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="basic-example" class="mt-8">
+      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Basic example</p>
+      <h2 class="mt-2 text-2xl font-semibold">Default</h2>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Contoh penggunaan button utama dan button sekunder.</p>
+      <div class="card mt-4">
+        <div class="card-body flex flex-wrap gap-3">
+          <button class="btn btn-primary">Save changes</button>
+          <button class="btn btn-outline">Cancel</button>
         </div>
       </div>
-      <section class="card mt-8"><div class="card-header">Preview</div><div class="card-body flex flex-wrap gap-3"><button class="btn btn-primary">Primary</button><button class="btn btn-danger">Danger</button><button class="btn btn-success">Success</button><button class="btn btn-warning">Warning</button><button class="btn btn-outline">Outline</button><button class="btn btn-ghost">Ghost</button><button class="btn btn-primary" disabled>Disabled</button></div></section>
-      <section class="card mt-6"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;button class="btn btn-primary"&gt;Save Changes&lt;/button&gt;
-&lt;button class="btn btn-outline"&gt;Cancel&lt;/button&gt;</code></pre></div></section>
-    </main>
-  </div>
+      <pre class="mt-4 overflow-auto rounded-md bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;button class="btn btn-primary"&gt;Save changes&lt;/button&gt;
+&lt;button class="btn btn-outline"&gt;Cancel&lt;/button&gt;</code></pre>
+    </section>
+
+    <section id="variants" class="mt-8">
+      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Variants</p>
+      <h2 class="mt-2 text-2xl font-semibold">Button variants</h2>
+      <div class="card mt-4"><div class="card-body flex flex-wrap gap-3"><button class="btn btn-primary">Primary</button><button class="btn btn-danger">Danger</button><button class="btn btn-success">Success</button><button class="btn btn-warning">Warning</button><button class="btn btn-outline">Outline</button><button class="btn btn-ghost">Ghost</button></div></div>
+    </section>
+
+    <section id="sizes" class="mt-8">
+      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Sizes</p>
+      <h2 class="mt-2 text-2xl font-semibold">Button sizes</h2>
+      <div class="card mt-4"><div class="card-body flex flex-wrap items-center gap-3"><button class="btn btn-primary btn-sm">Small</button><button class="btn btn-primary">Default</button><button class="btn btn-primary btn-lg">Large</button></div></div>
+    </section>
+
+    <section id="disabled" class="mt-8">
+      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Disabled state</p>
+      <h2 class="mt-2 text-2xl font-semibold">Disabled button</h2>
+      <div class="card mt-4"><div class="card-body flex flex-wrap gap-3"><button class="btn btn-primary" disabled>Disabled</button><button class="btn btn-outline" disabled>Disabled</button></div></div>
+    </section>
+  </ComponentDocLayout>
 </DocsLayout>

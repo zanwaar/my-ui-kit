@@ -2,9 +2,9 @@
 import DocsLayout from '../layouts/DocsLayout.astro';
 ---
 <DocsLayout title="Documentation" description="Docs, components, blocks, templates, and search" section="docs">
-  <div class="mx-auto max-w-6xl px-4 py-12">
-    <section class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-      <div>
+  <div class="w-full px-6 py-12 lg:px-12 xl:px-16">
+    <section class="grid gap-8 xl:grid-cols-12 xl:items-start">
+      <div class="xl:col-span-7 2xl:col-span-6">
         <span class="badge badge-primary">Tailwind UI Kit</span>
         <h1 class="mt-4 text-3xl font-semibold">Bangun UI cepat dengan class siap pakai.</h1>
         <p class="mt-4 max-w-2xl text-neutral-600 dark:text-neutral-300">My UI Kit adalah docs site berbasis Astro untuk katalog komponen, block, template, dan pencarian statis yang SEO-friendly.</p>
@@ -13,6 +13,7 @@ import DocsLayout from '../layouts/DocsLayout.astro';
           <a class="btn btn-outline" href="/blocks/">Lihat Blocks</a>
         </div>
       </div>
+      <div class="xl:col-span-5 2xl:col-span-4 2xl:col-start-9">
       <div class="card">
         <div class="card-header">Search</div>
         <div class="card-body space-y-4">
@@ -20,12 +21,13 @@ import DocsLayout from '../layouts/DocsLayout.astro';
           <div id="search"></div>
         </div>
       </div>
+      </div>
     </section>
 
-    <section class="mt-12 grid gap-4 md:grid-cols-3">
-      <a class="card block" href="/components/"><div class="card-body"><h2 class="font-semibold">Components</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Komponen kecil reusable seperti button, badge, alert, dan form.</p></div></a>
-      <a class="card block" href="/blocks/"><div class="card-body"><h2 class="font-semibold">Blocks</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Gabungan komponen siap pakai seperti stats, hero, pricing, auth.</p></div></a>
-      <a class="card block" href="/templates/"><div class="card-body"><h2 class="font-semibold">Templates</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Halaman utuh seperti admin dashboard, landing page, dan auth.</p></div></a>
+    <section class="mt-12 grid gap-4 xl:grid-cols-12">
+      <a class="card block xl:col-span-4" href="/components/"><div class="card-body"><h2 class="font-semibold">Components</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Komponen kecil reusable seperti button, badge, alert, dan form.</p></div></a>
+      <a class="card block xl:col-span-4" href="/blocks/"><div class="card-body"><h2 class="font-semibold">Blocks</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Gabungan komponen siap pakai seperti stats, hero, pricing, auth.</p></div></a>
+      <a class="card block xl:col-span-4" href="/templates/"><div class="card-body"><h2 class="font-semibold">Templates</h2><p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Halaman utuh seperti admin dashboard, landing page, dan auth.</p></div></a>
     </section>
   </div>
 </DocsLayout>
