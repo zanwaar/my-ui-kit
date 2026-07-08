@@ -609,6 +609,49 @@ Rules:
 - [ ] Grid is used when alignment is more important than flow
 - [ ] Similar sections use the same spacing rhythm
 
+### Sidebar Navigation Rules
+
+Sidebar navigation must stay structurally consistent across documentation pages.
+
+Rules:
+
+- use top-level sidebar groups only for major documentation areas
+- use nested children for related pages inside the same area
+- do not create a new top-level sidebar group when the content belongs under an existing major area
+- keep icon usage consistent across parent items and important child items
+- use icons on parent or top-level navigation items only; nested sub-menu items should usually use text only
+- keep long labels readable by using an appropriate sidebar width before forcing text wrapping
+- avoid mixing unrelated navigation depths in the same visual group
+
+Recommended structure:
+
+```text
+Getting Started
+  Introduction
+
+Foundations
+  Layout System
+  Customization
+    Customize Components
+    Config
+    Base Style
+    Colors
+    Icons
+    Themes
+    Utilities And Variables
+    RTL
+    Theme Generator
+
+Library
+  Components
+  Forms
+  Blocks
+  Templates
+```
+
+Customization pages are foundation-level guidance. They should be nested under
+`Foundations`, not placed as a separate top-level sidebar group.
+
 ---
 
 ## 6. Anti-Patterns Agents Must Avoid
