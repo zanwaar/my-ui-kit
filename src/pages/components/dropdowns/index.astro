@@ -1,18 +1,226 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
 import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+import DocsExample from '../../../components/docs/DocsExample.astro';
+
 const toc = [
-  { href: '#overview', label: 'Overview', active: true },
-  { href: '#preview', label: 'Preview' },
-  { href: '#html', label: 'HTML' }
+  { href: '#overview', label: 'Overview', active: true, level: 1 },
+  { href: '#click-dropdown', label: 'Click dropdown', level: 2 },
+  { href: '#hover-dropdown', label: 'Hover dropdown', level: 2 },
+  { href: '#placement', label: 'Placement', level: 1 },
+  { href: '#top-end', label: 'Top end', level: 2 },
+  { href: '#right-start', label: 'Right start', level: 2 },
+  { href: '#nested-dropdown', label: 'Nested dropdown', level: 1 },
+  { href: '#menu-options', label: 'Menu options', level: 1 },
+  { href: '#checkbox-items', label: 'Checkbox items', level: 2 },
+  { href: '#radio-items', label: 'Radio items', level: 2 },
+  { href: '#context-menu', label: 'Context menu', level: 1 }
 ];
+
+const clickCode = `<div class="dropdown">
+  <button class="dropdown-toggle btn btn-outline" data-dropdown-toggle>Open menu</button>
+  <div class="dropdown-menu hidden" data-dropdown-menu>
+    <a class="dropdown-item" href="#">Profile</a>
+    <a class="dropdown-item" href="#">Billing</a>
+    <button class="dropdown-item dropdown-close" type="button">Sign out</button>
+  </div>
+</div>`;
+
+const hoverCode = `<div class="dropdown" style="--trigger: hover;">
+  <button class="dropdown-toggle btn btn-outline">Hover me</button>
+  <div class="dropdown-menu hidden">
+    <a class="dropdown-item" href="#">Overview</a>
+    <a class="dropdown-item" href="#">Analytics</a>
+  </div>
+</div>`;
+
+const topEndCode = `<div class="dropdown" data-dropdown-placement="top-end">
+  <button class="dropdown-toggle btn btn-outline">Top end</button>
+  <div class="dropdown-menu hidden">
+    <a class="dropdown-item" href="#">Duplicate</a>
+    <a class="dropdown-item" href="#">Archive</a>
+  </div>
+</div>`;
+
+const rightStartCode = `<div class="dropdown" data-dropdown-placement="right-start">
+  <button class="dropdown-toggle btn btn-outline">Right start</button>
+  <div class="dropdown-menu hidden">
+    <a class="dropdown-item" href="#">Invite member</a>
+    <a class="dropdown-item" href="#">Create channel</a>
+  </div>
+</div>`;
+
+const nestedCode = `<div class="dropdown">
+  <button class="dropdown-toggle btn btn-outline">Actions</button>
+  <div class="dropdown-menu hidden">
+    <a class="dropdown-item" href="#">Edit</a>
+    <div class="dropdown dropdown-right">
+      <button class="dropdown-item dropdown-toggle" type="button">More</button>
+      <div class="dropdown-menu hidden">
+        <a class="dropdown-item" href="#">Rename</a>
+        <a class="dropdown-item" href="#">Move</a>
+      </div>
+    </div>
+  </div>
+</div>`;
+
+const checkboxCode = `<div class="dropdown">
+  <button class="dropdown-toggle btn btn-outline">Columns</button>
+  <div class="dropdown-menu hidden" role="menu">
+    <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="true">Name</button>
+    <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="false">Email</button>
+    <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="true">Role</button>
+  </div>
+</div>`;
+
+const radioCode = `<div class="dropdown">
+  <button class="dropdown-toggle btn btn-outline">Sort by</button>
+  <div class="dropdown-menu hidden" role="menu">
+    <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="true">Newest</button>
+    <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="false">Oldest</button>
+    <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="false">Name</button>
+  </div>
+</div>`;
+
+const contextCode = `<div class="dropdown" style="--trigger: contextmenu;">
+  <button class="dropdown-toggle btn btn-outline">Right click me</button>
+  <div class="dropdown-menu hidden">
+    <a class="dropdown-item" href="#">Copy link</a>
+    <a class="dropdown-item" href="#">Open in new tab</a>
+  </div>
+</div>`;
 ---
 <DocsLayout title="Dropdowns" description="Dokumentasi dropdown piceUI" section="components">
-  <ComponentDocLayout active="dropdown" title="Dropdown" description="Dropdown memakai data attribute dan vanilla JS agar tetap framework-agnostic." toc={toc}>
-    <Fragment slot="hero-preview">
-      <div class="card"><div class="card-body"><button class="btn btn-outline w-full">Menu ▾</button></div></div>
-    </Fragment>
-    <section id="preview" class="card mt-8"><div class="card-header">Preview</div><div class="card-body"><div class="dropdown relative inline-block"><button class="btn btn-outline" data-dropdown-toggle>Menu ▾</button><div data-dropdown-menu class="card absolute mt-2 hidden w-48 p-2"><a class="block rounded px-3 py-2 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-700" href="#">Profile</a><a class="block rounded px-3 py-2 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-700" href="#">Settings</a></div></div></div></section>
-    <section id="html" class="card mt-6"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;button class="btn btn-outline" data-dropdown-toggle&gt;Menu&lt;/button&gt;</code></pre></div></section>
+  <ComponentDocLayout active="dropdown" title="Dropdown" description="Dropdown piceUI sekarang memakai layer kompatibilitas `HSDropdown` yang mengikuti pola FlyonUI untuk click, hover, context menu, nested menu, dan item role-based seperti checkbox/radio." toc={toc}>
+    <section id="overview" class="mt-8 text-base leading-7 text-neutral-600 dark:text-neutral-300">
+      Gunakan struktur <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-toggle</code>, dan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-menu</code> untuk membuat menu navigasi, action menu, context menu, dan nested dropdown.
+    </section>
+
+    <section id="click-dropdown" class="mt-12">
+      <h2 class="text-3xl font-semibold">Click dropdown</h2>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Default trigger memakai click dan close otomatis saat pilih item.</p>
+      <DocsExample code={clickCode}>
+        <div class="dropdown">
+          <button class="dropdown-toggle btn btn-outline" data-dropdown-toggle>Open menu</button>
+          <div class="dropdown-menu hidden" data-dropdown-menu>
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="#">Billing</a>
+            <button class="dropdown-item dropdown-close" type="button">Sign out</button>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="hover-dropdown" class="mt-12">
+      <h2 class="text-3xl font-semibold">Hover dropdown</h2>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Set trigger lewat custom property <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--trigger: hover</code>.</p>
+      <DocsExample code={hoverCode}>
+        <div class="dropdown" style="--trigger: hover;">
+          <button class="dropdown-toggle btn btn-outline">Hover me</button>
+          <div class="dropdown-menu hidden">
+            <a class="dropdown-item" href="#">Overview</a>
+            <a class="dropdown-item" href="#">Analytics</a>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="placement" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Placement</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Dropdown menu bisa diarahkan ke atas, kanan, kiri, atau ujung kanan lewat attribute placement.</p>
+    </section>
+
+    <section id="top-end" class="mt-8">
+      <h3 class="text-2xl font-semibold">Top end</h3>
+      <DocsExample code={topEndCode}>
+        <div class="dropdown" data-dropdown-placement="top-end">
+          <button class="dropdown-toggle btn btn-outline">Top end</button>
+          <div class="dropdown-menu hidden">
+            <a class="dropdown-item" href="#">Duplicate</a>
+            <a class="dropdown-item" href="#">Archive</a>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="right-start" class="mt-8">
+      <h3 class="text-2xl font-semibold">Right start</h3>
+      <DocsExample code={rightStartCode}>
+        <div class="dropdown" data-dropdown-placement="right-start">
+          <button class="dropdown-toggle btn btn-outline">Right start</button>
+          <div class="dropdown-menu hidden">
+            <a class="dropdown-item" href="#">Invite member</a>
+            <a class="dropdown-item" href="#">Create channel</a>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="nested-dropdown" class="mt-12">
+      <h2 class="text-3xl font-semibold">Nested dropdown</h2>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Dropdown lain bisa ditempatkan di dalam menu untuk membuat sub actions.</p>
+      <DocsExample code={nestedCode}>
+        <div class="dropdown">
+          <button class="dropdown-toggle btn btn-outline">Actions</button>
+          <div class="dropdown-menu hidden">
+            <a class="dropdown-item" href="#">Edit</a>
+            <div class="dropdown dropdown-right" style="--trigger: hover;">
+              <button class="dropdown-item dropdown-toggle" type="button">More</button>
+              <div class="dropdown-menu hidden">
+                <a class="dropdown-item" href="#">Rename</a>
+                <a class="dropdown-item" href="#">Move</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="menu-options" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Menu options</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Dropdown mendukung item role-based untuk kebutuhan filter table, settings, dan sort menu.</p>
+    </section>
+
+    <section id="checkbox-items" class="mt-8">
+      <h3 class="text-2xl font-semibold">Checkbox items</h3>
+      <DocsExample code={checkboxCode}>
+        <div class="dropdown">
+          <button class="dropdown-toggle btn btn-outline">Columns</button>
+          <div class="dropdown-menu hidden" role="menu">
+            <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="true">Name</button>
+            <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="false">Email</button>
+            <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="true">Role</button>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="radio-items" class="mt-8">
+      <h3 class="text-2xl font-semibold">Radio items</h3>
+      <DocsExample code={radioCode}>
+        <div class="dropdown">
+          <button class="dropdown-toggle btn btn-outline">Sort by</button>
+          <div class="dropdown-menu hidden" role="menu">
+            <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="true">Newest</button>
+            <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="false">Oldest</button>
+            <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="false">Name</button>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="context-menu" class="mt-12">
+      <h2 class="text-3xl font-semibold">Context menu</h2>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Mode <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">contextmenu</code> membuka dropdown lewat klik kanan atau long-press.</p>
+      <DocsExample code={contextCode}>
+        <div class="dropdown" style="--trigger: contextmenu;">
+          <button class="dropdown-toggle btn btn-outline">Right click me</button>
+          <div class="dropdown-menu hidden">
+            <a class="dropdown-item" href="#">Copy link</a>
+            <a class="dropdown-item" href="#">Open in new tab</a>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
   </ComponentDocLayout>
 </DocsLayout>

@@ -53,26 +53,7 @@ export function componentSidebar(activeComponent?: string) {
           icon: 'layers',
           active: !activeComponent,
           children: [
-            {
-              href: '/components/buttons/',
-              label: 'Button',
-              icon: 'pointer',
-              active: activeComponent === 'button',
-              children: [
-                { href: '/components/buttons/#solid-buttons', label: 'Solid buttons' },
-                { href: '/components/buttons/#soft-buttons', label: 'Soft buttons' },
-                { href: '/components/buttons/#outline-buttons', label: 'Outline buttons' },
-                { href: '/components/buttons/#text-buttons', label: 'Text buttons' },
-                { href: '/components/buttons/#gradient-buttons', label: 'Gradient buttons' },
-                { href: '/components/buttons/#pilled-buttons', label: 'Pilled buttons' },
-                { href: '/components/buttons/#rounded-buttons', label: 'Rounded buttons' },
-                { href: '/components/buttons/#state-variants', label: 'States variants' },
-                { href: '/components/buttons/#size-variants', label: 'Size variants' },
-                { href: '/components/buttons/#icon-start-end', label: 'Icon at start/end' },
-                { href: '/components/buttons/#icon-only', label: 'Icon only' },
-                { href: '/components/buttons/#buttons-with-input-tags', label: 'Buttons with input tags' }
-              ]
-            },
+            { href: '/components/buttons/', label: 'Button', icon: 'pointer', active: activeComponent === 'button' },
             { href: '/components/badges/', label: 'Badge', icon: 'tag', active: activeComponent === 'badge' },
             { href: '/components/alerts/', label: 'Alert', icon: 'alert', active: activeComponent === 'alert' },
             { href: '/components/cards/', label: 'Card', icon: 'square', active: activeComponent === 'card' },

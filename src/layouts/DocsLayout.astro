@@ -10,6 +10,26 @@ const navClass = (key: string) => key === section
   ? 'text-primary-600 dark:text-primary-400'
   : 'text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white';
 const iconClass = 'h-4 w-4';
+const themeItems = [
+  { name: 'light', label: 'Light', swatches: ['#7c3aed', '#9ca3af', '#3b82f6', '#a3a3a3'] },
+  { name: 'dark', label: 'Dark', swatches: ['#7c3aed', '#6b7280', '#3b82f6', '#9ca3af'] },
+  { name: 'black', label: 'Black', swatches: ['#8b5cf6', '#14b8a6', '#4f46e5', '#27272a'] },
+  { name: 'claude', label: 'Claude', swatches: ['#cd6e49', '#a78bfa', '#155e75', '#292524'] },
+  { name: 'corporate', label: 'Corporate', swatches: ['#3b82f6', '#6b7280', '#ec4899', '#334155'] },
+  { name: 'ghibli', label: 'Ghibli', swatches: ['#928b4a', '#64748b', '#14b8a6', '#f1e5c5'] },
+  { name: 'gourmet', label: 'Gourmet', swatches: ['#f97316', '#78716c', '#ec4899', '#f8fafc'] },
+  { name: 'luxury', label: 'Luxury', swatches: ['#d97706', '#6b7280', '#be123c', '#1c1917'] },
+  { name: 'marshmallow', label: 'Marshmallow', swatches: ['#f472b6', '#a78bfa', '#5eead4', '#fff1f2'] },
+  { name: 'mintlify', label: 'Mintlify', swatches: ['#10b981', '#60a5fa', '#0ea5e9', '#ecfdf5'] },
+  { name: 'pastel', label: 'Pastel', swatches: ['#a855f7', '#93c5fd', '#f9a8d4', '#f5f3ff'] },
+  { name: 'perplexity', label: 'Perplexity', swatches: ['#0ea5e9', '#22d3ee', '#334155', '#111827'] },
+  { name: 'shadcn', label: 'Shadcn', swatches: ['#0f172a', '#94a3b8', '#e2e8f0', '#ffffff'] },
+  { name: 'slack', label: 'Slack', swatches: ['#4a154b', '#2eb67d', '#36c5f0', '#e01e5a'] },
+  { name: 'soft', label: 'Soft', swatches: ['#7c3aed', '#8b5cf6', '#ec4899', '#f5f3ff'] },
+  { name: 'spotify', label: 'Spotify', swatches: ['#22c55e', '#1f2937', '#8b5cf6', '#0a0a0a'] },
+  { name: 'valorant', label: 'Valorant', swatches: ['#ef4444', '#6366f1', '#2dd4bf', '#0f172a'] },
+  { name: 'vscode', label: 'VSCode', swatches: ['#3b82f6', '#10b981', '#8b5cf6', '#181818'] }
+];
 ---
 <!doctype html>
 <html lang="id">
@@ -57,7 +77,31 @@ const iconClass = 'h-4 w-4';
               <svg viewBox="0 0 24 24" fill="currentColor" class={iconClass} aria-hidden="true"><path d="M21.944 4.666a1 1 0 0 0-1.153-.168L3.603 11.55a1 1 0 0 0 .082 1.865l4.37 1.59 1.59 4.37a1 1 0 0 0 1.865.082l7.052-17.188a1 1 0 0 0-.618-1.603ZM9.84 14.16l-.86 3.098-.98-2.696 8.91-6.127-7.07 5.726Z"></path></svg>
             </a>
           </div>
-          <button class="btn btn-outline btn-sm" data-theme-toggle>Theme</button>
+          <div class="dropdown shrink-0">
+            <button class="dropdown-toggle btn btn-outline btn-sm h-10 min-w-28 justify-between px-4" data-dropdown-toggle aria-expanded="false">
+              <span data-theme-toggle-label>Theme</span>
+              <span class="text-sm leading-none">⌃</span>
+            </button>
+            <div data-dropdown-menu class="dropdown-menu absolute right-0 hidden w-80 overflow-y-auto rounded-2xl p-2" style="max-height: min(26rem, calc(100vh - 6rem));">
+              <div class="space-y-1 pr-1">
+                {themeItems.map((theme) => (
+                  <button
+                    class="dropdown-item h-14 justify-between gap-4 rounded-xl px-4 text-base font-medium"
+                    type="button"
+                    data-theme-option={theme.name}
+                    aria-pressed="false"
+                  >
+                    <span class="min-w-0 truncate">{theme.label}</span>
+                    <span class="flex shrink-0 items-center gap-1.5">
+                      {theme.swatches.map((swatch) => (
+                        <span class="h-7 w-2.5 rounded-sm" style={`background:${swatch}`}></span>
+                      ))}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </nav>
       </div>
     </header>

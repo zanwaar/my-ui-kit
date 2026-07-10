@@ -32,8 +32,9 @@
   class PiceTheme extends BasePlugin {
     constructor(element, options) {
       super(element || document.documentElement, options);
-      this.storageKey = "ui-kit-theme";
-      this.themes = ["light", "dark", "corporate", "soft", "luxury"];
+      this.storageKey = 'ui-kit-theme';
+      this.themes = ['light', 'dark', 'black', 'claude', 'corporate', 'ghibli', 'gourmet', 'luxury', 'marshmallow', 'mintlify', 'pastel', 'perplexity', 'shadcn', 'slack', 'soft', 'spotify', 'valorant', 'vscode'];
+      this.darkThemes = ['dark', 'black', 'luxury', 'perplexity', 'spotify', 'valorant', 'vscode'];
       this.root = document.documentElement;
       this.onDocumentClick = this.handleDocumentClick.bind(this);
     }
@@ -43,7 +44,7 @@
       if (super.init) super.init();
 
       this.apply(this.getInitialTheme(), { persist: false });
-      this.on(document, "click", this.onDocumentClick);
+      this.on(document, 'click', this.onDocumentClick);
 
       return this;
     }
@@ -59,11 +60,11 @@
       const current = this.normalize(this.root.dataset.theme);
       if (current) return current;
 
-      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
     getCurrentTheme() {
-      return this.normalize(this.root.dataset.theme) || "light";
+      return this.normalize(this.root.dataset.theme) || 'light';
     }
 
     getNextTheme() {
@@ -73,31 +74,44 @@
     }
 
     apply(theme, options) {
-      const next = this.normalize(theme) || "light";
+      const next = this.normalize(theme) || 'light';
       const shouldPersist = !options || options.persist !== false;
 
       this.root.dataset.theme = next;
-      this.root.classList.toggle("dark", next === "dark" || next === "luxury");
+      this.root.classList.toggle('dark', this.darkThemes.includes(next));
 
-      document.querySelectorAll("[data-theme-toggle]").forEach(function (button) {
-        button.setAttribute("data-theme-current", next);
-        if (button.hasAttribute("data-theme-toggle-label")) {
-          button.textContent = next.charAt(0).toUpperCase() + next.slice(1);
-        }
+      document.querySelectorAll('[data-theme-toggle]').forEach(function (button) {
+        button.setAttribute('data-theme-current', next);
+      });
+
+      document.querySelectorAll('[data-theme-toggle-label]').forEach(function (node) {
+        node.textContent = next.charAt(0).toUpperCase() + next.slice(1);
+      });
+
+      document.querySelectorAll('[data-theme-option]').forEach(function (button) {
+        const active = button.getAttribute('data-theme-option') === next;
+        button.setAttribute('aria-pressed', active ? 'true' : 'false');
+        button.classList.toggle('dropdown-active', active);
       });
 
       if (shouldPersist) localStorage.setItem(this.storageKey, next);
-      this.emit("pui:theme:change", { theme: next });
+      this.emit('pui:theme:change', { theme: next });
 
       return next;
     }
 
     handleDocumentClick(event) {
-      const button = event.target.closest("[data-theme-toggle]");
-      if (!button) return;
+      const button = event.target.closest('[data-theme-toggle]');
+      if (button) {
+        const explicitTheme = this.normalize(button.getAttribute('data-theme-toggle'));
+        this.apply(explicitTheme || this.getNextTheme());
+        return;
+      }
 
-      const explicitTheme = this.normalize(button.getAttribute("data-theme-toggle"));
-      this.apply(explicitTheme || this.getNextTheme());
+      const option = event.target.closest('[data-theme-option]');
+      if (option) {
+        this.apply(option.getAttribute('data-theme-option'));
+      }
     }
   }
 
