@@ -10,11 +10,10 @@ const toc = [
   { href: '#placement', label: 'Placement', level: 1 },
   { href: '#top-end', label: 'Top end', level: 2 },
   { href: '#right-start', label: 'Right start', level: 2 },
-  { href: '#nested-dropdown', label: 'Nested dropdown', level: 1 },
-  { href: '#menu-options', label: 'Menu options', level: 1 },
-  { href: '#checkbox-items', label: 'Checkbox items', level: 2 },
-  { href: '#radio-items', label: 'Radio items', level: 2 },
-  { href: '#context-menu', label: 'Context menu', level: 1 }
+  { href: '#phase-2-preview', label: 'Phase 2 preview', level: 1 },
+  { href: '#nested-dropdown', label: 'Nested dropdown', level: 2 },
+  { href: '#menu-options', label: 'Menu options', level: 2 },
+  { href: '#context-menu', label: 'Context menu', level: 2 }
 ];
 
 const clickCode = `<div class="dropdown">
@@ -91,14 +90,21 @@ const contextCode = `<div class="dropdown" style="--trigger: contextmenu;">
 </div>`;
 ---
 <DocsLayout title="Dropdowns" description="Dokumentasi dropdown piceUI" section="components">
-  <ComponentDocLayout active="dropdown" title="Dropdown" description="Dropdown piceUI sekarang memakai layer kompatibilitas `HSDropdown` yang mengikuti pola FlyonUI untuk click, hover, context menu, nested menu, dan item role-based seperti checkbox/radio." toc={toc}>
+  <ComponentDocLayout
+    active="dropdown"
+    title="Dropdown"
+    description="Dropdown piceUI memakai runtime internal ringan untuk click atau hover trigger, placement berbasis CSS, outside click, Escape, dan `.dropdown-close`."
+    toc={toc}
+  >
     <section id="overview" class="mt-8 text-base leading-7 text-neutral-600 dark:text-neutral-300">
-      Gunakan struktur <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-toggle</code>, dan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-menu</code> untuk membuat menu navigasi, action menu, context menu, dan nested dropdown.
+      Gunakan struktur <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-toggle</code>, dan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-menu</code> untuk membuat action menu yang sederhana dan aman.
+      <p class="mt-4">Runtime internal mendukung click trigger, hover trigger lewat <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--trigger: hover</code>, close saat klik di luar, close saat <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">Escape</code>, sinkronisasi <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">aria-expanded</code>, keyboard navigation dasar (<code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">Enter</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">Space</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">ArrowUp</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">ArrowDown</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">Home</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">End</code>), roving <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">tabindex</code>, typeahead huruf pertama, dan helper placement berbasis CSS.</p>
+      <p class="mt-4">Fitur seperti nested dropdown kompleks masih dianggap preview phase 2 dan belum dijamin stabil di runtime internal saat ini.</p>
     </section>
 
     <section id="click-dropdown" class="mt-12">
-      <h2 class="text-3xl font-semibold">Click dropdown</h2>
-      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Default trigger memakai click dan close otomatis saat pilih item.</p>
+      <h2 class="text-4xl font-semibold tracking-tight">Click dropdown</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Ini adalah pola utama yang direkomendasikan untuk runtime dropdown internal phase 1.</p>
       <DocsExample code={clickCode}>
         <div class="dropdown">
           <button class="dropdown-toggle btn btn-outline" data-dropdown-toggle>Open menu</button>
@@ -112,8 +118,8 @@ const contextCode = `<div class="dropdown" style="--trigger: contextmenu;">
     </section>
 
     <section id="hover-dropdown" class="mt-12">
-      <h2 class="text-3xl font-semibold">Hover dropdown</h2>
-      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Set trigger lewat custom property <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--trigger: hover</code>.</p>
+      <h2 class="text-4xl font-semibold tracking-tight">Hover dropdown</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--trigger: hover</code> saat menu perlu terbuka ketika pointer masuk ke area dropdown.</p>
       <DocsExample code={hoverCode}>
         <div class="dropdown" style="--trigger: hover;">
           <button class="dropdown-toggle btn btn-outline">Hover me</button>
@@ -127,7 +133,7 @@ const contextCode = `<div class="dropdown" style="--trigger: contextmenu;">
 
     <section id="placement" class="mt-12">
       <h2 class="text-4xl font-semibold tracking-tight">Placement</h2>
-      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Dropdown menu bisa diarahkan ke atas, kanan, kiri, atau ujung kanan lewat attribute placement.</p>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Phase 1 memakai helper placement berbasis CSS. Tidak ada auto flip atau collision handling JavaScript.</p>
     </section>
 
     <section id="top-end" class="mt-8">
@@ -156,15 +162,20 @@ const contextCode = `<div class="dropdown" style="--trigger: contextmenu;">
       </DocsExample>
     </section>
 
+    <section id="phase-2-preview" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Phase 2 preview</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Contoh di bawah ini dipertahankan sebagai referensi desain dan arah API, tetapi belum dianggap fitur stabil pada runtime internal phase 1.</p>
+    </section>
+
     <section id="nested-dropdown" class="mt-12">
       <h2 class="text-3xl font-semibold">Nested dropdown</h2>
-      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Dropdown lain bisa ditempatkan di dalam menu untuk membuat sub actions.</p>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Preview untuk nested dropdown. Struktur ini belum dijamin stabil untuk semua kasus pada phase 1.</p>
       <DocsExample code={nestedCode}>
         <div class="dropdown">
           <button class="dropdown-toggle btn btn-outline">Actions</button>
           <div class="dropdown-menu hidden">
             <a class="dropdown-item" href="#">Edit</a>
-            <div class="dropdown dropdown-right" style="--trigger: hover;">
+            <div class="dropdown dropdown-right">
               <button class="dropdown-item dropdown-toggle" type="button">More</button>
               <div class="dropdown-menu hidden">
                 <a class="dropdown-item" href="#">Rename</a>
@@ -178,7 +189,7 @@ const contextCode = `<div class="dropdown" style="--trigger: contextmenu;">
 
     <section id="menu-options" class="mt-12">
       <h2 class="text-4xl font-semibold tracking-tight">Menu options</h2>
-      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Dropdown mendukung item role-based untuk kebutuhan filter table, settings, dan sort menu.</p>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Role-based item sederhana sekarang didukung untuk kebutuhan filter dan sort menu berbasis <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">aria-checked</code>.</p>
     </section>
 
     <section id="checkbox-items" class="mt-8">
@@ -211,7 +222,7 @@ const contextCode = `<div class="dropdown" style="--trigger: contextmenu;">
 
     <section id="context-menu" class="mt-12">
       <h2 class="text-3xl font-semibold">Context menu</h2>
-      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Mode <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">contextmenu</code> membuka dropdown lewat klik kanan atau long-press.</p>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Mode <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">contextmenu</code> sekarang membuka dropdown lewat klik kanan. Long-press touch belum ditambahkan.</p>
       <DocsExample code={contextCode}>
         <div class="dropdown" style="--trigger: contextmenu;">
           <button class="dropdown-toggle btn btn-outline">Right click me</button>

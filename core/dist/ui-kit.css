@@ -2804,6 +2804,19 @@ textarea.form-control {
   background-color: rgb(var(--pui-surface-muted));
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+
+.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 .dropdown-menu {
   z-index: 10;
   margin-top: 8px;
@@ -2827,6 +2840,7 @@ textarea.form-control {
   transition-property: opacity,margin;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+  min-width: 12rem;
   max-height: min(26rem, 100vh - 6rem);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -2834,6 +2848,10 @@ textarea.form-control {
   border-radius: var(--pui-radius-lg);
   box-shadow: var(--pui-shadow-md);
   border: 1px solid rgb(var(--pui-border));
+}
+
+.dropdown-menu.hidden {
+  display: none;
 }
 
 .dropdown-item {
@@ -2869,7 +2887,8 @@ textarea.form-control {
 }
 
 .dropdown-active,
-.dropdown-item[aria-pressed=true] {
+.dropdown-item[aria-pressed=true],
+.dropdown-item[aria-checked=true] {
   background-color: rgb(var(--pui-primary-soft));
   border: 1px solid rgb(var(--pui-primary-border));
   color: rgb(var(--pui-primary));
@@ -2914,27 +2933,6 @@ textarea.form-control {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   color: rgb(var(--pui-content-muted));
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  text-align: left;
-}
-
-.dropdown-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.dropdown-menu {
-  min-width: 12rem;
-}
-
-.dropdown-menu.hidden {
-  display: none;
 }
 
 .dropdown[data-dropdown-placement=bottom-end] > .dropdown-menu,
@@ -4276,10 +4274,6 @@ video {
   display: inline-block;
 }
 
-.inline {
-  display: inline;
-}
-
 .flex {
   display: flex;
 }
@@ -4294,10 +4288,6 @@ video {
 
 .grid {
   display: grid;
-}
-
-.contents {
-  display: contents;
 }
 
 .hidden {
@@ -4444,10 +4434,6 @@ video {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-
-.resize {
-  resize: both;
 }
 
 .list-disc {

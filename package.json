@@ -48,7 +48,7 @@
     "./dist/ui-kit.min.css": "./core/dist/ui-kit.min.css",
     "./js": "./core/js/index.js",
     "./js/dropdown": "./core/js/dropdown.js",
-    "./js/plugins/dropdown": "./core/js/plugins/dropdown/index.js",
+    "./js/plugins/dropdown": "./core/js/dropdown.js",
     "./js/modal": "./core/js/modal.js",
     "./js/theme-toggle": "./core/js/theme-toggle.js",
     "./js/sidebar": "./core/js/sidebar.js"
