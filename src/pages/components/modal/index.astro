@@ -1,0 +1,51 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+const toc = [
+  { href: '#overview', label: 'Overview', active: true },
+  { href: '#anatomy', label: 'Anatomy' },
+  { href: '#preview', label: 'Preview' },
+  { href: '#html', label: 'HTML' }
+];
+---
+<DocsLayout title="Modal" description="Dokumentasi modal piceUI" section="components">
+  <ComponentDocLayout active="modal" title="Modal" description="Modal piceUI v2 memakai semantic class dan data attribute agar tetap ringan dan framework-agnostic." toc={toc}>
+    <Fragment slot="hero-preview">
+      <div class="card"><div class="card-body"><button class="btn btn-primary w-full" data-modal-toggle="#modal-preview">Open modal</button></div></div>
+    </Fragment>
+
+    <section id="overview" class="card mt-8 max-w-4xl"><div class="card-header">Overview</div><div class="card-body"><p>Modal dibangun di atas token surface, border, radius, dan plugin JS v2. Komponen ini memakai event <code>pui:modal:open</code> dan <code>pui:modal:close</code>.</p></div></section>
+
+    <section id="anatomy" class="card mt-6 max-w-4xl"><div class="card-header">Anatomy</div><div class="card-body overflow-x-auto p-0"><table class="w-full text-left text-sm"><tbody class="divide-y divide-neutral-200 dark:divide-neutral-700"><tr><td class="px-6 py-4 font-mono">modal</td><td class="px-6 py-4">Wrapper overlay utama.</td></tr><tr><td class="px-6 py-4 font-mono">modal-backdrop</td><td class="px-6 py-4">Layer gelap di belakang dialog.</td></tr><tr><td class="px-6 py-4 font-mono">modal-dialog</td><td class="px-6 py-4">Panel konten modal.</td></tr><tr><td class="px-6 py-4 font-mono">modal-header / modal-body / modal-footer</td><td class="px-6 py-4">Struktur konten modal.</td></tr></tbody></table></div></section>
+
+    <section id="preview" class="card mt-6 max-w-4xl"><div class="card-header">Preview</div><div class="card-body"><button class="btn btn-primary" data-modal-toggle="#modal-preview">Open modal</button></div></section>
+
+    <div id="modal-preview" class="modal" aria-hidden="true">
+      <div class="modal-backdrop" data-modal-backdrop></div>
+      <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title-preview">
+        <div class="modal-header">
+          <h2 id="modal-title-preview" class="modal-title">Sample Modal</h2>
+          <button class="btn btn-ghost btn-sm" data-modal-close>Close</button>
+        </div>
+        <div class="modal-body">
+          <p>Ini contoh modal piceUI v2 dengan class semantic dan runtime ringan.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" data-modal-close>Cancel</button>
+          <button class="btn btn-primary">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <section id="html" class="card mt-6 max-w-4xl"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;button class="btn btn-primary" data-modal-toggle="#example-modal"&gt;Open modal&lt;/button&gt;
+
+&lt;div id="example-modal" class="modal" aria-hidden="true"&gt;
+  &lt;div class="modal-backdrop" data-modal-backdrop&gt;&lt;/div&gt;
+  &lt;div class="modal-dialog" role="dialog" aria-modal="true"&gt;
+    &lt;div class="modal-header"&gt;...&lt;/div&gt;
+    &lt;div class="modal-body"&gt;...&lt;/div&gt;
+    &lt;div class="modal-footer"&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div></section>
+  </ComponentDocLayout>
+</DocsLayout>

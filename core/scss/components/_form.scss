@@ -1,47 +1,46 @@
 // core/scss/components/_form.scss
-//
-// Konvensi: .form-control (text/textarea/select), .form-check (checkbox/radio)
-// Pola sama seperti _button.scss: base class -> variant -> state -> dark mode
 
-// --- Label ---
 .form-label {
-  @apply block mb-1 text-sm font-medium text-neutral-700;
+  @apply mb-1 block text-sm font-medium;
+  color: rgb(var(--pui-content-muted));
 
   .dark & {
-    @apply text-neutral-200;
+    color: rgb(var(--pui-content));
   }
 }
 
-// --- Text input, textarea, select ---
 .form-control {
-  @apply block w-full px-4 py-2 text-sm;
-  @apply bg-white border border-neutral-300 rounded;
-  @apply text-neutral-900 placeholder-neutral-400;
-  @apply transition-colors duration-150;
+  @apply block w-full px-4 py-2 text-sm transition-colors duration-150;
+  background-color: rgb(var(--pui-surface));
+  border: 1px solid rgb(var(--pui-border));
+  border-radius: var(--pui-radius-md);
+  color: rgb(var(--pui-content));
+
+  &::placeholder {
+    color: rgb(163 163 163);
+  }
 
   &:focus {
-    @apply outline-none border-primary-500 ring-2 ring-primary-100;
-  }
-  &:disabled {
-    @apply bg-neutral-100 text-neutral-400 cursor-not-allowed;
+    @apply outline-none ring-2 ring-primary-100;
+    border-color: rgb(var(--pui-primary));
   }
 
-  // state error (dipasangkan manual lewat JS/validasi, class ditambahkan ke .form-control)
+  &:disabled {
+    @apply cursor-not-allowed;
+    background-color: rgb(var(--pui-surface-muted));
+    color: rgb(163 163 163);
+  }
+
   &.is-invalid {
     @apply border-red-500;
+
     &:focus {
       @apply ring-red-100;
     }
   }
 
-  .dark & {
-    @apply bg-neutral-800 border-neutral-600 text-neutral-100 placeholder-neutral-500;
-    &:focus {
-      @apply border-primary-400 ring-primary-900;
-    }
-    &:disabled {
-      @apply bg-neutral-900 text-neutral-600;
-    }
+  .dark &::placeholder {
+    color: rgb(115 115 115);
   }
 }
 
@@ -49,12 +48,12 @@ textarea.form-control {
   @apply min-h-[96px];
 }
 
-// --- Pesan bantuan/error di bawah field ---
 .form-text {
-  @apply mt-1 text-xs text-neutral-500;
+  @apply mt-1 text-xs;
+  color: rgb(115 115 115);
 
   .dark & {
-    @apply text-neutral-400;
+    color: rgb(var(--pui-content-muted));
   }
 }
 
@@ -66,15 +65,12 @@ textarea.form-control {
   }
 }
 
-// --- Checkbox & Radio ---
-// Pakai native input + accent-color (bukan custom SVG), supaya tetap
-// framework-agnostic dan ringan, sesuai prinsip "vanilla, tidak terikat platform".
 .form-check {
   @apply flex items-center gap-2;
 }
 
 .form-check-input {
-  @apply w-4 h-4 accent-primary-600 cursor-pointer;
+  @apply h-4 w-4 cursor-pointer accent-primary-600;
 
   &:disabled {
     @apply cursor-not-allowed opacity-50;
@@ -82,20 +78,14 @@ textarea.form-control {
 }
 
 .form-check-label {
-  @apply text-sm text-neutral-700 cursor-pointer;
+  @apply cursor-pointer text-sm;
+  color: rgb(var(--pui-content-muted));
 
   .dark & {
-    @apply text-neutral-200;
+    color: rgb(var(--pui-content));
   }
 }
 
-// --- Switch ---
-// Structure:
-// <label class="form-switch">
-//   <input class="form-switch-input" type="checkbox" />
-//   <span class="form-switch-track"></span>
-//   <span class="form-switch-label">...</span>
-// </label>
 .form-switch {
   @apply flex items-center gap-3;
 }
@@ -105,32 +95,34 @@ textarea.form-control {
 }
 
 .form-switch-track {
-  @apply relative h-4 w-8 rounded-full bg-neutral-300 transition-colors duration-150;
+  @apply relative h-4 w-8 transition-colors duration-150;
+  border-radius: var(--pui-radius-full);
+  background-color: rgb(212 212 212);
 
   &::after {
     content: '';
-    @apply absolute left-0 top-0 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-150;
+    @apply absolute left-0 top-0 h-4 w-4 transition-transform duration-150;
+    border-radius: var(--pui-radius-full);
+    background-color: rgb(255 255 255);
+    box-shadow: var(--pui-shadow-sm);
   }
 
   .dark & {
-    @apply bg-neutral-600;
+    background-color: rgb(82 82 82);
   }
 }
 
 .form-switch-label {
-  @apply text-sm text-neutral-700;
+  @apply text-sm;
+  color: rgb(var(--pui-content-muted));
 
   .dark & {
-    @apply text-neutral-200;
+    color: rgb(var(--pui-content));
   }
 }
 
 .form-switch-input:checked + .form-switch-track {
-  @apply bg-primary-600;
-
-  .dark & {
-    @apply bg-primary-500;
-  }
+  background-color: rgb(var(--pui-primary));
 }
 
 .form-switch-input:checked + .form-switch-track::after {
@@ -138,10 +130,12 @@ textarea.form-control {
 }
 
 .form-switch-input:focus-visible + .form-switch-track {
-  @apply ring-2 ring-primary-100 ring-offset-2 ring-offset-white;
+  @apply ring-2 ring-primary-100 ring-offset-2;
+  ring-offset-color: rgb(var(--pui-surface));
 
   .dark & {
-    @apply ring-primary-900 ring-offset-neutral-900;
+    @apply ring-primary-900;
+    ring-offset-color: rgb(var(--pui-surface-muted));
   }
 }
 
@@ -150,10 +144,11 @@ textarea.form-control {
 }
 
 .form-switch-input:disabled ~ .form-switch-label {
-  @apply cursor-not-allowed text-neutral-400;
+  @apply cursor-not-allowed;
+  color: rgb(163 163 163);
 
   .dark & {
-    @apply text-neutral-500;
+    color: rgb(115 115 115);
   }
 }
 

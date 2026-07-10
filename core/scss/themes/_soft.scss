@@ -1,0 +1,33 @@
+// core/scss/themes/_soft.scss
+
+[data-theme="soft"] {
+  color-scheme: light;
+
+  --pui-primary: 124 58 237;
+  --pui-primary-hover: 109 40 217;
+  --pui-primary-soft: 245 243 255;
+  --pui-primary-border: 221 214 254;
+  --pui-primary-content: 255 255 255;
+
+  --pui-success: 16 185 129;
+  --pui-success-soft: 236 253 245;
+  --pui-success-border: 167 243 208;
+  --pui-success-content: 6 95 70;
+
+  --pui-warning: 245 158 11;
+  --pui-warning-soft: 255 251 235;
+  --pui-warning-border: 253 230 138;
+  --pui-warning-content: 146 64 14;
+
+  --pui-danger: 244 63 94;
+  --pui-danger-soft: 255 241 242;
+  --pui-danger-border: 254 205 211;
+  --pui-danger-content: 159 18 57;
+
+  --pui-surface: 253 250 255;
+  --pui-surface-muted: 245 243 255;
+  --pui-surface-raised: 255 255 255;
+  --pui-content: 46 16 101;
+  --pui-content-muted: 91 33 182;
+  --pui-border: 221 214 254;
+}

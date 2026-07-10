@@ -1,0 +1,50 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+
+const toc = [
+  { href: '#containers', label: 'Containers', active: true },
+  { href: '#sizes', label: 'Sizes' },
+  { href: '#example', label: 'Example' }
+];
+
+const containers = [
+  '.container', '.container-sm', '.container-md', '.container-lg', '.container-xl', '.container-xxl', '.container-fluid'
+];
+---
+<DocsLayout title="Containers" description="Bootstrap-like containers for piceUI." section="foundations">
+  <ComponentDocLayout active="containers" title="Containers" description="Container mengontrol lebar maksimal konten dan menjaga layout tetap rapi di tengah viewport." toc={toc}>
+    <section id="containers" class="card mt-8 max-w-4xl">
+      <div class="card-header">Containers</div>
+      <div class="card-body grid gap-3 md:grid-cols-2">
+        {containers.map((name) => (
+          <div class="rounded-lg border border-neutral-200 p-4 dark:border-neutral-700">
+            <div class="font-mono text-sm font-semibold text-primary-700 dark:text-primary-300">{name}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="sizes" class="card mt-6 max-w-4xl">
+      <div class="card-header">Max-Width Snap</div>
+      <div class="card-body">
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>sm: 540px
+md: 720px
+lg: 960px
+xl: 1140px
+xxl: 1320px</code></pre>
+      </div>
+    </section>
+
+    <section id="example" class="card mt-6 max-w-4xl">
+      <div class="card-header">Example</div>
+      <div class="card-body space-y-4">
+        <div class="container rounded-lg border border-dashed border-primary-300 py-4 dark:border-primary-700">
+          <div class="text-center text-sm text-neutral-600 dark:text-neutral-300">`.container` preview</div>
+        </div>
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;div class="container"&gt;...&lt;/div&gt;
+&lt;div class="container-fluid"&gt;...&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+  </ComponentDocLayout>
+</DocsLayout>

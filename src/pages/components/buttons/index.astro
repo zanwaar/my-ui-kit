@@ -1,18 +1,119 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro';
 import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+import DocsExample from '../../../components/docs/DocsExample.astro';
+
 const toc = [
-  { href: '#overview', label: 'Overview', active: true },
-  { href: '#class-reference', label: 'Class reference' },
-  { href: '#basic-example', label: 'Basic example' },
-  { href: '#variants', label: 'Variants' },
-  { href: '#sizes', label: 'Sizes' },
-  { href: '#disabled', label: 'Disabled state' }
+  { href: '#variants', label: 'Variants', active: true, level: 1 },
+  { href: '#solid-buttons', label: 'Solid buttons', level: 2 },
+  { href: '#soft-buttons', label: 'Soft buttons', level: 2 },
+  { href: '#outline-buttons', label: 'Outline buttons', level: 2 },
+  { href: '#text-buttons', label: 'Text buttons', level: 2 },
+  { href: '#gradient-buttons', label: 'Gradient buttons', level: 2 },
+  { href: '#wave-effect-buttons', label: 'Wave effect button', level: 2 },
+  { href: '#shapes', label: 'Shapes', level: 1 },
+  { href: '#pilled-buttons', label: 'Pilled buttons', level: 2 },
+  { href: '#rounded-buttons', label: 'Rounded buttons', level: 2 },
+  { href: '#states', label: 'States', level: 1 },
+  { href: '#state-variants', label: 'States variants', level: 2 },
+  { href: '#sizes', label: 'Size', level: 1 },
+  { href: '#size-variants', label: 'Size variants', level: 2 },
+  { href: '#wide-button', label: 'Wide button', level: 2 },
+  { href: '#block-button', label: 'Block button', level: 2 },
+  { href: '#icon-buttons', label: 'Icon buttons', level: 1 },
+  { href: '#icon-start-end', label: 'Icon at start/end', level: 2 },
+  { href: '#icon-only', label: 'Icon only', level: 2 },
+  { href: '#input-tags', label: 'Input tags', level: 1 },
+  { href: '#buttons-with-input-tags', label: 'Buttons with input tags', level: 2 }
 ];
+
+const solidCode = `<button class="btn">Default</button>
+<button class="btn btn-primary">Primary</button>
+<button class="btn btn-secondary">Secondary</button>
+<button class="btn btn-accent">Accent</button>
+<button class="btn btn-info">Info</button>
+<button class="btn btn-success">Success</button>
+<button class="btn btn-warning">Warning</button>
+<button class="btn btn-error">Error</button>`;
+
+const softCode = `<button class="btn btn-soft">Default</button>
+<button class="btn btn-soft btn-primary">Primary</button>
+<button class="btn btn-soft btn-secondary">Secondary</button>
+<button class="btn btn-soft btn-accent">Accent</button>
+<button class="btn btn-soft btn-info">Info</button>
+<button class="btn btn-soft btn-success">Success</button>
+<button class="btn btn-soft btn-warning">Warning</button>
+<button class="btn btn-soft btn-error">Error</button>`;
+
+const outlineCode = `<button class="btn btn-outline">Default</button>
+<button class="btn btn-outline btn-primary">Primary</button>
+<button class="btn btn-outline btn-secondary">Secondary</button>
+<button class="btn btn-outline btn-accent">Accent</button>
+<button class="btn btn-outline btn-info">Info</button>
+<button class="btn btn-outline btn-success">Success</button>
+<button class="btn btn-outline btn-warning">Warning</button>
+<button class="btn btn-outline btn-error">Error</button>`;
+
+const textCode = `<button class="btn btn-text">Default</button>
+<button class="btn btn-text btn-primary">Primary</button>
+<button class="btn btn-text btn-secondary">Secondary</button>
+<button class="btn btn-text btn-success">Success</button>
+<button class="btn btn-text btn-error">Error</button>`;
+
+const gradientCode = `<button class="btn btn-gradient btn-primary">Primary</button>
+<button class="btn btn-gradient btn-secondary">Secondary</button>
+<button class="btn btn-gradient btn-accent">Accent</button>
+<button class="btn btn-gradient btn-success">Success</button>
+<button class="btn btn-gradient btn-error">Error</button>`;
+
+const pillCode = `<button class="btn btn-pill">Default</button>
+<button class="btn btn-pill btn-primary">Primary</button>
+<button class="btn btn-pill btn-success">Success</button>`;
+
+const roundedCode = `<button class="btn btn-rounded">Default</button>
+<button class="btn btn-rounded btn-primary">Primary</button>
+<button class="btn btn-rounded btn-outline btn-primary">Outline</button>`;
+
+const statesCode = `<button class="btn btn-primary">Normal</button>
+<button class="btn btn-primary btn-active">Active</button>
+<button class="btn btn-primary" disabled>Disabled</button>`;
+
+const sizeCode = `<button class="btn btn-primary btn-xs">XS</button>
+<button class="btn btn-primary btn-sm">SM</button>
+<button class="btn btn-primary btn-md">MD</button>
+<button class="btn btn-primary btn-lg">LG</button>
+<button class="btn btn-primary btn-xl">XL</button>`;
+
+const wideCode = `<button class="btn btn-primary btn-wide">Wide button</button>`;
+const blockCode = `<button class="btn btn-primary btn-block">Block button</button>`;
+
+const iconTextCode = `<button class="btn btn-primary">
+  <span>←</span>
+  <span>Back</span>
+</button>
+<button class="btn btn-outline btn-primary">
+  <span>Next</span>
+  <span>→</span>
+</button>`;
+
+const iconOnlyCode = `<button class="btn btn-square btn-outline btn-primary">☆</button>
+<button class="btn btn-circle btn-primary">+</button>
+<button class="btn btn-circle btn-soft btn-error">×</button>`;
+
+const inputTagCode = `<button class="btn btn-primary">
+  Save
+  <span class="rounded bg-white/20 px-2 py-0.5 text-xs">⌘S</span>
+</button>
+<button class="btn btn-outline btn-primary">
+  Search
+  <span class="rounded bg-primary-50 px-2 py-0.5 text-xs text-primary-700">⌘K</span>
+</button>`;
 ---
 <DocsLayout title="Buttons" description="Button component documentation" section="components">
-  <ComponentDocLayout active="button" title="Button" description="Button digunakan untuk aksi utama, aksi sekunder, status action, dan kontrol interaktif di seluruh interface." toc={toc}>
-    <section class="mt-8 text-base leading-7 text-neutral-600 dark:text-neutral-300">Gunakan class dasar <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.btn</code> lalu gabungkan dengan variant seperti <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.btn-primary</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.btn-outline</code>, atau <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.btn-danger</code>.</section>
+  <ComponentDocLayout active="button" title="Button" description="Layout halaman ini mengikuti pola tiga kolom: sidebar komponen di kiri, konten utama di tengah, dan menu konten di kanan. Seluruh varian button diadaptasi aman dari struktur referensi FlyonUI tanpa copy mentah." toc={toc}>
+    <section id="overview" class="mt-8 text-base leading-7 text-neutral-600 dark:text-neutral-300">
+      Sistem button piceUI sekarang mendukung varian solid, soft, outline, text, gradient, active state, ukuran lengkap, shape, dan contoh icon usage agar dokumentasi terasa seperti katalog komponen siap pakai.
+    </section>
 
     <section id="class-reference" class="card mt-8">
       <div class="card-header">Class reference</div>
@@ -22,45 +123,197 @@ const toc = [
             <tr><th class="px-6 py-4">Class name</th><th class="px-6 py-4">Type</th><th class="px-6 py-4">Description</th></tr>
           </thead>
           <tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
-            <tr><td class="px-6 py-4 font-mono">btn</td><td class="px-6 py-4"><span class="badge badge-primary">Base</span></td><td class="px-6 py-4">Class dasar untuk semua button.</td></tr>
-            <tr><td class="px-6 py-4 font-mono">btn-primary</td><td class="px-6 py-4"><span class="badge badge-success">Variant</span></td><td class="px-6 py-4">Aksi utama dalam satu section.</td></tr>
-            <tr><td class="px-6 py-4 font-mono">btn-outline</td><td class="px-6 py-4"><span class="badge badge-success">Variant</span></td><td class="px-6 py-4">Aksi sekunder atau alternatif.</td></tr>
-            <tr><td class="px-6 py-4 font-mono">btn-sm / btn-lg</td><td class="px-6 py-4"><span class="badge badge-warning">Size</span></td><td class="px-6 py-4">Ukuran button kecil dan besar.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">btn</td><td class="px-6 py-4"><span class="badge badge-primary">Base</span></td><td class="px-6 py-4">Class dasar semua button.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">btn-primary / secondary / accent / info / success / warning / error</td><td class="px-6 py-4"><span class="badge badge-success">Variant</span></td><td class="px-6 py-4">Varian warna utama dan semantik.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">btn-soft / btn-outline / btn-text / btn-gradient</td><td class="px-6 py-4"><span class="badge badge-success">Style</span></td><td class="px-6 py-4">Turunan emphasis untuk berbagai kebutuhan UI.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">btn-pill / btn-rounded / btn-square / btn-circle</td><td class="px-6 py-4"><span class="badge badge-warning">Shape</span></td><td class="px-6 py-4">Kontrol bentuk button.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">btn-xs / btn-sm / btn-md / btn-lg / btn-xl</td><td class="px-6 py-4"><span class="badge badge-warning">Size</span></td><td class="px-6 py-4">Skala ukuran button.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">btn-wide / btn-block / btn-active</td><td class="px-6 py-4"><span class="badge badge-warning">State</span></td><td class="px-6 py-4">Lebar dan state khusus.</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <section id="basic-example" class="mt-8">
-      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Basic example</p>
-      <h2 class="mt-2 text-2xl font-semibold">Default</h2>
-      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Contoh penggunaan button utama dan button sekunder.</p>
-      <div class="card mt-4">
-        <div class="card-body flex flex-wrap gap-3">
-          <button class="btn btn-primary">Save changes</button>
-          <button class="btn btn-outline">Cancel</button>
+    <section id="variants" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight text-neutral-950 dark:text-white">Variants</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">piceUI menyediakan beberapa varian button dengan tujuan semantik masing-masing, plus style tambahan untuk kontrol tampilan yang lebih fleksibel.</p>
+      <h3 id="solid-buttons" class="mt-8 text-2xl font-semibold">Solid buttons</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Versi penuh warna untuk primary action dan semantic action.</p>
+      <DocsExample code={solidCode} prompt={`I'm using the piceUI component library in my project. Please integrate the following button group into my project:\n\nHere are the code snippets for the block component:\n\n\`\`\`html\n${solidCode}\n\`\`\``}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn">Default</button>
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-secondary">Secondary</button>
+          <button class="btn btn-accent">Accent</button>
+          <button class="btn btn-info">Info</button>
+          <button class="btn btn-success">Success</button>
+          <button class="btn btn-warning">Warning</button>
+          <button class="btn btn-error">Error</button>
         </div>
-      </div>
-      <pre class="mt-4 overflow-auto rounded-md bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;button class="btn btn-primary"&gt;Save changes&lt;/button&gt;
-&lt;button class="btn btn-outline"&gt;Cancel&lt;/button&gt;</code></pre>
+      </DocsExample>
     </section>
 
-    <section id="variants" class="mt-8">
-      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Variants</p>
-      <h2 class="mt-2 text-2xl font-semibold">Button variants</h2>
-      <div class="card mt-4"><div class="card-body flex flex-wrap gap-3"><button class="btn btn-primary">Primary</button><button class="btn btn-danger">Danger</button><button class="btn btn-success">Success</button><button class="btn btn-warning">Warning</button><button class="btn btn-outline">Outline</button><button class="btn btn-ghost">Ghost</button></div></div>
+    <section id="soft-buttons" class="mt-8">
+      <h2 class="text-2xl font-semibold">Soft buttons</h2>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.btn-soft</code> untuk panel sekunder dan action ringan.</p>
+      <DocsExample code={softCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-soft">Default</button>
+          <button class="btn btn-soft btn-primary">Primary</button>
+          <button class="btn btn-soft btn-secondary">Secondary</button>
+          <button class="btn btn-soft btn-accent">Accent</button>
+          <button class="btn btn-soft btn-info">Info</button>
+          <button class="btn btn-soft btn-success">Success</button>
+          <button class="btn btn-soft btn-warning">Warning</button>
+          <button class="btn btn-soft btn-error">Error</button>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="outline-buttons" class="mt-8">
+      <h2 class="text-2xl font-semibold">Outline buttons</h2>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Outline cocok untuk toolbar, filter action, dan secondary action.</p>
+      <DocsExample code={outlineCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-outline">Default</button>
+          <button class="btn btn-outline btn-primary">Primary</button>
+          <button class="btn btn-outline btn-secondary">Secondary</button>
+          <button class="btn btn-outline btn-accent">Accent</button>
+          <button class="btn btn-outline btn-info">Info</button>
+          <button class="btn btn-outline btn-success">Success</button>
+          <button class="btn btn-outline btn-warning">Warning</button>
+          <button class="btn btn-outline btn-error">Error</button>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="text-buttons" class="mt-8">
+      <h2 class="text-2xl font-semibold">Text buttons</h2>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Untuk action ringan tanpa border dan tanpa fill.</p>
+      <DocsExample code={textCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-text">Default</button>
+          <button class="btn btn-text btn-primary">Primary</button>
+          <button class="btn btn-text btn-secondary">Secondary</button>
+          <button class="btn btn-text btn-success">Success</button>
+          <button class="btn btn-text btn-error">Error</button>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="gradient-buttons" class="mt-8">
+      <h2 class="text-2xl font-semibold">Gradient buttons</h2>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Memberi emphasis lebih tinggi untuk CTA penting.</p>
+      <DocsExample code={gradientCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-gradient btn-primary">Primary</button>
+          <button class="btn btn-gradient btn-secondary">Secondary</button>
+          <button class="btn btn-gradient btn-accent">Accent</button>
+          <button class="btn btn-gradient btn-success">Success</button>
+          <button class="btn btn-gradient btn-error">Error</button>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="wave-effect-buttons" class="mt-8">
+      <h2 class="text-2xl font-semibold">Wave effect button</h2>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Belum ada efek ripple JS. Untuk sementara, gunakan gradient dan active scale sebagai alternatif ringan yang stabil.</p>
+    </section>
+
+    <section id="shapes" class="mt-8">
+      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Shapes</p>
+      <h2 id="pilled-buttons" class="mt-2 text-2xl font-semibold">Pilled buttons</h2>
+      <DocsExample code={pillCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-pill">Default</button>
+          <button class="btn btn-pill btn-primary">Primary</button>
+          <button class="btn btn-pill btn-success">Success</button>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="rounded-buttons" class="mt-8">
+      <h2 class="text-2xl font-semibold">Rounded buttons</h2>
+      <DocsExample code={roundedCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-rounded">Default</button>
+          <button class="btn btn-rounded btn-primary">Primary</button>
+          <button class="btn btn-rounded btn-outline btn-primary">Outline</button>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="states" class="mt-8">
+      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">States</p>
+      <h2 id="state-variants" class="mt-2 text-2xl font-semibold">States variants</h2>
+      <DocsExample code={statesCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-primary">Normal</button>
+          <button class="btn btn-primary btn-active">Active</button>
+          <button class="btn btn-primary" disabled>Disabled</button>
+        </div>
+      </DocsExample>
     </section>
 
     <section id="sizes" class="mt-8">
-      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Sizes</p>
-      <h2 class="mt-2 text-2xl font-semibold">Button sizes</h2>
-      <div class="card mt-4"><div class="card-body flex flex-wrap items-center gap-3"><button class="btn btn-primary btn-sm">Small</button><button class="btn btn-primary">Default</button><button class="btn btn-primary btn-lg">Large</button></div></div>
+      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Size</p>
+      <h2 id="size-variants" class="mt-2 text-2xl font-semibold">Size variants</h2>
+      <DocsExample code={sizeCode}>
+        <div class="flex flex-wrap items-center gap-3">
+          <button class="btn btn-primary btn-xs">XS</button>
+          <button class="btn btn-primary btn-sm">SM</button>
+          <button class="btn btn-primary btn-md">MD</button>
+          <button class="btn btn-primary btn-lg">LG</button>
+          <button class="btn btn-primary btn-xl">XL</button>
+        </div>
+      </DocsExample>
     </section>
 
-    <section id="disabled" class="mt-8">
-      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Disabled state</p>
-      <h2 class="mt-2 text-2xl font-semibold">Disabled button</h2>
-      <div class="card mt-4"><div class="card-body flex flex-wrap gap-3"><button class="btn btn-primary" disabled>Disabled</button><button class="btn btn-outline" disabled>Disabled</button></div></div>
+    <section id="wide-button" class="mt-8">
+      <h2 class="text-2xl font-semibold">Wide button</h2>
+      <DocsExample code={wideCode}>
+        <button class="btn btn-primary btn-wide">Wide button</button>
+      </DocsExample>
+    </section>
+
+    <section id="block-button" class="mt-8">
+      <h2 class="text-2xl font-semibold">Block button</h2>
+      <DocsExample code={blockCode}>
+        <button class="btn btn-primary btn-block">Block button</button>
+      </DocsExample>
+    </section>
+
+    <section id="icon-buttons" class="mt-8">
+      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Icon buttons</p>
+      <h2 id="icon-start-end" class="mt-2 text-2xl font-semibold">Icon at start/end</h2>
+      <DocsExample code={iconTextCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-primary"><span>←</span><span>Back</span></button>
+          <button class="btn btn-outline btn-primary"><span>Next</span><span>→</span></button>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="icon-only" class="mt-8">
+      <h2 class="text-2xl font-semibold">Icon only</h2>
+      <DocsExample code={iconOnlyCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-square btn-outline btn-primary">☆</button>
+          <button class="btn btn-circle btn-primary">+</button>
+          <button class="btn btn-circle btn-soft btn-error">×</button>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="input-tags" class="mt-8">
+      <p class="text-sm font-semibold text-primary-700 dark:text-primary-300">Input tags</p>
+      <h2 id="buttons-with-input-tags" class="mt-2 text-2xl font-semibold">Buttons with input tags</h2>
+      <DocsExample code={inputTagCode}>
+        <div class="flex flex-wrap gap-3">
+          <button class="btn btn-primary">Save <span class="rounded bg-white/20 px-2 py-0.5 text-xs">⌘S</span></button>
+          <button class="btn btn-outline btn-primary">Search <span class="rounded bg-primary-50 px-2 py-0.5 text-xs text-primary-700">⌘K</span></button>
+        </div>
+      </DocsExample>
     </section>
   </ComponentDocLayout>
 </DocsLayout>

@@ -1,0 +1,66 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+
+const toc = [
+  { href: '#row', label: 'Row', active: true },
+  { href: '#columns', label: 'Columns' },
+  { href: '#offsets', label: 'Offsets' },
+  { href: '#row-cols', label: 'Row Cols' },
+  { href: '#gutters', label: 'Gutters' }
+];
+---
+<DocsLayout title="Grid" description="Ready-to-use grid classes for piceUI." section="foundations">
+  <ComponentDocLayout active="grid" title="Grid" description="Grid piceUI memakai 12 kolom dan menyediakan class siap pakai seperti Bootstrap." toc={toc}>
+    <section id="row" class="card mt-8 max-w-4xl">
+      <div class="card-header">Row</div>
+      <div class="card-body space-y-4">
+        <p class="text-sm text-neutral-600 dark:text-neutral-300">Gunakan <code>.row</code> untuk membuat grid 12 kolom dengan gutter default 24px.</p>
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;div class="row"&gt;...&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="columns" class="card mt-6 max-w-4xl">
+      <div class="card-header">Columns</div>
+      <div class="card-body space-y-4">
+        <p class="text-sm text-neutral-600 dark:text-neutral-300">Tersedia <code>.col</code>, <code>.col-1</code> s/d <code>.col-12</code>, dan versi responsive seperti <code>.col-md-6</code>.</p>
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;div class="row"&gt;
+  &lt;div class="col-12 col-md-8"&gt;Main&lt;/div&gt;
+  &lt;div class="col-12 col-md-4"&gt;Aside&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="offsets" class="card mt-6 max-w-4xl">
+      <div class="card-header">Offsets</div>
+      <div class="card-body space-y-4">
+        <p class="text-sm text-neutral-600 dark:text-neutral-300">Gunakan <code>.offset-*</code> dan <code>.offset-md-*</code> untuk mendorong posisi kolom ke kanan.</p>
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;div class="row"&gt;
+  &lt;div class="col-4 offset-2"&gt;Offset content&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="row-cols" class="card mt-6 max-w-4xl">
+      <div class="card-header">Row Cols</div>
+      <div class="card-body space-y-4">
+        <p class="text-sm text-neutral-600 dark:text-neutral-300">Gunakan <code>.row-cols-*</code> untuk memaksa jumlah kolom otomatis per baris.</p>
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;div class="row row-cols-2 row-cols-lg-4"&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div&gt;D&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="gutters" class="card mt-6 max-w-4xl">
+      <div class="card-header">Gutters</div>
+      <div class="card-body space-y-4">
+        <p class="text-sm text-neutral-600 dark:text-neutral-300">Gunakan <code>.g-*</code>, <code>.gx-*</code>, dan <code>.gy-*</code> untuk mengatur jarak grid.</p>
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;div class="row g-4"&gt;...&lt;/div&gt;
+&lt;div class="row gx-5 gy-3"&gt;...&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+  </ComponentDocLayout>
+</DocsLayout>

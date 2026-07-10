@@ -4,19 +4,25 @@
 
 @use "abstracts/variables";
 
+@use "foundations/tokens";
+@use "foundations/typography";
+@use "foundations/layout";
+
+@use "themes";
+
 @use "components/button";
 @use "components/card";
 @use "components/alert";
 @use "components/badge";
 @use "components/form";
 @use "components/sidebar";
+@use "components/modal";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 // Tambahkan import komponen baru di bawah ini (Fase 1):
-// @use "components/modal";
 // @use "components/dropdown";
 // @use "components/table";
 // @use "components/tabs";

@@ -1,37 +1,30 @@
 // core/scss/components/_badge.scss
 
 .badge {
-  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  @apply inline-flex items-center px-2 py-1 text-xs font-medium;
+  border-radius: var(--pui-radius-full);
 }
 
 .badge-primary {
-  @apply bg-primary-100 text-primary-800;
+  background-color: rgb(var(--pui-primary-soft));
+  color: rgb(var(--pui-primary-hover));
 
   .dark & {
-    @apply bg-primary-900/40 text-primary-200;
+    color: rgb(191 219 254);
   }
 }
 
 .badge-success {
-  @apply bg-green-100 text-green-800;
-
-  .dark & {
-    @apply bg-green-900/40 text-green-200;
-  }
+  background-color: rgb(var(--pui-success-soft));
+  color: rgb(var(--pui-success-content));
 }
 
 .badge-danger {
-  @apply bg-red-100 text-red-800;
-
-  .dark & {
-    @apply bg-red-900/40 text-red-200;
-  }
+  background-color: rgb(var(--pui-danger-soft));
+  color: rgb(var(--pui-danger-content));
 }
 
 .badge-warning {
-  @apply bg-yellow-100 text-yellow-800;
-
-  .dark & {
-    @apply bg-yellow-900/40 text-yellow-200;
-  }
+  background-color: rgb(var(--pui-warning-soft));
+  color: rgb(var(--pui-warning-content));
 }

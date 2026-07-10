@@ -34,3 +34,8 @@ Thumbs.db
 .npm/
 .yarn/
 .pnpm-store/
+
+flyonui/
+dist/flyonui.js
+plan/
+

@@ -1,0 +1,34 @@
+// core/scss/themes/_light.scss
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --pui-primary: 37 99 235;
+  --pui-primary-hover: 29 78 216;
+  --pui-primary-soft: 239 246 255;
+  --pui-primary-border: 191 219 254;
+  --pui-primary-content: 255 255 255;
+
+  --pui-success: 22 163 74;
+  --pui-success-soft: 240 253 244;
+  --pui-success-border: 187 247 208;
+  --pui-success-content: 22 101 52;
+
+  --pui-warning: 234 179 8;
+  --pui-warning-soft: 254 252 232;
+  --pui-warning-border: 254 240 138;
+  --pui-warning-content: 133 77 14;
+
+  --pui-danger: 220 38 38;
+  --pui-danger-soft: 254 242 242;
+  --pui-danger-border: 254 202 202;
+  --pui-danger-content: 153 27 27;
+
+  --pui-surface: 255 255 255;
+  --pui-surface-muted: 250 250 250;
+  --pui-surface-raised: 255 255 255;
+  --pui-content: 23 23 23;
+  --pui-content-muted: 82 82 82;
+  --pui-border: 229 229 229;
+}

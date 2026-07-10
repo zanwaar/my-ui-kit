@@ -1,0 +1,33 @@
+// core/scss/themes/_corporate.scss
+
+[data-theme="corporate"] {
+  color-scheme: light;
+
+  --pui-primary: 30 64 175;
+  --pui-primary-hover: 30 58 138;
+  --pui-primary-soft: 239 246 255;
+  --pui-primary-border: 147 197 253;
+  --pui-primary-content: 255 255 255;
+
+  --pui-success: 5 150 105;
+  --pui-success-soft: 236 253 245;
+  --pui-success-border: 167 243 208;
+  --pui-success-content: 6 95 70;
+
+  --pui-warning: 217 119 6;
+  --pui-warning-soft: 255 251 235;
+  --pui-warning-border: 253 230 138;
+  --pui-warning-content: 146 64 14;
+
+  --pui-danger: 220 38 38;
+  --pui-danger-soft: 254 242 242;
+  --pui-danger-border: 254 202 202;
+  --pui-danger-content: 153 27 27;
+
+  --pui-surface: 248 250 252;
+  --pui-surface-muted: 241 245 249;
+  --pui-surface-raised: 255 255 255;
+  --pui-content: 15 23 42;
+  --pui-content-muted: 71 85 105;
+  --pui-border: 203 213 225;
+}

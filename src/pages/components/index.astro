@@ -14,7 +14,8 @@ const components = [
   ['Alerts', 'Pesan feedback untuk success, warning, danger, primary.', '/components/alerts/'],
   ['Cards', 'Container konten dengan header, body, dan footer.', '/components/cards/'],
   ['Forms', 'Input, label, helper text, checkbox, dan textarea.', '/components/forms/'],
-  ['Dropdowns', 'Menu interaktif dengan vanilla JavaScript.', '/components/dropdowns/']
+  ['Dropdowns', 'Menu interaktif dengan vanilla JavaScript.', '/components/dropdowns/'],
+  ['Modal', 'Overlay dialog untuk konfirmasi, form, dan detail penting.', '/components/modal/']
 ];
 ---
 <DocsLayout title="Components" description="Komponen dasar piceUI" section="components">
@@ -38,7 +39,7 @@ const components = [
           <div class="grid gap-4 sm:grid-cols-3 xl:col-span-4 xl:grid-cols-1">
             <div class="rounded-md border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-800">
               <p class="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Available</p>
-              <strong class="mt-2 block text-2xl">6</strong>
+              <strong class="mt-2 block text-2xl">7</strong>
               <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Komponen dasar siap pakai.</p>
             </div>
             <div class="rounded-md border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-800">
@@ -56,7 +57,7 @@ const components = [
             <p class="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Catalog</p>
             <h2 class="mt-2 text-2xl font-semibold">Component List</h2>
           </div>
-          <p class="text-sm text-neutral-500 dark:text-neutral-400">6 items</p>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400">7 items</p>
         </div>
         <div class="grid gap-4 xl:grid-cols-2">
           {components.map(([title, desc, href]) => (

@@ -1,0 +1,19 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+const toc = [
+  { href: '#overview', label: 'Overview', active: true },
+  { href: '#tokens', label: 'Typography Tokens' },
+  { href: '#usage', label: 'Usage' }
+];
+---
+<DocsLayout title="Typography" description="Typography foundation piceUI v2." section="foundations">
+  <ComponentDocLayout active="typography-foundation" title="Typography" description="Typography piceUI dimulai dari token dasar font family dan line-height, lalu akan diperluas menjadi scale yang lebih lengkap." toc={toc}>
+    <section id="overview" class="card mt-8 max-w-4xl"><div class="card-header">Overview</div><div class="card-body"><p>Typography foundation saat ini minimal: font sans global dan body line-height. Ini disiapkan untuk standardisasi heading, paragraph, caption, dan content rhythm di fase berikutnya.</p></div></section>
+    <section id="tokens" class="card mt-6 max-w-4xl"><div class="card-header">Typography Tokens</div><div class="card-body overflow-x-auto p-0"><table class="w-full text-left text-sm"><tbody class="divide-y divide-neutral-200 dark:divide-neutral-700"><tr><td class="px-6 py-4 font-mono">--pui-font-sans</td><td class="px-6 py-4">Font family utama.</td></tr><tr><td class="px-6 py-4 font-mono">--pui-leading-body</td><td class="px-6 py-4">Line-height body default.</td></tr></tbody></table></div></section>
+    <section id="usage" class="card mt-6 max-w-4xl"><div class="card-header">Usage</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>body &#123;
+  font-family: var(--pui-font-sans);
+  line-height: var(--pui-leading-body);
+&#125;</code></pre></div></section>
+  </ComponentDocLayout>
+</DocsLayout>

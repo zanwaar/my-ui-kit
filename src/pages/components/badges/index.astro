@@ -3,17 +3,40 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
 const toc = [
   { href: '#overview', label: 'Overview', active: true },
-  { href: '#preview', label: 'Preview' },
+  { href: '#anatomy', label: 'Anatomy' },
+  { href: '#variants', label: 'Variants' },
   { href: '#html', label: 'HTML' }
 ];
+const variants = ['primary', 'success', 'danger', 'warning'];
 ---
 <DocsLayout title="Badges" description="Dokumentasi badge piceUI" section="components">
   <ComponentDocLayout active="badge" title="Badge" description="Badge dipakai untuk status compact, label kategori, notifikasi kecil, dan metadata." toc={toc}>
     <Fragment slot="hero-preview">
-      <div class="card"><div class="card-body flex flex-wrap gap-2"><span class="badge badge-primary">Primary</span><span class="badge badge-success">Success</span><span class="badge badge-danger">Danger</span><span class="badge badge-warning">Warning</span></div></div>
+      <div class="card"><div class="card-body flex flex-wrap gap-2">{variants.map((variant) => <span class={`badge badge-${variant}`}>{variant}</span>)}</div></div>
     </Fragment>
-    <section id="preview" class="card mt-8"><div class="card-header">Preview</div><div class="card-body flex flex-wrap gap-2"><span class="badge badge-primary">Primary</span><span class="badge badge-success">Success</span><span class="badge badge-danger">Danger</span><span class="badge badge-warning">Warning</span></div></section>
-    <section id="html" class="card mt-6"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;span class="badge badge-primary"&gt;Primary&lt;/span&gt;
+
+    <section id="overview" class="card mt-8 max-w-4xl">
+      <div class="card-header">Overview</div>
+      <div class="card-body space-y-3">
+        <p>Badge memakai token piceUI v2 untuk warna, radius, dan dark mode. Class publik tetap sederhana: <code>.badge</code> + <code>.badge-*</code>.</p>
+      </div>
+    </section>
+
+    <section id="anatomy" class="card mt-6 max-w-4xl">
+      <div class="card-header">Anatomy</div>
+      <div class="card-body overflow-x-auto p-0">
+        <table class="w-full text-left text-sm">
+          <tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
+            <tr><td class="px-6 py-4 font-mono">badge</td><td class="px-6 py-4">Base class untuk semua badge.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">badge-primary</td><td class="px-6 py-4">Status utama atau informasi brand.</td></tr>
+            <tr><td class="px-6 py-4 font-mono">badge-success / danger / warning</td><td class="px-6 py-4">Status semantik untuk feedback ringkas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="variants" class="card mt-6 max-w-4xl"><div class="card-header">Variants</div><div class="card-body flex flex-wrap gap-2">{variants.map((variant) => <span class={`badge badge-${variant}`}>{variant}</span>)}</div></section>
+    <section id="html" class="card mt-6 max-w-4xl"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;span class="badge badge-primary"&gt;Primary&lt;/span&gt;
 &lt;span class="badge badge-success"&gt;Success&lt;/span&gt;</code></pre></div></section>
   </ComponentDocLayout>
 </DocsLayout>

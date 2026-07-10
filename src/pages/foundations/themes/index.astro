@@ -1,0 +1,66 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+const toc = [
+  { href: '#overview', label: 'Overview', active: true },
+  { href: '#architecture', label: 'Architecture' },
+  { href: '#available', label: 'Available Themes' },
+  { href: '#preview', label: 'Preview' },
+  { href: '#usage', label: 'Usage' },
+  { href: '#runtime', label: 'Runtime' }
+];
+const themes = ['light', 'dark', 'corporate', 'soft', 'luxury'];
+---
+<DocsLayout title="Themes" description="Theme architecture piceUI v2." section="foundations">
+  <ComponentDocLayout active="themes-foundation" title="Themes" description="piceUI v2 memakai theme layer berbasis CSS variables agar komponen bisa mengikuti banyak tema tanpa mengubah markup." toc={toc}>
+    <section id="overview" class="card mt-8 max-w-4xl"><div class="card-header">Overview</div><div class="card-body"><p>Theme piceUI dipisah dari komponen. Komponen hanya membaca token seperti <code>--pui-primary</code>, <code>--pui-surface</code>, dan <code>--pui-content</code>.</p></div></section>
+    <section id="architecture" class="card mt-6 max-w-4xl"><div class="card-header">Architecture</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>foundations/_tokens.scss
+themes/_light.scss
+themes/_dark.scss
+themes/_corporate.scss
+themes/_soft.scss
+themes/_luxury.scss
+components/_button.scss
+components/_card.scss</code></pre></div></section>
+    <section id="available" class="card mt-6 max-w-4xl"><div class="card-header">Available Themes</div><div class="card-body flex flex-wrap gap-3">{themes.map((theme) => <span class="badge badge-primary">{theme}</span>)}</div></section>
+
+    <section id="preview" class="card mt-6 max-w-5xl">
+      <div class="card-header">Preview</div>
+      <div class="card-body grid gap-4 lg:grid-cols-2">
+        {themes.map((theme) => (
+          <div data-theme={theme} class="rounded-xl border border-neutral-200 p-4 dark:border-neutral-700" style="background-color: rgb(var(--pui-surface)); color: rgb(var(--pui-content)); border-color: rgb(var(--pui-border));">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <div class="text-xs uppercase tracking-wide" style="color: rgb(var(--pui-content-muted));">Theme</div>
+                <h3 class="mt-1 text-lg font-semibold">{theme}</h3>
+              </div>
+              <span class="badge badge-primary">Preview</span>
+            </div>
+            <div class="mt-4 rounded-lg border p-4" style="background-color: rgb(var(--pui-surface-raised)); border-color: rgb(var(--pui-border));">
+              <div class="flex flex-wrap gap-2">
+                <button class="btn btn-primary btn-sm">Primary</button>
+                <button class="btn btn-outline btn-sm">Outline</button>
+              </div>
+              <div class="mt-4 space-y-2">
+                <div class="alert alert-primary">Informasi tema {theme}.</div>
+                <div class="flex flex-wrap gap-2">
+                  <span class="badge badge-success">Success</span>
+                  <span class="badge badge-warning">Warning</span>
+                </div>
+              </div>
+              <div class="mt-4">
+                <label class="form-label">Sample input</label>
+                <input class="form-control" type="text" value={theme} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="usage" class="card mt-6 max-w-4xl"><div class="card-header">Usage</div><div class="card-body space-y-4"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;html data-theme="corporate"&gt;
+&lt;body data-theme="soft"&gt;</code></pre><p class="text-sm text-neutral-600 dark:text-neutral-300">Preset tema bisa dipasang melalui atribut <code>data-theme</code>. Tema gelap tetap kompatibel dengan class <code>.dark</code>.</p></div></section>
+    <section id="runtime" class="card mt-6 max-w-4xl"><div class="card-header">Runtime Theme Toggle</div><div class="card-body space-y-4"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;button data-theme-toggle&gt;Theme&lt;/button&gt;
+&lt;button data-theme-toggle="luxury"&gt;Luxury&lt;/button&gt;</code></pre><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>window.PiceUITheme.apply('corporate')</code></pre><p class="text-sm text-neutral-600 dark:text-neutral-300">Toggle default sekarang akan cycle semua preset: <code>light → dark → corporate → soft → luxury</code>.</p></div></section>
+  </ComponentDocLayout>
+</DocsLayout>

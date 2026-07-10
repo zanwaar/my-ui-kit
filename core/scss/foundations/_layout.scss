@@ -1,0 +1,177 @@
+// core/scss/components/_layout.scss
+// Bootstrap-like responsive layout utilities for piceUI.
+
+$layout-breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+$layout-gaps: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 3rem
+);
+
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+  @apply mx-auto w-full px-3;
+}
+
+@media (min-width: 576px) {
+  .container,
+  .container-sm {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container,
+  .container-sm,
+  .container-md {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    max-width: 1320px;
+  }
+}
+
+.container-fluid {
+  @apply w-full px-3;
+}
+
+.row {
+  @apply grid grid-cols-12 gap-6;
+}
+
+.row-tight {
+  @apply gap-3;
+}
+
+.row-loose {
+  @apply gap-8;
+}
+
+.col {
+  @apply col-span-12;
+}
+
+@for $span from 1 through 12 {
+  .col-#{$span} {
+    grid-column: span #{$span} / span #{$span};
+  }
+}
+
+@for $offset from 0 through 11 {
+  .offset-#{$offset} {
+    @if $offset == 0 {
+      grid-column-start: auto;
+    } @else {
+      grid-column-start: $offset + 1;
+    }
+  }
+}
+
+@for $count from 1 through 6 {
+  .row-cols-#{$count} {
+    grid-template-columns: repeat(#{$count}, minmax(0, 1fr));
+  }
+
+  .row-cols-#{$count} > * {
+    grid-column: auto;
+  }
+}
+
+@each $gap, $value in $layout-gaps {
+  .g-#{$gap} {
+    gap: $value;
+  }
+
+  .gx-#{$gap} {
+    column-gap: $value;
+  }
+
+  .gy-#{$gap} {
+    row-gap: $value;
+  }
+}
+
+@each $breakpoint, $width in $layout-breakpoints {
+  @media (min-width: $width) {
+    @for $span from 1 through 12 {
+      .col-#{$breakpoint}-#{$span} {
+        grid-column: span #{$span} / span #{$span};
+      }
+    }
+
+    @for $offset from 0 through 11 {
+      .offset-#{$breakpoint}-#{$offset} {
+        @if $offset == 0 {
+          grid-column-start: auto;
+        } @else {
+          grid-column-start: $offset + 1;
+        }
+      }
+    }
+
+    @for $count from 1 through 6 {
+      .row-cols-#{$breakpoint}-#{$count} {
+        grid-template-columns: repeat(#{$count}, minmax(0, 1fr));
+      }
+
+      .row-cols-#{$breakpoint}-#{$count} > * {
+        grid-column: auto;
+      }
+    }
+
+    @each $gap, $value in $layout-gaps {
+      .g-#{$breakpoint}-#{$gap} {
+        gap: $value;
+      }
+
+      .gx-#{$breakpoint}-#{$gap} {
+        column-gap: $value;
+      }
+
+      .gy-#{$breakpoint}-#{$gap} {
+        row-gap: $value;
+      }
+    }
+  }
+}

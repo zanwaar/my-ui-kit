@@ -3,6 +3,7 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
 const toc = [
   { href: '#overview', label: 'Overview', active: true },
+  { href: '#anatomy', label: 'Anatomy' },
   { href: '#preview', label: 'Preview' },
   { href: '#switch', label: 'Switch' },
   { href: '#html', label: 'HTML' }
@@ -10,33 +11,16 @@ const toc = [
 ---
 <DocsLayout title="Forms" description="Dokumentasi form piceUI" section="components">
   <ComponentDocLayout active="form" title="Form" description="Form menyediakan label, input, helper text, error state, checkbox, switch, dan textarea." toc={toc}>
-    <Fragment slot="hero-preview">
-      <div class="card"><div class="card-body space-y-3"><input class="form-control" type="text" placeholder="Input field" /><label class="form-switch"><input class="form-switch-input" type="checkbox" checked /><span class="form-switch-track"></span><span class="form-switch-label">Notifications</span></label><button class="btn btn-primary w-full">Submit</button></div></div>
-    </Fragment>
-    <section id="preview" class="card mt-8 max-w-2xl"><div class="card-header">Preview</div><div class="card-body space-y-4"><div><label class="form-label">Email</label><input class="form-control" type="email" placeholder="you@example.com" /><p class="form-text">Kami tidak akan membagikan email Anda.</p></div><div><label class="form-label">Nama</label><input class="form-control is-invalid" type="text" /><p class="form-error">Nama wajib diisi.</p></div><div><label class="form-label">Pesan</label><textarea class="form-control" placeholder="Tulis pesan..."></textarea></div></div></section>
-    <section id="switch" class="card mt-6 max-w-2xl">
-      <div class="card-header">Switch</div>
-      <div class="card-body space-y-4">
-        <label class="form-switch">
-          <input class="form-switch-input" type="checkbox" checked />
-          <span class="form-switch-track"></span>
-          <span class="form-switch-label">Email notifications</span>
-        </label>
+    <Fragment slot="hero-preview"><div class="card"><div class="card-body space-y-3"><input class="form-control" type="text" placeholder="Input field" /><label class="form-switch"><input class="form-switch-input" type="checkbox" checked /><span class="form-switch-track"></span><span class="form-switch-label">Notifications</span></label><button class="btn btn-primary w-full">Submit</button></div></div></Fragment>
 
-        <label class="form-switch">
-          <input class="form-switch-input" type="checkbox" />
-          <span class="form-switch-track"></span>
-          <span class="form-switch-label">Marketing updates</span>
-        </label>
+    <section id="overview" class="card mt-8 max-w-4xl"><div class="card-header">Overview</div><div class="card-body"><p>Form piceUI v2 sekarang memakai token untuk surface, border, text, radius, focus ring, dan switch state. API class tetap sama agar aman untuk migrasi bertahap.</p></div></section>
 
-        <label class="form-switch">
-          <input class="form-switch-input" type="checkbox" disabled />
-          <span class="form-switch-track"></span>
-          <span class="form-switch-label">Disabled option</span>
-        </label>
-      </div>
-    </section>
-    <section id="html" class="card mt-6"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;label class="form-label"&gt;Email&lt;/label&gt;
+    <section id="anatomy" class="card mt-6 max-w-4xl"><div class="card-header">Anatomy</div><div class="card-body overflow-x-auto p-0"><table class="w-full text-left text-sm"><tbody class="divide-y divide-neutral-200 dark:divide-neutral-700"><tr><td class="px-6 py-4 font-mono">form-label</td><td class="px-6 py-4">Label field.</td></tr><tr><td class="px-6 py-4 font-mono">form-control</td><td class="px-6 py-4">Input, select, dan textarea base style.</td></tr><tr><td class="px-6 py-4 font-mono">form-text</td><td class="px-6 py-4">Helper text di bawah field.</td></tr><tr><td class="px-6 py-4 font-mono">form-error</td><td class="px-6 py-4">Pesan error field.</td></tr><tr><td class="px-6 py-4 font-mono">form-check / form-check-input / form-check-label</td><td class="px-6 py-4">Checkbox dan radio group.</td></tr><tr><td class="px-6 py-4 font-mono">form-switch*</td><td class="px-6 py-4">Switch interaktif dengan track dan label.</td></tr></tbody></table></div></section>
+
+    <section id="preview" class="card mt-6 max-w-2xl"><div class="card-header">Preview</div><div class="card-body space-y-4"><div><label class="form-label">Email</label><input class="form-control" type="email" placeholder="you@example.com" /><p class="form-text">Kami tidak akan membagikan email Anda.</p></div><div><label class="form-label">Nama</label><input class="form-control is-invalid" type="text" /><p class="form-error">Nama wajib diisi.</p></div><div><label class="form-label">Pesan</label><textarea class="form-control" placeholder="Tulis pesan..."></textarea></div></div></section>
+
+    <section id="switch" class="card mt-6 max-w-2xl"><div class="card-header">Switch</div><div class="card-body space-y-4"><label class="form-switch"><input class="form-switch-input" type="checkbox" checked /><span class="form-switch-track"></span><span class="form-switch-label">Email notifications</span></label><label class="form-switch"><input class="form-switch-input" type="checkbox" /><span class="form-switch-track"></span><span class="form-switch-label">Marketing updates</span></label><label class="form-switch"><input class="form-switch-input" type="checkbox" disabled /><span class="form-switch-track"></span><span class="form-switch-label">Disabled option</span></label></div></section>
+    <section id="html" class="card mt-6 max-w-4xl"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;label class="form-label"&gt;Email&lt;/label&gt;
 &lt;input class="form-control" type="email"&gt;
 
 &lt;label class="form-switch"&gt;

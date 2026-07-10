@@ -1,92 +1,210 @@
 // core/scss/components/_button.scss
-//
-// Konvensi penamaan project ini: .btn + .btn-{variant} + .btn-{size}
-//
-// Aturan wajib tiap komponen baru:
-// 1. Warna/spacing HANYA dari tailwind.config.js
-// 2. Wajib ada state: default, hover, focus, disabled
-// 3. Wajib ada varian dark mode
-// 4. Radius & shadow pakai token yang sama dengan komponen lain
 
 .btn {
-  @apply inline-flex items-center justify-center gap-2;
-  @apply px-4 py-2 text-sm font-medium;
-  @apply rounded transition-colors duration-150;
+  @apply inline-flex shrink-0 cursor-pointer select-none flex-nowrap items-center justify-center gap-2 text-center align-middle text-sm font-medium no-underline transition duration-200;
+  min-height: var(--btn-size, 2.5rem);
+  padding-inline: var(--btn-padding, 1rem);
+  border: 1px solid var(--btn-border, transparent);
+  border-radius: var(--btn-radius, var(--pui-radius-md));
+  background: var(--btn-bg, rgb(var(--pui-content-muted)));
+  color: var(--btn-fg, rgb(255 255 255));
+  box-shadow: var(--btn-shadow, var(--pui-shadow-sm));
+  transition-property: color, background-color, border-color, box-shadow, transform, background-position;
 
-  &:disabled {
-    @apply opacity-50 cursor-not-allowed;
+  &:hover:not(:disabled, [disabled], .btn-disabled) {
+    background: var(--btn-bg-hover, var(--btn-bg, rgb(var(--pui-content))));
   }
+
+  &:active:not(:disabled, [disabled], .btn-disabled, .btn-active) {
+    transform: scale(0.97);
+  }
+
   &:focus-visible {
     @apply outline-none ring-2 ring-offset-2;
+    --tw-ring-color: var(--btn-ring, rgb(var(--pui-primary) / 0.35));
+    ring-offset-color: rgb(var(--pui-surface));
+  }
+
+  &:is(:disabled, [disabled], .btn-disabled) {
+    @apply pointer-events-none cursor-not-allowed opacity-50 shadow-none;
   }
 }
 
-// --- Variant ---
+.btn-active {
+  filter: brightness(0.95);
+}
+
 .btn-primary {
-  @apply bg-primary-600 text-white;
-  &:hover:not(:disabled) { @apply bg-primary-700; }
-  &:focus-visible { @apply ring-primary-400; }
-
-  .dark & {
-    @apply bg-primary-500;
-    &:hover:not(:disabled) { @apply bg-primary-600; }
-  }
+  --btn-bg: rgb(var(--pui-primary));
+  --btn-bg-hover: rgb(var(--pui-primary-hover));
+  --btn-fg: rgb(var(--pui-primary-content));
+  --btn-ring: rgb(var(--pui-primary) / 0.35);
+  --btn-color: rgb(var(--pui-primary));
+  --btn-soft-bg: rgb(var(--pui-primary-soft));
+  --btn-soft-fg: rgb(var(--pui-primary));
+  --btn-outline-border: rgb(var(--pui-primary-border));
 }
 
-.btn-danger {
-  @apply bg-red-600 text-white;
-  &:hover:not(:disabled) { @apply bg-red-700; }
-  &:focus-visible { @apply ring-red-400; }
+.btn-secondary,
+.btn-neutral {
+  --btn-bg: rgb(var(--pui-content-muted));
+  --btn-bg-hover: rgb(var(--pui-content));
+  --btn-fg: rgb(255 255 255);
+  --btn-ring: rgb(var(--pui-content-muted) / 0.25);
+  --btn-color: rgb(var(--pui-content-muted));
+  --btn-soft-bg: rgb(var(--pui-surface-muted));
+  --btn-soft-fg: rgb(var(--pui-content-muted));
+  --btn-outline-border: rgb(var(--pui-border));
+}
 
-  .dark & {
-    @apply bg-red-500;
-    &:hover:not(:disabled) { @apply bg-red-600; }
-  }
+.btn-accent {
+  --btn-bg: rgb(59 130 246);
+  --btn-bg-hover: rgb(37 99 235);
+  --btn-fg: rgb(255 255 255);
+  --btn-ring: rgb(59 130 246 / 0.32);
+  --btn-color: rgb(59 130 246);
+  --btn-soft-bg: rgb(239 246 255);
+  --btn-soft-fg: rgb(37 99 235);
+  --btn-outline-border: rgb(191 219 254);
+}
+
+.btn-info {
+  --btn-bg: rgb(6 182 212);
+  --btn-bg-hover: rgb(8 145 178);
+  --btn-fg: rgb(255 255 255);
+  --btn-ring: rgb(6 182 212 / 0.32);
+  --btn-color: rgb(6 182 212);
+  --btn-soft-bg: rgb(236 254 255);
+  --btn-soft-fg: rgb(14 116 144);
+  --btn-outline-border: rgb(165 243 252);
 }
 
 .btn-success {
-  @apply bg-green-600 text-white;
-  &:hover:not(:disabled) { @apply bg-green-700; }
-  &:focus-visible { @apply ring-green-400; }
-
-  .dark & {
-    @apply bg-green-500;
-    &:hover:not(:disabled) { @apply bg-green-600; }
-  }
+  --btn-bg: rgb(var(--pui-success));
+  --btn-bg-hover: rgb(21 128 61);
+  --btn-fg: rgb(255 255 255);
+  --btn-ring: rgb(var(--pui-success) / 0.3);
+  --btn-color: rgb(var(--pui-success));
+  --btn-soft-bg: rgb(var(--pui-success-soft));
+  --btn-soft-fg: rgb(var(--pui-success-content));
+  --btn-outline-border: rgb(var(--pui-success-border));
 }
 
 .btn-warning {
-  @apply bg-yellow-500 text-neutral-900;
-  &:hover:not(:disabled) { @apply bg-yellow-600; }
-  &:focus-visible { @apply ring-yellow-300; }
+  --btn-bg: rgb(var(--pui-warning));
+  --btn-bg-hover: rgb(202 138 4);
+  --btn-fg: rgb(23 23 23);
+  --btn-ring: rgb(var(--pui-warning) / 0.35);
+  --btn-color: rgb(var(--pui-warning));
+  --btn-soft-bg: rgb(var(--pui-warning-soft));
+  --btn-soft-fg: rgb(var(--pui-warning-content));
+  --btn-outline-border: rgb(var(--pui-warning-border));
+}
 
-  .dark & {
-    @apply bg-yellow-400;
-    &:hover:not(:disabled) { @apply bg-yellow-500; }
-  }
+.btn-danger,
+.btn-error {
+  --btn-bg: rgb(var(--pui-danger));
+  --btn-bg-hover: rgb(185 28 28);
+  --btn-fg: rgb(255 255 255);
+  --btn-ring: rgb(var(--pui-danger) / 0.3);
+  --btn-color: rgb(var(--pui-danger));
+  --btn-soft-bg: rgb(var(--pui-danger-soft));
+  --btn-soft-fg: rgb(var(--pui-danger-content));
+  --btn-outline-border: rgb(var(--pui-danger-border));
+}
+
+.btn-soft {
+  --btn-bg: var(--btn-soft-bg, rgb(var(--pui-surface-muted)));
+  --btn-bg-hover: color-mix(in oklab, var(--btn-color, rgb(var(--pui-content-muted))) 16%, rgb(var(--pui-surface)));
+  --btn-border: transparent;
+  --btn-fg: var(--btn-soft-fg, rgb(var(--pui-content)));
+  --btn-shadow: none;
 }
 
 .btn-outline {
-  @apply bg-transparent border border-neutral-300 text-neutral-700;
-  &:hover:not(:disabled) { @apply bg-neutral-100; }
-  &:focus-visible { @apply ring-neutral-400; }
-
-  .dark & {
-    @apply border-neutral-600 text-neutral-200;
-    &:hover:not(:disabled) { @apply bg-neutral-800; }
-  }
+  --btn-bg: transparent;
+  --btn-bg-hover: color-mix(in oklab, var(--btn-color, rgb(var(--pui-content-muted))) 10%, transparent);
+  --btn-border: var(--btn-outline-border, rgb(var(--pui-border)));
+  --btn-fg: var(--btn-color, rgb(var(--pui-content-muted)));
+  --btn-shadow: none;
 }
 
+.btn-text,
 .btn-ghost {
-  @apply bg-transparent text-neutral-700;
-  &:hover:not(:disabled) { @apply bg-neutral-100; }
+  --btn-bg: transparent;
+  --btn-bg-hover: color-mix(in oklab, var(--btn-color, rgb(var(--pui-content-muted))) 10%, transparent);
+  --btn-border: transparent;
+  --btn-fg: var(--btn-color, rgb(var(--pui-content-muted)));
+  --btn-shadow: none;
+}
 
-  .dark & {
-    @apply text-neutral-300;
-    &:hover:not(:disabled) { @apply bg-neutral-800; }
+.btn-gradient {
+  --btn-border: transparent;
+  --btn-fg: rgb(255 255 255);
+  --gradient-color: var(--btn-color, rgb(var(--pui-content-muted)));
+  background-color: transparent;
+  background-image: linear-gradient(102deg, var(--gradient-color) 0%, color-mix(in oklab, var(--gradient-color) 78%, black) 51%, var(--gradient-color) 100%);
+  background-position: left center;
+  background-size: 200% auto;
+
+  &:hover:not(:disabled, [disabled], .btn-disabled),
+  &:focus-visible,
+  &.btn-active {
+    background-position: right center;
   }
 }
 
-// --- Size ---
-.btn-sm { @apply px-3 py-1 text-xs; }
-.btn-lg { @apply px-6 py-3 text-base; }
+.btn-xs {
+  @apply text-xs;
+  --btn-padding: 0.5rem;
+  --btn-size: 1.75rem;
+}
+
+.btn-sm {
+  @apply text-xs;
+  --btn-padding: 0.75rem;
+  --btn-size: 2rem;
+}
+
+.btn-md {
+  @apply text-sm;
+  --btn-padding: 1rem;
+  --btn-size: 2.5rem;
+}
+
+.btn-lg {
+  @apply text-base;
+  --btn-padding: 1.25rem;
+  --btn-size: 3rem;
+}
+
+.btn-xl {
+  @apply text-lg;
+  --btn-padding: 1.5rem;
+  --btn-size: 3.5rem;
+}
+
+.btn-square,
+.btn-circle {
+  @apply px-0;
+  width: var(--btn-size, 2.5rem);
+  min-width: var(--btn-size, 2.5rem);
+}
+
+.btn-circle,
+.btn-pill {
+  --btn-radius: var(--pui-radius-full);
+}
+
+.btn-rounded {
+  --btn-radius: var(--pui-radius-lg);
+}
+
+.btn-wide {
+  @apply w-full;
+  max-width: 16rem;
+}
+
+.btn-block {
+  @apply w-full;
+}

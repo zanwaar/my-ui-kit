@@ -1,0 +1,69 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+
+const toc = [
+  { href: '#core-concepts', label: 'Core Concepts', active: true },
+  { href: '#available-breakpoints', label: 'Available Breakpoints' },
+  { href: '#media-queries', label: 'Media Queries' }
+];
+
+const breakpoints = [
+  { name: 'Extra small', infix: 'None', dimensions: '<576px' },
+  { name: 'Small', infix: 'sm', dimensions: '≥576px' },
+  { name: 'Medium', infix: 'md', dimensions: '≥768px' },
+  { name: 'Large', infix: 'lg', dimensions: '≥992px' },
+  { name: 'Extra large', infix: 'xl', dimensions: '≥1200px' },
+  { name: 'Extra extra large', infix: 'xxl', dimensions: '≥1400px' }
+];
+---
+<DocsLayout title="Breakpoints" description="Responsive viewport breakpoints for piceUI." section="foundations">
+  <ComponentDocLayout active="breakpoints" title="Breakpoints" description="Breakpoints menentukan bagaimana layout beradaptasi di berbagai ukuran viewport." toc={toc}>
+    <section id="core-concepts" class="card mt-8 max-w-4xl">
+      <div class="card-header">Core Concepts</div>
+      <div class="card-body space-y-3">
+        <ul class="list-disc space-y-3 pl-5 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
+          <li><strong>Breakpoints adalah fondasi responsive design.</strong> Gunakan untuk menentukan kapan layout berubah sesuai viewport.</li>
+          <li><strong>Gunakan media query berbasis <code>min-width</code>.</strong> Pendekatan ini mengikuti pola mobile-first.</li>
+          <li><strong>Mulai dari mobile, lalu scale up.</strong> Style dasar berlaku untuk layar kecil lalu ditambah untuk layar besar.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="available-breakpoints" class="card mt-6 max-w-4xl">
+      <div class="card-header">Available Breakpoints</div>
+      <div class="card-body overflow-x-auto">
+        <table class="min-w-full text-left text-sm">
+          <thead class="border-b border-neutral-200 text-xs uppercase text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+            <tr><th class="py-3 pr-4 font-semibold">Breakpoint</th><th class="py-3 pr-4 font-semibold">Class infix</th><th class="py-3 pr-4 font-semibold">Dimensions</th></tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
+            {breakpoints.map((breakpoint) => (
+              <tr>
+                <td class="py-3 pr-4 font-medium text-neutral-900 dark:text-white">{breakpoint.name}</td>
+                <td class="py-3 pr-4"><code>{breakpoint.infix}</code></td>
+                <td class="py-3 pr-4 text-neutral-600 dark:text-neutral-300">{breakpoint.dimensions}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="media-queries" class="card mt-6 max-w-4xl">
+      <div class="card-header">Media Queries</div>
+      <div class="card-body space-y-4">
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>@media (min-width: 576px) &#123; ... &#125;
+@media (min-width: 768px) &#123; ... &#125;
+@media (min-width: 992px) &#123; ... &#125;
+@media (min-width: 1200px) &#123; ... &#125;
+@media (min-width: 1400px) &#123; ... &#125;</code></pre>
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>@media (max-width: 575.98px) &#123; ... &#125;
+@media (max-width: 767.98px) &#123; ... &#125;
+@media (max-width: 991.98px) &#123; ... &#125;
+@media (max-width: 1199.98px) &#123; ... &#125;
+@media (max-width: 1399.98px) &#123; ... &#125;</code></pre>
+      </div>
+    </section>
+  </ComponentDocLayout>
+</DocsLayout>

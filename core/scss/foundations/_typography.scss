@@ -1,0 +1,12 @@
+// core/scss/foundations/_typography.scss
+// Minimal typography foundation for piceUI v2.
+
+:root {
+  --pui-font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --pui-leading-body: 1.5;
+}
+
+body {
+  font-family: var(--pui-font-sans);
+  line-height: var(--pui-leading-body);
+}

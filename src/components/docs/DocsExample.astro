@@ -1,0 +1,46 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  code: string;
+  prompt?: string;
+  htmlLabel?: string;
+}
+
+const {
+  title,
+  description,
+  code,
+  prompt,
+  htmlLabel = 'HTML'
+} = Astro.props;
+
+const promptText = prompt ?? `I'm using the piceUI component library in my project. Please integrate the following component into my project:\n\nHere are the code snippets for the component:\n\n\`\`\`html\n${code}\n\`\`\``;
+---
+<section class="mt-6 max-w-5xl overflow-hidden rounded-xl border border-neutral-200 bg-white docs-example dark:border-neutral-800 dark:bg-neutral-900" data-docs-example>
+  {(title || description) && (
+    <div class="border-b border-neutral-200 px-5 py-4 dark:border-neutral-800">
+      {title && <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">{title}</h3>}
+      {description && <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">{description}</p>}
+    </div>
+  )}
+
+  <div class="p-6 sm:p-8" data-docs-preview>
+    <slot />
+  </div>
+
+  <div class="border-t border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950/60">
+    <div class="flex flex-col justify-between gap-3 border-b border-neutral-200 px-6 py-4 dark:border-neutral-800 sm:flex-row sm:items-center">
+      <div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-300">
+        <span>{htmlLabel}</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <button class="btn btn-text btn-sm" type="button" data-copy-prompt={promptText} aria-label="Copy prompt">⚡ Copy Prompt</button>
+        <button class="btn btn-text btn-sm" type="button" data-copy-code={code} aria-label="Copy HTML">▣ Copy</button>
+        <button class="btn btn-text btn-sm" type="button" data-docs-rtl>RTL</button>
+      </div>
+    </div>
+
+    <pre class="m-0 max-w-full overflow-auto px-6 py-5 text-sm leading-7 text-neutral-800 dark:text-neutral-100"><code>{code}</code></pre>
+  </div>
+</section>

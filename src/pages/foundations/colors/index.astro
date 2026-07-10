@@ -1,0 +1,20 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
+const toc = [
+  { href: '#overview', label: 'Overview', active: true },
+  { href: '#semantic', label: 'Semantic Tokens' },
+  { href: '#usage', label: 'Usage' }
+];
+const tokens = ['primary', 'success', 'warning', 'danger', 'surface', 'content', 'border'];
+---
+<DocsLayout title="Colors" description="Semantic color tokens piceUI v2." section="foundations">
+  <ComponentDocLayout active="colors-foundation" title="Colors" description="Warna piceUI v2 menggunakan semantic tokens, bukan hardcoded color per komponen." toc={toc}>
+    <section id="overview" class="card mt-8 max-w-4xl"><div class="card-header">Overview</div><div class="card-body"><p>Komponen tidak lagi bergantung pada warna langsung seperti <code>bg-blue-600</code>. Sebagai gantinya, komponen membaca token semantic.</p></div></section>
+    <section id="semantic" class="card mt-6 max-w-4xl"><div class="card-header">Semantic Tokens</div><div class="card-body grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{tokens.map((token) => <div class="rounded-lg border border-neutral-200 p-4 dark:border-neutral-700"><div class="font-mono text-sm font-semibold text-primary-700 dark:text-primary-300">--pui-{token}</div></div>)}</div></section>
+    <section id="usage" class="card mt-6 max-w-4xl"><div class="card-header">Usage</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>.btn-primary &#123;
+  background-color: rgb(var(--pui-primary));
+  color: rgb(var(--pui-primary-content));
+&#125;</code></pre></div></section>
+  </ComponentDocLayout>
+</DocsLayout>

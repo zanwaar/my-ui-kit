@@ -1,0 +1,14 @@
+// core/scss/foundations/_tokens.scss
+// piceUI v2 token contract. Values are RGB triplets to support alpha syntax.
+
+:root {
+  --pui-radius-sm: 0.25rem;
+  --pui-radius-md: 0.375rem;
+  --pui-radius-lg: 0.75rem;
+  --pui-radius-full: 9999px;
+
+  --pui-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+  --pui-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  --pui-container-gutter: 1.5rem;
+}

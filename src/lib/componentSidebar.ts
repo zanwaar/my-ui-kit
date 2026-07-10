@@ -10,7 +10,21 @@ export function componentSidebar(activeComponent?: string) {
     {
       title: 'Foundations',
       links: [
-        { href: '/layout-system/', label: 'Layout System', icon: 'layout', active: activeComponent === 'layout-system' },
+        {
+          href: '/layout-system/',
+          label: 'Layout System',
+          icon: 'layout',
+          active: ['layout-foundations', 'breakpoints', 'containers', 'grid', 'colors-foundation', 'typography-foundation', 'themes-foundation'].includes(activeComponent ?? ''),
+          children: [
+            { href: '/layout-system/', label: 'Overview', icon: 'layout', active: activeComponent === 'layout-foundations' },
+            { href: '/foundations/breakpoints/', label: 'Breakpoints', icon: 'code', active: activeComponent === 'breakpoints' },
+            { href: '/foundations/containers/', label: 'Containers', icon: 'square', active: activeComponent === 'containers' },
+            { href: '/foundations/grid/', label: 'Grid', icon: 'grid', active: activeComponent === 'grid' },
+            { href: '/foundations/colors/', label: 'Colors', icon: 'palette', active: activeComponent === 'colors-foundation' },
+            { href: '/foundations/typography/', label: 'Typography', icon: 'form', active: activeComponent === 'typography-foundation' },
+            { href: '/foundations/themes/', label: 'Themes', icon: 'moon', active: activeComponent === 'themes-foundation' }
+          ]
+        },
         {
           href: '/customization/',
           label: 'Customization',
@@ -39,7 +53,26 @@ export function componentSidebar(activeComponent?: string) {
           icon: 'layers',
           active: !activeComponent,
           children: [
-            { href: '/components/buttons/', label: 'Button', icon: 'pointer', active: activeComponent === 'button' },
+            {
+              href: '/components/buttons/',
+              label: 'Button',
+              icon: 'pointer',
+              active: activeComponent === 'button',
+              children: [
+                { href: '/components/buttons/#solid-buttons', label: 'Solid buttons' },
+                { href: '/components/buttons/#soft-buttons', label: 'Soft buttons' },
+                { href: '/components/buttons/#outline-buttons', label: 'Outline buttons' },
+                { href: '/components/buttons/#text-buttons', label: 'Text buttons' },
+                { href: '/components/buttons/#gradient-buttons', label: 'Gradient buttons' },
+                { href: '/components/buttons/#pilled-buttons', label: 'Pilled buttons' },
+                { href: '/components/buttons/#rounded-buttons', label: 'Rounded buttons' },
+                { href: '/components/buttons/#state-variants', label: 'States variants' },
+                { href: '/components/buttons/#size-variants', label: 'Size variants' },
+                { href: '/components/buttons/#icon-start-end', label: 'Icon at start/end' },
+                { href: '/components/buttons/#icon-only', label: 'Icon only' },
+                { href: '/components/buttons/#buttons-with-input-tags', label: 'Buttons with input tags' }
+              ]
+            },
             { href: '/components/badges/', label: 'Badge', icon: 'tag', active: activeComponent === 'badge' },
             { href: '/components/alerts/', label: 'Alert', icon: 'alert', active: activeComponent === 'alert' },
             { href: '/components/cards/', label: 'Card', icon: 'square', active: activeComponent === 'card' },

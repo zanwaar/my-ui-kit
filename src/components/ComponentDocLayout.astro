@@ -1,7 +1,7 @@
 ---
 import Sidebar from './Sidebar.astro';
 import { componentSidebar } from '../lib/componentSidebar';
-interface TocItem { href: string; label: string; active?: boolean }
+interface TocItem { href: string; label: string; active?: boolean; level?: 1 | 2 }
 interface Props {
   active: string;
   title: string;
@@ -11,10 +11,10 @@ interface Props {
 const { active, title, description, toc = [] } = Astro.props;
 const groups = componentSidebar(active);
 ---
-<div class="min-h-screen w-full items-start lg:grid lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-4 lg:px-8 xl:px-12 2xl:grid-cols-[320px_minmax(0,1fr)_260px] 2xl:gap-6">
+<div class="min-h-screen w-full items-start lg:grid lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-4 lg:px-8 xl:grid-cols-[320px_minmax(0,1fr)_280px] xl:gap-6 xl:px-10 2xl:grid-cols-[320px_minmax(0,1fr)_320px] 2xl:px-12">
   <Sidebar groups={groups} />
 
-  <main class="px-8 py-16 lg:px-0">
+  <main class="min-w-0 px-8 py-16 lg:px-0">
     <section id="overview">
       <span class="badge badge-primary">Component</span>
       <h1 class="mt-4 text-3xl font-semibold">{title}</h1>
@@ -24,15 +24,16 @@ const groups = componentSidebar(active);
     <slot />
   </main>
 
-  <aside class="hidden border-l border-neutral-200 py-16 pl-6 dark:border-neutral-800 2xl:block">
-    <div class="sticky top-24 max-h-[calc(100vh-112px)] overflow-y-auto pr-2">
-      <p class="text-sm font-semibold text-neutral-800 dark:text-neutral-100">{title}</p>
-      <nav class="mt-4 space-y-1 border-l border-neutral-200 pl-4 text-sm dark:border-neutral-800">
+  <aside class="hidden self-start py-16 xl:block xl:sticky xl:top-16 xl:h-[calc(100vh-64px)] xl:overflow-y-auto xl:border-l xl:border-neutral-200 xl:pl-6 dark:xl:border-neutral-800">
+    <div class="pr-2">
+      <p class="border-b border-neutral-200 pb-3 text-base font-semibold text-neutral-800 dark:border-neutral-800 dark:text-neutral-100">On this page</p>
+      <nav class="mt-4 space-y-1 text-sm">
         {toc.map((item) => (
           <a class:list={[
-            'block py-1 transition-colors',
-            item.active ? 'font-medium text-primary-700 dark:text-primary-300' : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
-          ]} href={item.href}>{item.label}</a>
+            'block border-l-2 py-1 transition-colors',
+            item.level === 1 ? 'mt-3 pl-4 text-base first:mt-0' : 'pl-8',
+            item.active ? 'border-primary-600 font-medium text-primary-700 dark:text-primary-300' : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
+          ]} href={item.href} data-docs-toc-link>{item.label}</a>
         ))}
       </nav>
     </div>

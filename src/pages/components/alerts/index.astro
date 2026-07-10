@@ -3,17 +3,27 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
 const toc = [
   { href: '#overview', label: 'Overview', active: true },
-  { href: '#preview', label: 'Preview' },
+  { href: '#anatomy', label: 'Anatomy' },
+  { href: '#variants', label: 'Variants' },
   { href: '#html', label: 'HTML' }
+];
+const alerts = [
+  ['primary', 'Informasi umum untuk pengguna.'],
+  ['success', 'Data berhasil disimpan.'],
+  ['danger', 'Terjadi kesalahan saat memproses data.'],
+  ['warning', 'Periksa kembali sebelum melanjutkan.']
 ];
 ---
 <DocsLayout title="Alerts" description="Dokumentasi alert piceUI" section="components">
   <ComponentDocLayout active="alert" title="Alert" description="Alert memberi feedback penting seperti informasi, sukses, error, atau peringatan." toc={toc}>
-    <Fragment slot="hero-preview">
-      <div class="card"><div class="card-body space-y-2"><div class="alert alert-primary">Informasi umum.</div><div class="alert alert-success">Berhasil disimpan.</div></div></div>
-    </Fragment>
-    <section id="preview" class="card mt-8"><div class="card-header">Preview</div><div class="card-body space-y-3"><div class="alert alert-primary">Informasi umum untuk pengguna.</div><div class="alert alert-success">Data berhasil disimpan.</div><div class="alert alert-danger">Terjadi kesalahan saat memproses data.</div><div class="alert alert-warning">Periksa kembali sebelum melanjutkan.</div></div></section>
-    <section id="html" class="card mt-6"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;div class="alert alert-primary"&gt;Informasi umum.&lt;/div&gt;
+    <Fragment slot="hero-preview"><div class="card"><div class="card-body space-y-2"><div class="alert alert-primary">Informasi umum.</div><div class="alert alert-success">Berhasil disimpan.</div></div></div></Fragment>
+
+    <section id="overview" class="card mt-8 max-w-4xl"><div class="card-header">Overview</div><div class="card-body"><p>Alert sudah token-ready: warna background, border, text, dan radius mengikuti token piceUI v2 sehingga siap masuk multi-theme.</p></div></section>
+
+    <section id="anatomy" class="card mt-6 max-w-4xl"><div class="card-header">Anatomy</div><div class="card-body overflow-x-auto p-0"><table class="w-full text-left text-sm"><tbody class="divide-y divide-neutral-200 dark:divide-neutral-700"><tr><td class="px-6 py-4 font-mono">alert</td><td class="px-6 py-4">Base class untuk spacing, border, radius, dan typography.</td></tr><tr><td class="px-6 py-4 font-mono">alert-primary</td><td class="px-6 py-4">Informasi umum atau pesan netral-brand.</td></tr><tr><td class="px-6 py-4 font-mono">alert-success / danger / warning</td><td class="px-6 py-4">Feedback semantik untuk hasil aksi.</td></tr></tbody></table></div></section>
+
+    <section id="variants" class="card mt-6 max-w-4xl"><div class="card-header">Variants</div><div class="card-body space-y-3">{alerts.map(([variant, text]) => <div class={`alert alert-${variant}`}>{text}</div>)}</div></section>
+    <section id="html" class="card mt-6 max-w-4xl"><div class="card-header">HTML</div><div class="card-body"><pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;div class="alert alert-primary"&gt;Informasi umum.&lt;/div&gt;
 &lt;div class="alert alert-success"&gt;Berhasil disimpan.&lt;/div&gt;</code></pre></div></section>
   </ComponentDocLayout>
 </DocsLayout>

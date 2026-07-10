@@ -1,0 +1,34 @@
+// core/scss/themes/_dark.scss
+
+.dark,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --pui-primary: 59 130 246;
+  --pui-primary-hover: 37 99 235;
+  --pui-primary-soft: 30 58 138;
+  --pui-primary-border: 30 64 175;
+  --pui-primary-content: 255 255 255;
+
+  --pui-success: 34 197 94;
+  --pui-success-soft: 20 83 45;
+  --pui-success-border: 22 101 52;
+  --pui-success-content: 187 247 208;
+
+  --pui-warning: 250 204 21;
+  --pui-warning-soft: 113 63 18;
+  --pui-warning-border: 133 77 14;
+  --pui-warning-content: 254 240 138;
+
+  --pui-danger: 248 113 113;
+  --pui-danger-soft: 127 29 29;
+  --pui-danger-border: 153 27 27;
+  --pui-danger-content: 254 202 202;
+
+  --pui-surface: 38 38 38;
+  --pui-surface-muted: 23 23 23;
+  --pui-surface-raised: 38 38 38;
+  --pui-content: 245 245 245;
+  --pui-content-muted: 212 212 212;
+  --pui-border: 64 64 64;
+}
