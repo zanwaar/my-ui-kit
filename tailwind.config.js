@@ -1,3 +1,5 @@
+const { addDynamicIconSelectors } = require('@iconify/tailwind');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class', // pakai class strategy: <html class="dark">
@@ -78,5 +80,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [addDynamicIconSelectors()],
 };

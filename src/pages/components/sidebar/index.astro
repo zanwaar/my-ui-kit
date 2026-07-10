@@ -4,6 +4,7 @@ import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
 const toc = [
   { href: '#overview', label: 'Overview', active: true },
   { href: '#preview', label: 'Preview' },
+  { href: '#submenu', label: 'Submenu' },
   { href: '#html', label: 'HTML' }
 ];
 ---
@@ -27,13 +28,10 @@ const toc = [
         <div class="card-header">Preview</div>
         <div class="card-body">
           <aside class="max-w-xs">
-            <p class="mb-3 text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Navigations</p>
-            <div class="space-y-2">
-              <a class="flex items-center rounded-md px-4 py-2.5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white" href="#">Navbar</a>
-              <a class="flex items-center rounded-md px-4 py-2.5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white" href="#">Pagination</a>
-              <div class="ml-4 border-l border-neutral-200 pl-4 dark:border-neutral-800">
-                <a class="flex items-center rounded-md px-3 py-2.5 font-medium text-primary-700 dark:text-primary-300" href="#">Sidebar</a>
-              </div>
+            <div class="sidebar-menu">
+              <a class="sidebar-menu-link" href="#">Navbar</a>
+              <a class="sidebar-menu-link" href="#">Pagination</a>
+              <a class="sidebar-menu-link sidebar-menu-link-active" href="#">Sidebar</a>
             </div>
           </aside>
         </div>
@@ -48,18 +46,57 @@ const toc = [
       </div>
     </section>
 
+    <section id="submenu" class="mt-6 grid gap-6 lg:grid-cols-2">
+      <div class="card">
+        <div class="card-header">Submenu / Accordion</div>
+        <div class="card-body">
+          <aside class="max-w-xs">
+            <nav class="sidebar-menu" aria-label="Example sidebar submenu">
+              <button class="sidebar-menu-link sidebar-menu-link-active" type="button" aria-expanded="true" data-sidebar-toggle>
+                <span class="sidebar-menu-icon">
+                  <span class="icon-[lucide--user] h-4 w-4" aria-hidden="true"></span>
+                </span>
+                <span class="sidebar-menu-text">User Profile</span>
+                <span class="icon-[lucide--chevron-right] sidebar-menu-chevron" aria-hidden="true"></span>
+              </button>
+              <div class="sidebar-submenu">
+                <a class="sidebar-submenu-link sidebar-submenu-link-active" href="#">Profile</a>
+                <a class="sidebar-submenu-link" href="#">Teams</a>
+                <a class="sidebar-submenu-link" href="#">Projects</a>
+                <a class="sidebar-submenu-link" href="#">Connection</a>
+              </div>
+            </nav>
+          </aside>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">Pattern Name</div>
+        <div class="card-body space-y-3 text-sm text-neutral-600 dark:text-neutral-300">
+          <p>Pattern ini disebut <strong>sidebar submenu</strong>, <strong>collapsible navigation</strong>, atau <strong>sidebar accordion</strong>.</p>
+          <p>Gunakan untuk item sidebar yang memiliki child navigation dan perlu memperlihatkan context halaman aktif.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="html" class="card mt-6">
       <div class="card-header">HTML</div>
       <div class="card-body">
-        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;aside&gt;
-  &lt;p class="mb-3 text-xs font-semibold uppercase tracking-wide"&gt;Navigations&lt;/p&gt;
-  &lt;div class="space-y-2"&gt;
-    &lt;a class="px-4 py-2.5" href="#"&gt;Navbar&lt;/a&gt;
-    &lt;div class="ml-4 border-l pl-4"&gt;
-      &lt;a class="px-3 py-2.5 font-medium text-primary-700" href="#"&gt;Sidebar&lt;/a&gt;
-    &lt;/div&gt;
+        <pre class="overflow-auto rounded bg-neutral-900 p-4 text-sm text-neutral-100"><code>&lt;nav class="sidebar-menu" aria-label="Sidebar"&gt;
+  &lt;button class="sidebar-menu-link sidebar-menu-link-active" type="button" aria-expanded="true" data-sidebar-toggle&gt;
+    &lt;span class="sidebar-menu-icon"&gt;
+      &lt;span class="icon-[lucide--user] h-4 w-4" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="sidebar-menu-text"&gt;User Profile&lt;/span&gt;
+    &lt;span class="icon-[lucide--chevron-right] sidebar-menu-chevron" aria-hidden="true"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class="sidebar-submenu"&gt;
+    &lt;a class="sidebar-submenu-link sidebar-submenu-link-active" href="#"&gt;Profile&lt;/a&gt;
+    &lt;a class="sidebar-submenu-link" href="#"&gt;Teams&lt;/a&gt;
+    &lt;a class="sidebar-submenu-link" href="#"&gt;Projects&lt;/a&gt;
+    &lt;a class="sidebar-submenu-link" href="#"&gt;Connection&lt;/a&gt;
   &lt;/div&gt;
-&lt;/aside&gt;</code></pre>
+&lt;/nav&gt;</code></pre>
       </div>
     </section>
   </ComponentDocLayout>

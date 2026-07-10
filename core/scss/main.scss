@@ -9,6 +9,7 @@
 @use "components/alert";
 @use "components/badge";
 @use "components/form";
+@use "components/sidebar";
 
 @tailwind base;
 @tailwind components;
@@ -22,5 +23,4 @@
 // @use "components/pagination";
 // @use "components/tooltip";
 // @use "components/avatar";
-// @use "components/sidebar";
 // @use "components/spinner";

@@ -46,7 +46,7 @@
     "build:scss": "sass core/scss/main.scss core/dist/_compiled.css --no-source-map",
     "build:tw": "tailwindcss -i core/dist/_compiled.css -o core/dist/ui-kit.css",
     "build:css": "npm run build:scss && npm run build:tw",
-    "sync:astro-assets": "cp core/dist/ui-kit.css public/ui-kit.css && mkdir -p public/js && cp core/js/theme-toggle.js public/js/theme-toggle.js && cp core/js/dropdown.js public/js/dropdown.js",
+    "sync:astro-assets": "cp core/dist/ui-kit.css public/ui-kit.css && mkdir -p public/js && cp core/js/theme-toggle.js public/js/theme-toggle.js && cp core/js/dropdown.js public/js/dropdown.js && cp core/js/sidebar.js public/js/sidebar.js",
     "start": "npm run dev:docs",
     "astro:dev": "astro dev",
     "astro:build": "npm run build:css && npm run sync:astro-assets && astro build && pagefind --site dist",
@@ -61,6 +61,8 @@
     "dev:docs": "npm run sync:astro-assets && concurrently \"npm run watch:css\" \"tailwindcss -i core/dist/_compiled.css -o core/dist/ui-kit.css --watch\" \"npm run astro:dev\""
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.116",
+    "@iconify/tailwind": "^1.2.0",
     "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
     "postcss": "^8.4.38",

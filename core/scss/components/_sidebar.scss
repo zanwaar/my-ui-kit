@@ -1,0 +1,97 @@
+// core/scss/components/_sidebar.scss
+
+.sidebar-menu {
+  @apply space-y-1 text-sm;
+}
+
+.sidebar-menu-section {
+  @apply mt-6;
+}
+
+.sidebar-menu-label {
+  @apply mb-3 flex items-center gap-2 text-xs uppercase tracking-wide text-neutral-400;
+}
+
+.sidebar-menu-label::before {
+  content: "";
+  @apply w-3 border-t border-neutral-200;
+}
+
+.dark .sidebar-menu-label::before {
+  @apply border-neutral-800;
+}
+
+.sidebar-menu-link {
+  @apply flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-neutral-700 transition-colors;
+  @apply hover:bg-neutral-100 hover:text-neutral-900;
+}
+
+.dark .sidebar-menu-link {
+  @apply text-neutral-300 hover:bg-neutral-800 hover:text-white;
+}
+
+.sidebar-menu-link-active {
+  @apply bg-primary-50 font-medium text-primary-600;
+}
+
+.dark .sidebar-menu-link-active {
+  @apply bg-primary-900/30 text-primary-300;
+}
+
+.sidebar-menu-icon {
+  @apply flex h-6 w-6 shrink-0 items-center justify-center text-neutral-500;
+}
+
+.sidebar-menu-link-active .sidebar-menu-icon {
+  @apply text-primary-600;
+}
+
+.dark .sidebar-menu-icon {
+  @apply text-neutral-400;
+}
+
+.dark .sidebar-menu-link-active .sidebar-menu-icon {
+  @apply text-primary-300;
+}
+
+.sidebar-menu-text {
+  @apply flex-1;
+}
+
+.sidebar-menu-chevron {
+  @apply h-4 w-4 shrink-0 text-neutral-500 transition-transform;
+}
+
+.sidebar-menu-link[aria-expanded="true"] .sidebar-menu-chevron {
+  @apply rotate-90;
+}
+
+.sidebar-submenu {
+  @apply ml-6 overflow-hidden border-l border-neutral-200 pl-4 opacity-100 transition-all duration-150 ease-out;
+}
+
+.sidebar-menu-link[aria-expanded="false"] + .sidebar-submenu {
+  @apply opacity-0;
+  height: 0;
+}
+
+.dark .sidebar-submenu {
+  @apply border-neutral-800;
+}
+
+.sidebar-submenu-link {
+  @apply block rounded-md px-3 py-2 text-neutral-600 transition-colors;
+  @apply hover:bg-neutral-100 hover:text-neutral-900;
+}
+
+.dark .sidebar-submenu-link {
+  @apply text-neutral-400 hover:bg-neutral-800 hover:text-white;
+}
+
+.sidebar-submenu-link-active {
+  @apply font-medium text-primary-600;
+}
+
+.dark .sidebar-submenu-link-active {
+  @apply text-primary-300;
+}

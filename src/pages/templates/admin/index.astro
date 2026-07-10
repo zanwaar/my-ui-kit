@@ -1,6 +1,169 @@
 ---
-import DocsLayout from '../../../layouts/DocsLayout.astro';
-import Sidebar from '../../../components/Sidebar.astro';
-const groups = [{ title: 'Templates', links: [{ href: '/templates/admin/', label: 'Admin Dashboard', active: true }] }];
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+const menuGroups = [
+  {
+    title: 'Pages',
+    links: [
+      { label: 'User Profile', icon: 'icon-[lucide--user]', children: ['Profile', 'Teams', 'Projects', 'Connection'] },
+      { label: 'Account Setting', icon: 'icon-[lucide--settings]', children: ['Account', 'Security', 'Billing'] },
+      { label: 'FAQ', icon: 'icon-[lucide--circle-help]' },
+      { label: 'Pricing', icon: 'icon-[lucide--dollar-sign]' },
+      { label: 'Misc', icon: 'icon-[lucide--layout-grid]', children: ['Error', 'Coming Soon', 'Maintenance'] },
+      { label: 'Authentications', icon: 'icon-[lucide--lock]', children: ['Login', 'Register', 'Forgot Password'] },
+      { label: 'Wizard Examples', icon: 'icon-[lucide--list-checks]', children: ['Checkout', 'Create Account', 'Property Listing'] },
+      { label: 'Modal Examples', icon: 'icon-[lucide--copy]' },
+    ],
+  },
+  {
+    title: 'Forms & Tables',
+    links: [
+      { label: 'Form Layouts', icon: 'icon-[lucide--list]', children: ['Vertical Form', 'Horizontal Form', 'Sticky Actions'] },
+      { label: 'Form Validation', icon: 'icon-[lucide--file-check]' },
+      { label: 'DataTables', icon: 'icon-[lucide--table]', children: ['Basic Table', 'Advanced Table', 'Server Side'] },
+    ],
+  },
+  {
+    title: 'Charts & Maps',
+    links: [
+      { label: 'Charts', icon: 'icon-[lucide--chart-column]' },
+      { label: 'Maps', icon: 'icon-[lucide--map-pin]' },
+    ],
+  },
+  {
+    title: 'Applications',
+    links: [
+      { label: 'User', icon: 'icon-[lucide--user]', children: ['List', 'View', 'Edit'], highlight: true },
+      { label: 'Roles & Permissions', icon: 'icon-[lucide--shield-check]', children: ['Roles', 'Permissions'], highlight: true },
+    ],
+  },
+];
+
 ---
-<DocsLayout title="Admin Template" description="Template admin dashboard" section="templates"><div class="min-h-screen w-full lg:grid lg:grid-cols-[288px_minmax(0,1fr)] lg:gap-8 lg:px-8 xl:px-12"><Sidebar groups={groups} /><main class="px-8 py-8 lg:px-8 lg:py-10 xl:px-12"><span class="badge badge-primary">Template</span><h1 class="mt-3 text-3xl font-semibold">Admin Dashboard</h1><section class="mt-8 grid gap-4 lg:grid-cols-[1fr_320px]"><div class="card"><div class="card-header">Recent Orders</div><div class="card-body space-y-3"><div class="flex items-center justify-between rounded border border-neutral-200 p-3 dark:border-neutral-800"><span>Invoice #1001</span><span class="badge badge-success">Paid</span></div><div class="flex items-center justify-between rounded border border-neutral-200 p-3 dark:border-neutral-800"><span>Invoice #1002</span><span class="badge badge-warning">Pending</span></div></div></div><div class="card"><div class="card-header">Quick Action</div><div class="card-body space-y-3"><button class="btn btn-primary w-full">Create Report</button><button class="btn btn-outline w-full">Export Data</button></div></div></section></main></div></DocsLayout>
+<AdminLayout title="Admin Dashboard" description="Template admin dashboard">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="hidden w-[288px] shrink-0 border-r border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900 lg:flex lg:flex-col">
+      <div class="flex items-center gap-3 px-4 py-6">
+        <img class="h-8 w-8 rounded-md object-contain" src="/brand/piceui-icon.png" alt="piceUI" />
+        <div>
+          <p class="text-lg font-semibold leading-none text-neutral-800 dark:text-white">piceUI</p>
+          <p class="mt-1 text-xs text-neutral-400">Dashboard Template</p>
+        </div>
+      </div>
+      <nav class="sidebar-menu flex-1 overflow-y-auto px-3 py-4">
+        <a href="#" class="sidebar-menu-link sidebar-menu-link-active mb-6">
+          <span class="sidebar-menu-icon">
+            <span class="icon-[lucide--home] h-4 w-4" aria-hidden="true"></span>
+          </span>
+          <span class="sidebar-menu-text">Dashboard</span>
+        </a>
+
+        {menuGroups.map((group) => (
+          <div class="sidebar-menu-section">
+            <div class="sidebar-menu-label">{group.title}</div>
+            <div class="space-y-1">
+              {group.links.map((link) => (
+                link.children ? (
+                  <div>
+                    <button class="sidebar-menu-link" type="button" aria-expanded="false" data-sidebar-toggle>
+                      <span class:list={[
+                        'sidebar-menu-icon rounded-md',
+                        link.highlight ? 'bg-neutral-700 text-white dark:bg-neutral-700 dark:text-white' : '',
+                      ]}>
+                        <span class:list={[link.icon, 'h-4 w-4']} aria-hidden="true"></span>
+                      </span>
+                      <span class="sidebar-menu-text">{link.label}</span>
+                      <span class="icon-[lucide--chevron-right] sidebar-menu-chevron" aria-hidden="true"></span>
+                    </button>
+                    <div class="sidebar-submenu">
+                      {link.children.map((child) => (
+                        <a href="#" class="sidebar-submenu-link">{child}</a>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <a href="#" class="sidebar-menu-link">
+                    <span class:list={[
+                      'sidebar-menu-icon rounded-md',
+                      link.highlight ? 'bg-neutral-700 text-white dark:bg-neutral-700 dark:text-white' : '',
+                    ]}>
+                      <span class:list={[link.icon, 'h-4 w-4']} aria-hidden="true"></span>
+                    </span>
+                    <span class="sidebar-menu-text">{link.label}</span>
+                  </a>
+                )
+              ))}
+            </div>
+          </div>
+        ))}
+      </nav>
+      <div data-admin-template-info class="mx-3 mb-3 rounded-md bg-primary-50 p-3 text-sm text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wide text-primary-600 dark:text-primary-400">Info</p>
+            <a href="/templates/" class="mt-1 block font-medium hover:text-primary-800 dark:hover:text-primary-200">
+              Kembali ke Templates
+            </a>
+          </div>
+          <button type="button" class="flex h-8 w-8 shrink-0 items-center justify-center rounded hover:bg-primary-100 dark:hover:bg-primary-800" data-dismiss-admin-template-info aria-label="Tutup info">
+            <span class="icon-[lucide--x] h-4 w-4" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex flex-1 flex-col overflow-y-auto">
+      <!-- Top bar -->
+      <header class="flex items-center justify-between border-b border-neutral-200 bg-white px-6 py-3 dark:border-neutral-800 dark:bg-neutral-900 lg:px-8">
+        <div>
+          <span class="badge badge-primary">Template</span>
+          <h1 class="mt-1 text-xl font-semibold">Admin Dashboard</h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="btn btn-outline btn-sm" data-theme-toggle>Theme</button>
+        </div>
+      </header>
+
+      <!-- Page content -->
+      <div class="flex-1 p-6 lg:p-8">
+        <section class="grid gap-4 lg:grid-cols-[1fr_320px]">
+          <div class="card">
+            <div class="card-header">Recent Orders</div>
+            <div class="card-body space-y-3">
+              <div class="flex items-center justify-between rounded border border-neutral-200 p-3 dark:border-neutral-800">
+                <span>Invoice #1001</span>
+                <span class="badge badge-success">Paid</span>
+              </div>
+              <div class="flex items-center justify-between rounded border border-neutral-200 p-3 dark:border-neutral-800">
+                <span>Invoice #1002</span>
+                <span class="badge badge-warning">Pending</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">Quick Action</div>
+            <div class="card-body space-y-3">
+              <button class="btn btn-primary w-full">Create Report</button>
+              <button class="btn btn-outline w-full">Export Data</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script is:inline>
+    const adminTemplateInfoKey = 'piceui:admin-template-info-dismissed';
+    const adminTemplateInfo = document.querySelector('[data-admin-template-info]');
+    const dismissAdminTemplateInfo = document.querySelector('[data-dismiss-admin-template-info]');
+
+    if (adminTemplateInfo && localStorage.getItem(adminTemplateInfoKey) === 'true') {
+      adminTemplateInfo.classList.add('hidden');
+    }
+
+    dismissAdminTemplateInfo?.addEventListener('click', () => {
+      localStorage.setItem(adminTemplateInfoKey, 'true');
+      adminTemplateInfo?.classList.add('hidden');
+    });
+  </script>
+</AdminLayout>
