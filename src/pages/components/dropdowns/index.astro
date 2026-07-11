@@ -4,89 +4,751 @@ import ComponentDocLayout from '../../../components/ComponentDocLayout.astro';
 import DocsExample from '../../../components/docs/DocsExample.astro';
 
 const toc = [
-  { href: '#overview', label: 'Overview', active: true, level: 1 },
-  { href: '#click-dropdown', label: 'Click dropdown', level: 2 },
-  { href: '#hover-dropdown', label: 'Hover dropdown', level: 2 },
-  { href: '#placement', label: 'Placement', level: 1 },
-  { href: '#top-end', label: 'Top end', level: 2 },
-  { href: '#right-start', label: 'Right start', level: 2 },
-  { href: '#phase-2-preview', label: 'Phase 2 preview', level: 1 },
-  { href: '#nested-dropdown', label: 'Nested dropdown', level: 2 },
-  { href: '#menu-options', label: 'Menu options', level: 2 },
-  { href: '#context-menu', label: 'Context menu', level: 2 }
+  { href: '#basic', label: 'Basic', active: true, level: 1 },
+  { href: '#default', label: 'Default', level: 2 },
+  { href: '#menu-content', label: 'Menu content', level: 1 },
+  { href: '#dropdown-header', label: 'Dropdown header', level: 2 },
+  { href: '#dropdown-footer', label: 'Dropdown footer', level: 2 },
+  { href: '#dropdown-title', label: 'Dropdown title', level: 2 },
+  { href: '#dropdown-form', label: 'Dropdown form', level: 2 },
+  { href: '#dropdown-radio', label: 'Dropdown radio', level: 2 },
+  { href: '#dropdown-checkbox', label: 'Dropdown checkbox', level: 2 },
+  { href: '#dropdown-switch', label: 'Dropdown switch', level: 2 },
+  { href: '#nested', label: 'Nested dropdowns', level: 1 },
+  { href: '#custom-trigger', label: 'Custom trigger', level: 1 },
+  { href: '#menu-icon', label: 'Menu icon', level: 2 },
+  { href: '#split-dropdown', label: 'Split dropdown', level: 2 },
+  { href: '#avatar-trigger', label: 'Avatar trigger', level: 2 },
+  { href: '#animations', label: 'Animations', level: 1 },
+  { href: '#slide-up', label: 'Slide up', level: 2 },
+  { href: '#transform', label: 'Transform', level: 2 },
+  { href: '#animation-items', label: 'Animation items', level: 2 },
+  { href: '#state', label: 'State', level: 1 },
+  { href: '#active-state', label: 'Active state', level: 2 },
+  { href: '#disabled-state', label: 'Disabled state', level: 2 },
+  { href: '#illustrations', label: 'Illustrations', level: 1 },
+  { href: '#hover', label: 'Hover', level: 2 },
+  { href: '#dividers', label: 'Dividers', level: 2 },
+  { href: '#icons', label: 'Icons', level: 2 },
+  { href: '#shortcuts', label: 'Shortcuts', level: 2 },
+  { href: '#scrollable', label: 'Scrollable', level: 2 },
+  { href: '#input-group', label: 'Input group', level: 2 },
+  { href: '#options', label: 'Options', level: 1 },
+  { href: '#auto-close', label: 'Auto close', level: 2 },
+  { href: '#scope-window', label: 'Scope window', level: 2 },
+  { href: '#strategy', label: 'Strategy', level: 2 },
+  { href: '#offset', label: 'Offset', level: 2 },
+  { href: '#no-flip', label: 'No flip', level: 2 },
+  { href: '#direction', label: 'Direction', level: 1 },
+  { href: '#dropup', label: 'Dropup', level: 2 },
+  { href: '#dropdown-pos', label: 'Dropdown', level: 2 },
+  { href: '#dropright', label: 'Dropright', level: 2 },
+  { href: '#dropleft', label: 'Dropleft', level: 2 },
+  { href: '#accessibility', label: 'Accessibility', level: 1 },
+  { href: '#keyboard', label: 'Keyboard interactions', level: 2 },
+  { href: '#api', label: 'API', level: 1 },
+  { href: '#options-api', label: 'Options API', level: 2 },
+  { href: '#methods', label: 'Methods', level: 2 },
+  { href: '#events', label: 'Events', level: 2 }
 ];
 
-const clickCode = `<div class="dropdown">
-  <button class="dropdown-toggle btn btn-outline" data-dropdown-toggle>Open menu</button>
-  <div class="dropdown-menu hidden" data-dropdown-menu>
-    <a class="dropdown-item" href="#">Profile</a>
-    <a class="dropdown-item" href="#">Billing</a>
-    <button class="dropdown-item dropdown-close" type="button">Sign out</button>
-  </div>
+// Basic
+const defaultCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
 </div>`;
 
-const hoverCode = `<div class="dropdown" style="--trigger: hover;">
-  <button class="dropdown-toggle btn btn-outline">Hover me</button>
-  <div class="dropdown-menu hidden">
-    <a class="dropdown-item" href="#">Overview</a>
-    <a class="dropdown-item" href="#">Analytics</a>
-  </div>
-</div>`;
-
-const topEndCode = `<div class="dropdown" data-dropdown-placement="top-end">
-  <button class="dropdown-toggle btn btn-outline">Top end</button>
-  <div class="dropdown-menu hidden">
-    <a class="dropdown-item" href="#">Duplicate</a>
-    <a class="dropdown-item" href="#">Archive</a>
-  </div>
-</div>`;
-
-const rightStartCode = `<div class="dropdown" data-dropdown-placement="right-start">
-  <button class="dropdown-toggle btn btn-outline">Right start</button>
-  <div class="dropdown-menu hidden">
-    <a class="dropdown-item" href="#">Invite member</a>
-    <a class="dropdown-item" href="#">Create channel</a>
-  </div>
-</div>`;
-
-const nestedCode = `<div class="dropdown">
-  <button class="dropdown-toggle btn btn-outline">Actions</button>
-  <div class="dropdown-menu hidden">
-    <a class="dropdown-item" href="#">Edit</a>
-    <div class="dropdown dropdown-right">
-      <button class="dropdown-item dropdown-toggle" type="button">More</button>
-      <div class="dropdown-menu hidden">
-        <a class="dropdown-item" href="#">Rename</a>
-        <a class="dropdown-item" href="#">Move</a>
+// Header
+const headerCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown header
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li class="dropdown-header gap-2">
+      <div class="avatar">
+        <div class="w-10 rounded-full">
+          <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-2.png" alt="User Avatar" />
+        </div>
       </div>
+      <div>
+        <h6 class="text-sm font-semibold">John Doe</h6>
+        <small class="text-sm opacity-50">jhon@doe.com</small>
+      </div>
+    </li>
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Footer
+const footerCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown footer
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+    <li class="dropdown-footer gap-2">
+      <button class="btn btn-error btn-soft btn-block">Sign out</button>
+    </li>
+  </ul>
+</div>`;
+
+// Title
+const titleCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown title
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li class="dropdown-title">Settings</li>
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+    <li class="dropdown-title">Contact</li>
+    <li><a class="dropdown-item" href="#">Contact support</a></li>
+  </ul>
+</div>`;
+
+// Form
+const formCode = `<div class="dropdown" style="--auto-close: inside;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown form
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <div class="dropdown-menu min-w-70 hidden" role="menu" aria-orientation="vertical">
+    <form class="p-4">
+      <div class="mb-4">
+        <label class="label-text" for="username">Username</label>
+        <input type="text" placeholder="Johndoe" class="input" id="username" />
+      </div>
+      <div class="mb-4">
+        <label class="label-text" for="password">Password</label>
+        <input type="password" placeholder="············" class="input" id="password" autocomplete="password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+    </form>
+  </div>
+</div>`;
+
+// Radio
+const radioCode = `<div class="dropdown" style="--auto-close: inside;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown radio
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <div class="dropdown-menu hidden" role="menu" aria-orientation="vertical">
+    <div class="dropdown-item gap-4">
+      <input id="radio-car" name="dropdown-radio" type="radio" class="radio radio-primary" checked/>
+      <label for="radio-car" class="label-text block text-sm font-semibold">Car</label>
+    </div>
+    <div class="dropdown-item gap-4">
+      <input id="radio-bicycle" name="dropdown-radio" type="radio" class="radio radio-primary" />
+      <label for="radio-bicycle" class="label-text text-sm font-semibold">Bicycle</label>
     </div>
   </div>
 </div>`;
 
-const checkboxCode = `<div class="dropdown">
-  <button class="dropdown-toggle btn btn-outline">Columns</button>
-  <div class="dropdown-menu hidden" role="menu">
-    <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="true">Name</button>
-    <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="false">Email</button>
-    <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="true">Role</button>
+// Checkbox
+const checkboxCode = `<div class="dropdown" style="--auto-close: inside;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown checkbox
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <div class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <div class="dropdown-item items-start gap-4">
+      <input type="checkbox" class="checkbox checkbox-primary mt-2" id="cb1" checked />
+      <label class="label-text flex flex-col items-start" for="cb1">
+        <span class="font-semibold">Mark as important</span>
+        <span class="opacity-50">Notify me when this action happens.</span>
+      </label>
+    </div>
+    <div class="dropdown-item items-start gap-4">
+      <input type="checkbox" class="checkbox checkbox-primary mt-2" id="cb2" />
+      <label class="label-text flex flex-col items-start" for="cb2">
+        <span class="font-semibold">Share with team</span>
+        <span class="opacity-50">Notify me when this action happens.</span>
+      </label>
+    </div>
   </div>
 </div>`;
 
-const radioCode = `<div class="dropdown">
-  <button class="dropdown-toggle btn btn-outline">Sort by</button>
-  <div class="dropdown-menu hidden" role="menu">
-    <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="true">Newest</button>
-    <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="false">Oldest</button>
-    <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="false">Name</button>
+// Switch
+const switchCode = `<div class="dropdown" style="--auto-close: inside;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown switch
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <div class="dropdown-menu min-w-60 hidden" role="menu" aria-orientation="vertical">
+    <div class="dropdown-item items-start gap-4">
+      <input type="checkbox" class="switch switch-primary mt-2" id="sw1" checked />
+      <label class="label-text flex flex-col items-start" for="sw1">
+        <span class="text-sm">Notifications</span>
+        <span>Receive push notifications</span>
+      </label>
+    </div>
+    <div class="dropdown-item items-start gap-4">
+      <input type="checkbox" class="switch switch-primary mt-2" id="sw2" />
+      <label class="label-text flex flex-col items-start" for="sw2">
+        <span class="text-sm">Location Services</span>
+        <span>Allow access to your location</span>
+      </label>
+    </div>
+    <div class="dropdown-item items-start gap-4">
+      <input type="checkbox" class="switch switch-primary mt-2" id="sw3" checked />
+      <label class="label-text flex flex-col items-start" for="sw3">
+        <span class="text-sm">Dark Theme</span>
+        <span>Enable dark theme for the app</span>
+      </label>
+    </div>
   </div>
 </div>`;
 
-const contextCode = `<div class="dropdown" style="--trigger: contextmenu;">
-  <button class="dropdown-toggle btn btn-outline">Right click me</button>
-  <div class="dropdown-menu hidden">
-    <a class="dropdown-item" href="#">Copy link</a>
-    <a class="dropdown-item" href="#">Open in new tab</a>
+// Nested
+const nestedCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">Send My Profile</a></li>
+    <li><a class="dropdown-item" href="#">View Settings</a></li>
+    <li class="dropdown relative dropdown-right">
+      <button class="dropdown-toggle dropdown-item justify-between" aria-haspopup="menu" aria-expanded="false">
+        More Options
+        <span class="icon-[lucide--chevron-right] dropdown-chevron inline-block size-4 shrink-0"></span>
+      </button>
+      <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+        <li><a class="dropdown-item" href="#">Download Documents</a></li>
+        <li><a class="dropdown-item" href="#">Manage FAQs</a></li>
+      </ul>
+    </li>
+    <li><a class="dropdown-item" href="#">Logout</a></li>
+  </ul>
+</div>`;
+
+// Menu icon
+const menuIconCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-square btn-primary" aria-haspopup="menu" aria-expanded="false">
+    <span class="icon-[lucide--ellipsis-vertical] inline-block size-6 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Split
+const splitCode = `<div class="flex">
+  <button type="button" class="btn btn-outline btn-primary">Dropdown</button>
+  <div class="dropdown">
+    <button type="button" class="dropdown-toggle btn btn-sm btn-square btn-primary" aria-haspopup="menu" aria-expanded="false">
+      <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+    </button>
+    <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+      <li><a class="dropdown-item" href="#">My Profile</a></li>
+      <li><a class="dropdown-item" href="#">Settings</a></li>
+      <li><a class="dropdown-item" href="#">Billing</a></li>
+      <li><a class="dropdown-item" href="#">FAQs</a></li>
+    </ul>
   </div>
+</div>`;
+
+// Avatar trigger
+const avatarCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-outline btn-primary flex items-center gap-2 rounded-full" aria-haspopup="menu" aria-expanded="false">
+    <div class="avatar">
+      <div class="size-6 rounded-full">
+        <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-3.png" alt="User Avatar" />
+      </div>
+    </div>
+    John Doe
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li class="dropdown-header gap-3">
+      <div class="avatar">
+        <div class="w-10 rounded-full">
+          <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-3.png" alt="User Avatar" />
+        </div>
+      </div>
+      <div>
+        <h6 class="text-sm font-semibold">John Doe</h6>
+        <small class="text-sm opacity-50">jhon@doe.com</small>
+      </div>
+    </li>
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Slide up
+const slideUpCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Transform
+const transformCode = `<div class="dropdown" style="--strategy: absolute;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu mt-0 hidden min-w-60 origin-top-left scale-0 transition duration-300 ease-out" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Animation items
+const animationItemsCode = `<div class="dropdown" style="--strategy: absolute;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <div class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <ul class="dropdown-open:translate-x-0 -translate-x-1 transition duration-300 ease-out" data-dropdown-transition>
+      <li><a class="dropdown-item" href="#">My Profile</a></li>
+      <li><a class="dropdown-item" href="#">Settings</a></li>
+      <li><a class="dropdown-item" href="#">Billing</a></li>
+      <li><a class="dropdown-item" href="#">FAQs</a></li>
+    </ul>
+  </div>
+</div>`;
+
+// Active state
+const activeCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item dropdown-active" href="#" aria-current="true">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Disabled state
+const disabledCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item dropdown-disabled" href="#" aria-disabled="true">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Hover
+const hoverCode = `<div class="dropdown" style="--trigger: hover;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Dividers
+const dividersCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+    <li><hr class="my-2 -mx-2 opacity-25" /></li>
+    <li><a class="dropdown-item" href="#">Pricing</a></li>
+    <li><hr class="my-2 -mx-2 opacity-25" /></li>
+    <li><a class="dropdown-item" href="#">Logout</a></li>
+  </ul>
+</div>`;
+
+// Icons
+const iconsCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li>
+      <a class="dropdown-item" href="#">
+        <span class="icon-[lucide--bell] size-5 shrink-0"></span>
+        My Profile
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">
+        <span class="icon-[lucide--settings] size-5 shrink-0"></span>
+        Settings
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">
+        <span class="icon-[lucide--credit-card] size-5 shrink-0"></span>
+        Billing
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#">
+        <span class="icon-[lucide--help-circle] size-5 shrink-0"></span>
+        FAQs
+      </a>
+    </li>
+  </ul>
+</div>`;
+
+// Shortcuts
+const shortcutsCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li>
+      <a class="dropdown-item justify-between" href="#">
+        Dashboard
+        <span>
+          <kbd class="kbd kbd-sm">⌘</kbd>
+          +
+          <kbd class="kbd kbd-sm">i</kbd>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item justify-between" href="#">
+        Settings
+        <span>
+          <kbd class="kbd kbd-sm">⌘</kbd>
+          +
+          <kbd class="kbd kbd-sm">s</kbd>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item justify-between" href="#">
+        Billing
+        <span>
+          <kbd class="kbd kbd-sm">⌘</kbd>
+          +
+          <kbd class="kbd kbd-sm">d</kbd>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item justify-between" href="#">
+        Sign out
+        <span>
+          <kbd class="kbd kbd-sm">⌘</kbd>
+          +
+          <kbd class="kbd kbd-sm">l</kbd>
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>`;
+
+// Scrollable
+const scrollableCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Notifications
+    <span class="indicator">
+      <span class="indicator-item badge badge-sm badge-error">6</span>
+      <span class="icon-[lucide--bell] size-5"></span>
+    </span>
+  </button>
+  <div class="dropdown-menu hidden min-w-80" role="menu" aria-orientation="vertical">
+    <div class="dropdown-header justify-center">
+      <h6 class="text-sm">Notifications</h6>
+    </div>
+    <div class="overflow-y-auto max-h-52">
+      <div class="dropdown-item gap-3">
+        <div class="avatar">
+          <div class="w-10 rounded-full">
+            <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-1.png" alt="Avatar" />
+          </div>
+        </div>
+        <div class="w-52">
+          <h6 class="truncate text-sm">Charles Franklin</h6>
+          <small class="opacity-50 truncate">Accepted your connection</small>
+        </div>
+      </div>
+      <div class="dropdown-item gap-3">
+        <div class="avatar">
+          <div class="w-10 rounded-full">
+            <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-2.png" alt="Avatar" />
+          </div>
+        </div>
+        <div class="w-52">
+          <h6 class="truncate text-sm">New message from Natalie</h6>
+          <small class="opacity-50 truncate">Today 10:00 AM</small>
+        </div>
+      </div>
+      <div class="dropdown-item gap-3">
+        <div class="avatar">
+          <div class="w-10 rounded-full">
+            <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-3.png" alt="Avatar" />
+          </div>
+        </div>
+        <div class="w-52">
+          <h6 class="truncate text-sm">Application approved</h6>
+          <small class="opacity-50 truncate">Your project has been approved</small>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="dropdown-footer justify-center gap-1">
+      <span class="icon-[lucide--eye] size-4"></span>
+      View all
+    </a>
+  </div>
+</div>`;
+
+// Input group
+const inputGroupCode = `<div class="flex">
+  <input class="input" placeholder="Email" />
+  <div class="dropdown">
+    <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+      Dropdown
+      <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+    </button>
+    <ul class="dropdown-menu hidden" role="menu" aria-orientation="vertical">
+      <li><a class="dropdown-item" href="#">Subscribe</a></li>
+      <li><a class="dropdown-item" href="#">Verify</a></li>
+    </ul>
+  </div>
+</div>`;
+
+// Auto-close
+const autoCloseTrueCode = `<div class="dropdown">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    True (DEFAULT)
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+const autoCloseInsideCode = `<div class="dropdown" style="--auto-close: inside;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Inside
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <div class="dropdown-menu hidden" role="menu" aria-orientation="vertical">
+    <div class="dropdown-item gap-4">
+      <input id="radio-inside-1" name="radio-inside" type="radio" class="radio radio-primary" checked/>
+      <label for="radio-inside-1" class="label-text block text-sm font-semibold">Car</label>
+    </div>
+    <div class="dropdown-item gap-4">
+      <input id="radio-inside-2" name="radio-inside" type="radio" class="radio radio-primary" />
+      <label for="radio-inside-2" class="label-text text-sm font-semibold">Bicycle</label>
+    </div>
+  </div>
+</div>`;
+
+const autoCloseOutsideCode = `<div class="dropdown" style="--auto-close: outside;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Outside
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+const autoCloseFalseCode = `<div class="dropdown" style="--auto-close: false;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    False
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Scope window
+const scopeWindowCode = `<div class="dropdown" style="--scope: window;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Strategy
+const strategyCode = `<div class="dropdown" style="--strategy: absolute;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Offset
+const offsetCode = `<div class="dropdown" style="--offset: 30;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// No flip
+const noFlipCode = `<div class="dropdown" style="--flip: false;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Dropdown
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+// Direction codes
+const topStartCode = `<div class="dropdown" style="--placement: top-start;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Top start
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+const topEndCode = `<div class="dropdown" style="--placement: top-end;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Top end
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+const bottomStartCode = `<div class="dropdown" style="--placement: bottom-start;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Bottom start
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+const bottomEndCode = `<div class="dropdown" style="--placement: bottom-end;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Bottom end
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+const rightStartCode = `<div class="dropdown" style="--placement: right-start;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Right start
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
+</div>`;
+
+const leftStartCode = `<div class="dropdown" style="--placement: left-start;">
+  <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+    Left start
+    <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+  </button>
+  <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+    <li><a class="dropdown-item" href="#">My Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Billing</a></li>
+    <li><a class="dropdown-item" href="#">FAQs</a></li>
+  </ul>
 </div>`;
 ---
 <DocsLayout title="Dropdowns" description="Dokumentasi dropdown piceUI" section="components">
@@ -96,142 +758,1149 @@ const contextCode = `<div class="dropdown" style="--trigger: contextmenu;">
     description="Dropdown piceUI memakai runtime internal ringan untuk click atau hover trigger, placement berbasis CSS, outside click, Escape, dan `.dropdown-close`."
     toc={toc}
   >
-    <section id="overview" class="mt-8 text-base leading-7 text-neutral-600 dark:text-neutral-300">
-      Gunakan struktur <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-toggle</code>, dan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-menu</code> untuk membuat action menu yang sederhana dan aman.
-      <p class="mt-4">Runtime internal mendukung click trigger, hover trigger lewat <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--trigger: hover</code>, close saat klik di luar, close saat <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">Escape</code>, sinkronisasi <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">aria-expanded</code>, keyboard navigation dasar (<code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">Enter</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">Space</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">ArrowUp</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">ArrowDown</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">Home</code>, <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">End</code>), roving <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">tabindex</code>, typeahead huruf pertama, dan helper placement berbasis CSS.</p>
-      <p class="mt-4">Fitur seperti nested dropdown kompleks masih dianggap preview phase 2 dan belum dijamin stabil di runtime internal saat ini.</p>
+    <!-- BASIC -->
+    <section id="basic" class="mt-8">
+      <h2 class="text-4xl font-semibold tracking-tight">Basic example</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Basic dropdown example.</p>
     </section>
 
-    <section id="click-dropdown" class="mt-12">
-      <h2 class="text-4xl font-semibold tracking-tight">Click dropdown</h2>
-      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Ini adalah pola utama yang direkomendasikan untuk runtime dropdown internal phase 1.</p>
-      <DocsExample code={clickCode}>
+    <section id="default" class="mt-8">
+      <h3 class="text-2xl font-semibold">Default</h3>
+      <DocsExample code={defaultCode}>
         <div class="dropdown">
-          <button class="dropdown-toggle btn btn-outline" data-dropdown-toggle>Open menu</button>
-          <div class="dropdown-menu hidden" data-dropdown-menu>
-            <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="#">Billing</a>
-            <button class="dropdown-item dropdown-close" type="button">Sign out</button>
-          </div>
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
         </div>
       </DocsExample>
     </section>
 
-    <section id="hover-dropdown" class="mt-12">
-      <h2 class="text-4xl font-semibold tracking-tight">Hover dropdown</h2>
-      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--trigger: hover</code> saat menu perlu terbuka ketika pointer masuk ke area dropdown.</p>
-      <DocsExample code={hoverCode}>
-        <div class="dropdown" style="--trigger: hover;">
-          <button class="dropdown-toggle btn btn-outline">Hover me</button>
-          <div class="dropdown-menu hidden">
-            <a class="dropdown-item" href="#">Overview</a>
-            <a class="dropdown-item" href="#">Analytics</a>
-          </div>
-        </div>
-      </DocsExample>
+    <!-- MENU CONTENT -->
+    <section id="menu-content" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Menu content</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Berbagai cara untuk menampilkan konten di dalam dropdown menu.</p>
     </section>
 
-    <section id="placement" class="mt-12">
-      <h2 class="text-4xl font-semibold tracking-tight">Placement</h2>
-      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Phase 1 memakai helper placement berbasis CSS. Tidak ada auto flip atau collision handling JavaScript.</p>
-    </section>
-
-    <section id="top-end" class="mt-8">
-      <h3 class="text-2xl font-semibold">Top end</h3>
-      <DocsExample code={topEndCode}>
-        <div class="dropdown" data-dropdown-placement="top-end">
-          <button class="dropdown-toggle btn btn-outline">Top end</button>
-          <div class="dropdown-menu hidden">
-            <a class="dropdown-item" href="#">Duplicate</a>
-            <a class="dropdown-item" href="#">Archive</a>
-          </div>
-        </div>
-      </DocsExample>
-    </section>
-
-    <section id="right-start" class="mt-8">
-      <h3 class="text-2xl font-semibold">Right start</h3>
-      <DocsExample code={rightStartCode}>
-        <div class="dropdown" data-dropdown-placement="right-start">
-          <button class="dropdown-toggle btn btn-outline">Right start</button>
-          <div class="dropdown-menu hidden">
-            <a class="dropdown-item" href="#">Invite member</a>
-            <a class="dropdown-item" href="#">Create channel</a>
-          </div>
-        </div>
-      </DocsExample>
-    </section>
-
-    <section id="phase-2-preview" class="mt-12">
-      <h2 class="text-4xl font-semibold tracking-tight">Phase 2 preview</h2>
-      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Contoh di bawah ini dipertahankan sebagai referensi desain dan arah API, tetapi belum dianggap fitur stabil pada runtime internal phase 1.</p>
-    </section>
-
-    <section id="nested-dropdown" class="mt-12">
-      <h2 class="text-3xl font-semibold">Nested dropdown</h2>
-      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Preview untuk nested dropdown. Struktur ini belum dijamin stabil untuk semua kasus pada phase 1.</p>
-      <DocsExample code={nestedCode}>
+    <section id="dropdown-header" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropdown header</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan class <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdown-header</code> untuk menampilkan informasi tambahan di bagian atas dropdown.</p>
+      <DocsExample code={headerCode}>
         <div class="dropdown">
-          <button class="dropdown-toggle btn btn-outline">Actions</button>
-          <div class="dropdown-menu hidden">
-            <a class="dropdown-item" href="#">Edit</a>
-            <div class="dropdown dropdown-right">
-              <button class="dropdown-item dropdown-toggle" type="button">More</button>
-              <div class="dropdown-menu hidden">
-                <a class="dropdown-item" href="#">Rename</a>
-                <a class="dropdown-item" href="#">Move</a>
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown header
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li class="dropdown-header gap-2">
+              <div class="avatar">
+                <div class="w-10 rounded-full">
+                  <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-2.png" alt="User Avatar" />
+                </div>
               </div>
+              <div>
+                <h6 class="text-sm font-semibold">John Doe</h6>
+                <small class="text-sm opacity-50">jhon@doe.com</small>
+              </div>
+            </li>
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="dropdown-footer" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropdown footer</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan class <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdown-footer</code> untuk menampilkan informasi tambahan di bagian bawah dropdown.</p>
+      <DocsExample code={footerCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown footer
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+            <li class="dropdown-footer gap-2">
+              <button class="btn btn-error btn-soft btn-block">Sign out</button>
+            </li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="dropdown-title" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropdown title</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan class <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdown-title</code> untuk menampilkan judul pada konten dropdown.</p>
+      <DocsExample code={titleCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown title
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li class="dropdown-title">Settings</li>
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+            <li class="dropdown-title">Contact</li>
+            <li><a class="dropdown-item" href="#">Contact support</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="dropdown-form" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropdown form</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Menggunakan form di dalam dropdown menu. Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--auto-close: inside</code> agar dropdown tidak tertutup saat mengklik form elements.</p>
+      <DocsExample code={formCode}>
+        <div class="dropdown" style="--auto-close: inside;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown form
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <div class="dropdown-menu min-w-70 hidden" role="menu" aria-orientation="vertical">
+            <form class="p-4">
+              <div class="mb-4">
+                <label class="label-text" for="username">Username</label>
+                <input type="text" placeholder="Johndoe" class="input" id="username" />
+              </div>
+              <div class="mb-4">
+                <label class="label-text" for="password">Password</label>
+                <input type="password" placeholder="············" class="input" id="password" autocomplete="password" />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+            </form>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="dropdown-radio" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropdown radio</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Letakkan radio di dalam dropdown-item untuk membuat item dropdown dengan radio.</p>
+      <DocsExample code={radioCode}>
+        <div class="dropdown" style="--auto-close: inside;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown radio
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <div class="dropdown-menu hidden" role="menu" aria-orientation="vertical">
+            <div class="dropdown-item gap-4">
+              <input id="radio-car" name="dropdown-radio" type="radio" class="radio radio-primary" checked/>
+              <label for="radio-car" class="label-text block text-sm font-semibold">Car</label>
+            </div>
+            <div class="dropdown-item gap-4">
+              <input id="radio-bicycle" name="dropdown-radio" type="radio" class="radio radio-primary" />
+              <label for="radio-bicycle" class="label-text text-sm font-semibold">Bicycle</label>
             </div>
           </div>
         </div>
       </DocsExample>
     </section>
 
-    <section id="menu-options" class="mt-12">
-      <h2 class="text-4xl font-semibold tracking-tight">Menu options</h2>
-      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Role-based item sederhana sekarang didukung untuk kebutuhan filter dan sort menu berbasis <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">aria-checked</code>.</p>
-    </section>
-
-    <section id="checkbox-items" class="mt-8">
-      <h3 class="text-2xl font-semibold">Checkbox items</h3>
+    <section id="dropdown-checkbox" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropdown checkbox</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Letakkan checkbox di dalam dropdown-item untuk membuat item dropdown dengan checkbox.</p>
       <DocsExample code={checkboxCode}>
-        <div class="dropdown">
-          <button class="dropdown-toggle btn btn-outline">Columns</button>
-          <div class="dropdown-menu hidden" role="menu">
-            <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="true">Name</button>
-            <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="false">Email</button>
-            <button class="dropdown-item" type="button" role="menuitemcheckbox" aria-checked="true">Role</button>
+        <div class="dropdown" style="--auto-close: inside;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown checkbox
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <div class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <div class="dropdown-item items-start gap-4">
+              <input type="checkbox" class="checkbox checkbox-primary mt-2" id="cb1" checked />
+              <label class="label-text flex flex-col items-start" for="cb1">
+                <span class="font-semibold">Mark as important</span>
+                <span class="opacity-50">Notify me when this action happens.</span>
+              </label>
+            </div>
+            <div class="dropdown-item items-start gap-4">
+              <input type="checkbox" class="checkbox checkbox-primary mt-2" id="cb2" />
+              <label class="label-text flex flex-col items-start" for="cb2">
+                <span class="font-semibold">Share with team</span>
+                <span class="opacity-50">Notify me when this action happens.</span>
+              </label>
+            </div>
           </div>
         </div>
       </DocsExample>
     </section>
 
-    <section id="radio-items" class="mt-8">
-      <h3 class="text-2xl font-semibold">Radio items</h3>
-      <DocsExample code={radioCode}>
-        <div class="dropdown">
-          <button class="dropdown-toggle btn btn-outline">Sort by</button>
-          <div class="dropdown-menu hidden" role="menu">
-            <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="true">Newest</button>
-            <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="false">Oldest</button>
-            <button class="dropdown-item" type="button" role="menuitemradio" data-dropdown-radio-name="sort" aria-checked="false">Name</button>
+    <section id="dropdown-switch" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropdown switch</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Letakkan switch di dalam dropdown-item untuk membuat item dropdown dengan switch.</p>
+      <DocsExample code={switchCode}>
+        <div class="dropdown" style="--auto-close: inside;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown switch
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <div class="dropdown-menu min-w-60 hidden" role="menu" aria-orientation="vertical">
+            <div class="dropdown-item items-start gap-4">
+              <input type="checkbox" class="switch switch-primary mt-2" id="sw1" checked />
+              <label class="label-text flex flex-col items-start" for="sw1">
+                <span class="text-sm">Notifications</span>
+                <span>Receive push notifications</span>
+              </label>
+            </div>
+            <div class="dropdown-item items-start gap-4">
+              <input type="checkbox" class="switch switch-primary mt-2" id="sw2" />
+              <label class="label-text flex flex-col items-start" for="sw2">
+                <span class="text-sm">Location Services</span>
+                <span>Allow access to your location</span>
+              </label>
+            </div>
+            <div class="dropdown-item items-start gap-4">
+              <input type="checkbox" class="switch switch-primary mt-2" id="sw3" checked />
+              <label class="label-text flex flex-col items-start" for="sw3">
+                <span class="text-sm">Dark Theme</span>
+                <span>Enable dark theme for the app</span>
+              </label>
+            </div>
           </div>
         </div>
       </DocsExample>
     </section>
 
-    <section id="context-menu" class="mt-12">
-      <h2 class="text-3xl font-semibold">Context menu</h2>
-      <p class="mt-3 text-neutral-600 dark:text-neutral-300">Mode <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">contextmenu</code> sekarang membuka dropdown lewat klik kanan. Long-press touch belum ditambahkan.</p>
-      <DocsExample code={contextCode}>
-        <div class="dropdown" style="--trigger: contextmenu;">
-          <button class="dropdown-toggle btn btn-outline">Right click me</button>
-          <div class="dropdown-menu hidden">
-            <a class="dropdown-item" href="#">Copy link</a>
-            <a class="dropdown-item" href="#">Open in new tab</a>
+    <!-- NESTED -->
+    <section id="nested" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Nested dropdowns</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Membuat dropdown bersarang dengan menambahkan dropdown di dalam dropdown.</p>
+      <DocsExample code={nestedCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">Send My Profile</a></li>
+            <li><a class="dropdown-item" href="#">View Settings</a></li>
+            <li class="dropdown relative dropdown-right">
+              <button class="dropdown-toggle dropdown-item justify-between" aria-haspopup="menu" aria-expanded="false">
+                More Options
+                <span class="icon-[lucide--chevron-right] dropdown-chevron inline-block size-4 shrink-0"></span>
+              </button>
+              <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+                <li><a class="dropdown-item" href="#">Download Documents</a></li>
+                <li><a class="dropdown-item" href="#">Manage FAQs</a></li>
+              </ul>
+            </li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <!-- CUSTOM TRIGGER -->
+    <section id="custom-trigger" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Custom trigger</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Berbagai cara untuk menyesuaikan trigger dropdown.</p>
+    </section>
+
+    <section id="menu-icon" class="mt-8">
+      <h3 class="text-2xl font-semibold">Menu icon</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan icon sebagai trigger dropdown.</p>
+      <DocsExample code={menuIconCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-square btn-primary" aria-haspopup="menu" aria-expanded="false">
+            <span class="icon-[lucide--ellipsis-vertical] inline-block size-6 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="split-dropdown" class="mt-8">
+      <h3 class="text-2xl font-semibold">Split dropdown</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Demo split dropdown dengan tombol dan dropdown trigger terpisah.</p>
+      <DocsExample code={splitCode}>
+        <div class="flex">
+          <button type="button" class="btn btn-outline btn-primary">Dropdown</button>
+          <div class="dropdown">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-square btn-primary" aria-haspopup="menu" aria-expanded="false">
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">FAQs</a></li>
+            </ul>
           </div>
         </div>
       </DocsExample>
     </section>
+
+    <section id="avatar-trigger" class="mt-8">
+      <h3 class="text-2xl font-semibold">Avatar trigger</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Dropdown dengan avatar sebagai trigger.</p>
+      <DocsExample code={avatarCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-outline btn-primary flex items-center gap-2 rounded-full" aria-haspopup="menu" aria-expanded="false">
+            <div class="avatar">
+              <div class="size-6 rounded-full">
+                <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-3.png" alt="User Avatar" />
+              </div>
+            </div>
+            John Doe
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li class="dropdown-header gap-3">
+              <div class="avatar">
+                <div class="w-10 rounded-full">
+                  <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-3.png" alt="User Avatar" />
+                </div>
+              </div>
+              <div>
+                <h6 class="text-sm font-semibold">John Doe</h6>
+                <small class="text-sm opacity-50">jhon@doe.com</small>
+              </div>
+            </li>
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <!-- ANIMATIONS -->
+    <section id="animations" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Animations</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Berbagai animasi untuk dropdown menu.</p>
+    </section>
+
+    <section id="slide-up" class="mt-8">
+      <h3 class="text-2xl font-semibold">Slide up animation</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Dropdown menu dengan animasi slide-up.</p>
+      <DocsExample code={slideUpCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="transform" class="mt-8">
+      <h3 class="text-2xl font-semibold">Transform animation</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan modifier <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdown-open:{"{class}"}</code> untuk animasi. Contoh ini menggunakan animasi scale.</p>
+      <DocsExample code={transformCode}>
+        <div class="dropdown" style="--strategy: absolute;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu mt-0 hidden min-w-60 origin-top-left scale-0 transition duration-300 ease-out" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="animation-items" class="mt-8">
+      <h3 class="text-2xl font-semibold">Animation items</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdown-open:{"{class}"}</code> pada sub-container untuk animasi item. Tambahkan attribute <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">data-dropdown-transition</code>.</p>
+      <DocsExample code={animationItemsCode}>
+        <div class="dropdown" style="--strategy: absolute;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <div class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <ul class="dropdown-open:translate-x-0 -translate-x-1 transition duration-300 ease-out" data-dropdown-transition>
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">FAQs</a></li>
+            </ul>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <!-- STATE -->
+    <section id="state" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">State</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">State untuk item dropdown.</p>
+    </section>
+
+    <section id="active-state" class="mt-8">
+      <h3 class="text-2xl font-semibold">Active state</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Tambahkan class <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-active</code> untuk state aktif.</p>
+      <DocsExample code={activeCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item dropdown-active" href="#" aria-current="true">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="disabled-state" class="mt-8">
+      <h3 class="text-2xl font-semibold">Disabled state</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Tambahkan class <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown-disabled</code> untuk state disabled.</p>
+      <DocsExample code={disabledCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item dropdown-disabled" href="#" aria-disabled="true">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <!-- ILLUSTRATIONS -->
+    <section id="illustrations" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Illustrations</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Contoh penggunaan dropdown dalam berbagai skenario.</p>
+    </section>
+
+    <section id="hover" class="mt-8">
+      <h3 class="text-2xl font-semibold">Hover</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Trigger default adalah click. Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">style="--trigger: hover;"</code> pada container <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">.dropdown</code> untuk membuka pada hover.</p>
+      <DocsExample code={hoverCode}>
+        <div class="dropdown" style="--trigger: hover;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="dividers" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dividers</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Dropdown menu dengan divider.</p>
+      <DocsExample code={dividersCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+            <li><hr class="my-2 -mx-2 opacity-25" /></li>
+            <li><a class="dropdown-item" href="#">Pricing</a></li>
+            <li><hr class="my-2 -mx-2 opacity-25" /></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="icons" class="mt-8">
+      <h3 class="text-2xl font-semibold">Icons</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Dropdown menu dengan icon.</p>
+      <DocsExample code={iconsCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li>
+              <a class="dropdown-item" href="#">
+                <span class="icon-[lucide--bell] size-5 shrink-0"></span>
+                My Profile
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <span class="icon-[lucide--settings] size-5 shrink-0"></span>
+                Settings
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <span class="icon-[lucide--credit-card] size-5 shrink-0"></span>
+                Billing
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <span class="icon-[lucide--help-circle] size-5 shrink-0"></span>
+                FAQs
+              </a>
+            </li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="shortcuts" class="mt-8">
+      <h3 class="text-2xl font-semibold">Shortcuts</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Dropdown menu dengan keyboard shortcuts.</p>
+      <DocsExample code={shortcutsCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li>
+              <a class="dropdown-item justify-between" href="#">
+                Dashboard
+                <span>
+                  <kbd class="kbd kbd-sm">⌘</kbd>
+                  +
+                  <kbd class="kbd kbd-sm">i</kbd>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item justify-between" href="#">
+                Settings
+                <span>
+                  <kbd class="kbd kbd-sm">⌘</kbd>
+                  +
+                  <kbd class="kbd kbd-sm">s</kbd>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item justify-between" href="#">
+                Billing
+                <span>
+                  <kbd class="kbd kbd-sm">⌘</kbd>
+                  +
+                  <kbd class="kbd kbd-sm">d</kbd>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item justify-between" href="#">
+                Sign out
+                <span>
+                  <kbd class="kbd kbd-sm">⌘</kbd>
+                  +
+                  <kbd class="kbd kbd-sm">l</kbd>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="scrollable" class="mt-8">
+      <h3 class="text-2xl font-semibold">Scrollable</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Dropdown dengan body yang dapat di-scroll. Gunakan class <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">overflow-y-auto</code> dan tentukan max-height.</p>
+      <DocsExample code={scrollableCode}>
+        <div class="dropdown">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Notifications
+            <span class="indicator">
+              <span class="indicator-item badge badge-sm badge-error">6</span>
+              <span class="icon-[lucide--bell] size-5"></span>
+            </span>
+          </button>
+          <div class="dropdown-menu hidden min-w-80" role="menu" aria-orientation="vertical">
+            <div class="dropdown-header justify-center">
+              <h6 class="text-sm">Notifications</h6>
+            </div>
+            <div class="overflow-y-auto max-h-52">
+              <div class="dropdown-item gap-3">
+                <div class="avatar">
+                  <div class="w-10 rounded-full">
+                    <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-1.png" alt="Avatar" />
+                  </div>
+                </div>
+                <div class="w-52">
+                  <h6 class="truncate text-sm">Charles Franklin</h6>
+                  <small class="opacity-50 truncate">Accepted your connection</small>
+                </div>
+              </div>
+              <div class="dropdown-item gap-3">
+                <div class="avatar">
+                  <div class="w-10 rounded-full">
+                    <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-2.png" alt="Avatar" />
+                  </div>
+                </div>
+                <div class="w-52">
+                  <h6 class="truncate text-sm">New message from Natalie</h6>
+                  <small class="opacity-50 truncate">Today 10:00 AM</small>
+                </div>
+              </div>
+              <div class="dropdown-item gap-3">
+                <div class="avatar">
+                  <div class="w-10 rounded-full">
+                    <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-3.png" alt="Avatar" />
+                  </div>
+                </div>
+                <div class="w-52">
+                  <h6 class="truncate text-sm">Application approved</h6>
+                  <small class="opacity-50 truncate">Your project has been approved</small>
+                </div>
+              </div>
+            </div>
+            <a href="#" class="dropdown-footer justify-center gap-1">
+              <span class="icon-[lucide--eye] size-4"></span>
+              View all
+            </a>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="input-group" class="mt-8">
+      <h3 class="text-2xl font-semibold">Input group</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Menggabungkan dropdown dan input menjadi satu unit.</p>
+      <DocsExample code={inputGroupCode}>
+        <div class="flex">
+          <input class="input" placeholder="Email" />
+          <div class="dropdown">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+              Dropdown
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <ul class="dropdown-menu hidden" role="menu" aria-orientation="vertical">
+              <li><a class="dropdown-item" href="#">Subscribe</a></li>
+              <li><a class="dropdown-item" href="#">Verify</a></li>
+            </ul>
+          </div>
+        </div>
+      </DocsExample>
+    </section>
+
+    <!-- OPTIONS -->
+    <section id="options" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Options</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Gunakan CSS custom properties untuk mengontrol perilaku dropdown.</p>
+    </section>
+
+    <section id="auto-close" class="mt-8">
+      <h3 class="text-2xl font-semibold">Auto close behavior</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Secara default, mengklik di dalam atau di luar dropdown menu akan menutupnya. Anda dapat mengubah perilaku ini menggunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--auto-close</code>.</p>
+      <ul class="mt-2 list-disc list-inside text-neutral-600 dark:text-neutral-300">
+        <li><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">true</code> (default): Dropdown menutup saat diklik di dalam dan di luar.</li>
+        <li><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">inside</code>: Mengizinkan klik di dalam dropdown (untuk input).</li>
+        <li><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">outside</code>: Mengizinkan klik di luar dropdown.</li>
+        <li><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">false</code>: Dropdown hanya menutup saat tombol diklik.</li>
+      </ul>
+      
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        <DocsExample code={autoCloseTrueCode}>
+          <div class="dropdown">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+              True (DEFAULT)
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">FAQs</a></li>
+            </ul>
+          </div>
+        </DocsExample>
+
+        <DocsExample code={autoCloseInsideCode}>
+          <div class="dropdown" style="--auto-close: inside;">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+              Inside
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <div class="dropdown-menu hidden" role="menu" aria-orientation="vertical">
+              <div class="dropdown-item gap-4">
+                <input id="radio-inside-1" name="radio-inside" type="radio" class="radio radio-primary" checked/>
+                <label for="radio-inside-1" class="label-text block text-sm font-semibold">Car</label>
+              </div>
+              <div class="dropdown-item gap-4">
+                <input id="radio-inside-2" name="radio-inside" type="radio" class="radio radio-primary" />
+                <label for="radio-inside-2" class="label-text text-sm font-semibold">Bicycle</label>
+              </div>
+            </div>
+          </div>
+        </DocsExample>
+      </div>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        <DocsExample code={autoCloseOutsideCode}>
+          <div class="dropdown" style="--auto-close: outside;">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+              Outside
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">FAQs</a></li>
+            </ul>
+          </div>
+        </DocsExample>
+
+        <DocsExample code={autoCloseFalseCode}>
+          <div class="dropdown" style="--auto-close: false;">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+              False
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">FAQs</a></li>
+            </ul>
+          </div>
+        </DocsExample>
+      </div>
+    </section>
+
+    <section id="scope-window" class="mt-8">
+      <h3 class="text-2xl font-semibold">Scope window</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--scope: window</code> untuk memindahkan dropdown menu ke body element. Berguna untuk dropdown di dalam container dengan overflow hidden.</p>
+      <DocsExample code={scopeWindowCode}>
+        <div class="dropdown" style="--scope: window;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="strategy" class="mt-8">
+      <h3 class="text-2xl font-semibold">Strategy</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Secara default, strategy adalah 'fixed'. Untuk mengubah ke 'absolute', gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--strategy: absolute</code>.</p>
+      <DocsExample code={strategyCode}>
+        <div class="dropdown" style="--strategy: absolute;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="offset" class="mt-8">
+      <h3 class="text-2xl font-semibold">Offset</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--offset</code> untuk mengatur jarak pixel antara dropdown menu dan trigger.</p>
+      <DocsExample code={offsetCode}>
+        <div class="dropdown" style="--offset: 30;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="no-flip" class="mt-8">
+      <h3 class="text-2xl font-semibold">No flip</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Nonaktifkan positioning otomatis dropdown-menu.</p>
+      <DocsExample code={noFlipCode}>
+        <div class="dropdown" style="--flip: false;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Dropdown
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <!-- DIRECTION -->
+    <section id="direction" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Direction</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Secara default dropdown direction adalah bottom-start. Gunakan custom property <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--placement</code> seperti FlyonUI untuk placement yang didukung.</p>
+    </section>
+
+    <section id="dropup" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropup</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--placement</code> untuk memposisikan menu di atas trigger.</p>
+      <div class="flex flex-wrap gap-4">
+        <DocsExample code={topStartCode}>
+          <div class="dropdown" style="--placement: top-start;">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+              Top start
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">FAQs</a></li>
+            </ul>
+          </div>
+        </DocsExample>
+
+        <DocsExample code={topEndCode}>
+          <div class="dropdown" style="--placement: top-end;">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+              Top end
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">FAQs</a></li>
+            </ul>
+          </div>
+        </DocsExample>
+      </div>
+    </section>
+
+    <section id="dropdown-pos" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropdown</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--placement</code> untuk memposisikan menu di bawah trigger.</p>
+      <div class="flex flex-wrap gap-4">
+        <DocsExample code={bottomStartCode}>
+          <div class="dropdown" style="--placement: bottom-start;">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+              Bottom start
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">FAQs</a></li>
+            </ul>
+          </div>
+        </DocsExample>
+
+        <DocsExample code={bottomEndCode}>
+          <div class="dropdown" style="--placement: bottom-end;">
+            <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+              Bottom end
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+            </button>
+            <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+              <li><a class="dropdown-item" href="#">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">FAQs</a></li>
+            </ul>
+          </div>
+        </DocsExample>
+      </div>
+    </section>
+
+    <section id="dropright" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropright</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--placement: right-start</code> untuk menu di sisi kanan.</p>
+      <DocsExample code={rightStartCode}>
+        <div class="dropdown" style="--placement: right-start;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Right start
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <section id="dropleft" class="mt-8">
+      <h3 class="text-2xl font-semibold">Dropleft</h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-300">Gunakan <code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--placement: left-start</code> untuk menu di sisi kiri.</p>
+      <DocsExample code={leftStartCode}>
+        <div class="dropdown" style="--placement: left-start;">
+          <button type="button" class="dropdown-toggle btn btn-sm btn-primary" aria-haspopup="menu" aria-expanded="false">
+            Left start
+            <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0"></span>
+          </button>
+          <ul class="dropdown-menu hidden min-w-60" role="menu" aria-orientation="vertical">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Billing</a></li>
+            <li><a class="dropdown-item" href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </DocsExample>
+    </section>
+
+    <!-- ACCESSIBILITY -->
+    <section id="accessibility" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">Accessibility</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Dropdown piceUI mendukung aksesibilitas dengan keyboard navigation dan ARIA attributes.</p>
+    </section>
+
+    <section id="keyboard" class="mt-8">
+      <h3 class="text-2xl font-semibold">Keyboard interactions</h3>
+      <div class="mt-4 overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><kbd class="kbd kbd-sm">Enter</kbd></td>
+              <td>Mengaktifkan item yang dipilih.</td>
+            </tr>
+            <tr>
+              <td><kbd class="kbd kbd-sm">A-Z</kbd> / <kbd class="kbd kbd-sm">a-z</kbd></td>
+              <td>Focus ke item pertama yang cocok dengan input keyboard.</td>
+            </tr>
+            <tr>
+              <td><kbd class="kbd kbd-sm">Home</kbd> / <kbd class="kbd kbd-sm">End</kbd></td>
+              <td>Focus ke item pertama/terakhir yang tidak disabled.</td>
+            </tr>
+            <tr>
+              <td><kbd class="kbd kbd-sm">Esc</kbd></td>
+              <td>Menutup menu yang terbuka.</td>
+            </tr>
+            <tr>
+              <td><kbd class="kbd kbd-sm">↑</kbd> / <kbd class="kbd kbd-sm">↓</kbd></td>
+              <td>Focus ke item sebelumnya/berikutnya yang tidak disabled.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- API -->
+    <section id="api" class="mt-12">
+      <h2 class="text-4xl font-semibold tracking-tight">API</h2>
+      <p class="mt-4 max-w-4xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">Object HSDropdown terdapat dalam window global.</p>
+    </section>
+
+    <section id="options-api" class="mt-8">
+      <h3 class="text-2xl font-semibold">Options API</h3>
+      <div class="mt-4 overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+              <th>Options</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--placement</code></td>
+              <td>Posisi dropdown relatif terhadap trigger</td>
+              <td>auto | top | top-start | top-end | bottom | bottom-start | bottom-end | left | left-start | left-end | right | right-start | right-end</td>
+              <td>bottom-start</td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--offset</code></td>
+              <td>Jarak antara dropdown dan trigger</td>
+              <td>number (px)</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--scope</code></td>
+              <td>Container untuk menentukan batas dropdown</td>
+              <td>parent | window</td>
+              <td>parent</td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--strategy</code></td>
+              <td>Metode positioning dropdown</td>
+              <td>absolute | fixed</td>
+              <td>fixed</td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--trigger</code></td>
+              <td>Event trigger untuk membuka dropdown</td>
+              <td>click | hover | contextmenu</td>
+              <td>click</td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--auto-close</code></td>
+              <td>Kapan dropdown auto-close</td>
+              <td>true | false | inside | outside</td>
+              <td>true</td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--has-autofocus</code></td>
+              <td>Aktifkan autofocus item/menu saat dibuka dari keyboard</td>
+              <td>true | false</td>
+              <td>true</td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--autofocus-on-keyboard-only</code></td>
+              <td>Autofocus hanya saat dropdown dibuka lewat keyboard</td>
+              <td>true | false</td>
+              <td>true</td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">--flip</code></td>
+              <td>Aktifkan auto-flip positioning</td>
+              <td>true | false</td>
+              <td>true</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="methods-api" class="mt-8">
+      <h3 class="text-2xl font-semibold">Methods</h3>
+      <div class="mt-4 overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">toggle()</code></td>
+              <td>Toggle buka/tutup dropdown</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">HSDropdown.toggle(dropdownEl)</code></td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">close()</code></td>
+              <td>Tutup dropdown</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">HSDropdown.close(dropdownEl)</code></td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">open()</code></td>
+              <td>Buka dropdown</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">HSDropdown.open(dropdownEl)</code></td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">closeAll()</code></td>
+              <td>Tutup semua dropdown</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">HSDropdown.closeAll()</code></td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">getInstance(id)</code></td>
+              <td>Dapatkan instance dropdown</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">HSDropdown.getInstance(dropdownEl)</code></td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">getOrCreateInstance(id)</code></td>
+              <td>Dapatkan atau buat instance</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">HSDropdown.getOrCreateInstance(dropdownEl)</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="events-api" class="mt-8">
+      <h3 class="text-2xl font-semibold">Events</h3>
+      <div class="mt-4 overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">open</code></td>
+              <td>Dipicu saat dropdown dibuka</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdownEl.addEventListener('open', () =&gt; {})</code></td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">close</code></td>
+              <td>Dipicu saat dropdown ditutup</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdownEl.addEventListener('close', () =&gt; {})</code></td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">destroy</code></td>
+              <td>Dipicu saat dropdown dihancurkan</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdownEl.addEventListener('destroy', () =&gt; {})</code></td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">open.dropdown</code></td>
+              <td>Alias event kompatibel FlyonUI saat dropdown dibuka</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdownEl.addEventListener('open.dropdown', () =&gt; {})</code></td>
+            </tr>
+            <tr>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">close.dropdown</code></td>
+              <td>Alias event kompatibel FlyonUI saat dropdown ditutup</td>
+              <td><code class="rounded bg-neutral-100 px-2 py-1 text-sm dark:bg-neutral-800">dropdownEl.addEventListener('close.dropdown', () =&gt; {})</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </ComponentDocLayout>
 </DocsLayout>

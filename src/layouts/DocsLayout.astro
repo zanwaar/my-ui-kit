@@ -77,13 +77,13 @@ const themeItems = [
           <div class="dropdown shrink-0">
             <button class="dropdown-toggle btn btn-outline btn-sm h-10 min-w-28 justify-between px-4" data-dropdown-toggle aria-expanded="false">
               <span data-theme-toggle-label>Theme</span>
-              <span class="text-sm leading-none">⌃</span>
+              <span class="icon-[lucide--chevron-down] dropdown-chevron inline-block size-4 shrink-0" aria-hidden="true"></span>
             </button>
             <div data-dropdown-menu class="dropdown-menu absolute right-0 hidden w-80 overflow-y-auto rounded-2xl p-2" style="max-height: min(26rem, calc(100vh - 6rem));">
               <div class="space-y-1 pr-1">
                 {themeItems.map((theme) => (
                   <button
-                    class="dropdown-item h-14 justify-between gap-4 rounded-xl px-4 text-base font-medium"
+                    class="dropdown-item h-12 justify-between gap-4 rounded-xl px-4 text-sm font-medium"
                     type="button"
                     data-theme-option={theme.name}
                     aria-pressed="false"
@@ -106,6 +106,8 @@ const themeItems = [
       <slot />
     </main>
     <script is:inline src="/js/theme-toggle.js"></script>
+    <script is:inline src="/js/floating-ui.core.umd.min.js"></script>
+    <script is:inline src="/js/floating-ui.dom.umd.min.js"></script>
     <script is:inline src="/js/dropdown.js"></script>
     <script is:inline src="/js/sidebar.js"></script>
     <script is:inline src="/js/modal.js"></script>
